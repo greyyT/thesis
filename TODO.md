@@ -5,7 +5,7 @@
 ### 1.1 - reason choosing the topic
 
 - [ ] Add government/academic sources (ILO, OECD, Bureau of Labor Statistics) @lelouvincx
-- [ ] Insights from survey emphasize "quality candidates" and "retention" rather than jumping directly into technology solution @greyy-nguyen
+- [x] Technology is proposed as the solution. However, the insights from survey emphasize "quality candidates" and "retention" @greyy-nguyen (the old version didn't mention that using AI will give time for HR to do strategic tasks, but the new version does).
 - [ ] Assumes AI automation is superior without comparing to improved human processes @greyy-nguyen
 
 ### 1.2 - problem statement

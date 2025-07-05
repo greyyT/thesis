@@ -8,7 +8,7 @@ Trong báo cáo "2025 Hiring Insights Report" của GoodTime³, các đội ngũ
 
 ![Hình 1.1: Các thách thức tuyển dụng trong 12 tháng qua (Nguồn: GoodTime, 2025 Hiring Insights Report)](./image.png)
 
-Trước thực trạng đó, việc áp dụng Trí tuệ Nhân tạo (AI) và tự động hóa đang nổi lên như một giải pháp đột phá. Luận văn này tập trung vào việc giải quyết các thách thức mà đội ngũ TA phải đối mặt, đặc biệt là những hạn chế về công nghệ và sự kém hiệu quả phát sinh từ các quy trình thủ công. Mục tiêu là khám phá cách AI có thể được tận dụng để tự động hóa các công việc lặp đi lặp lại, từ đó giải phóng thời gian cho các chuyên viên tuyển dụng để họ tập trung vào các nhiệm vụ chiến lược hơn.
+Trước thực trạng đó, việc áp dụng Trí tuệ Nhân tạo (AI) và tự động hóa đang nổi lên như một giải pháp đột phá. Luận văn này tập trung vào việc giải quyết các thách thức mà đội ngũ TA phải đối mặt, đặc biệt là những hạn chế về công nghệ và sự kém hiệu quả phát sinh từ các quy trình thủ công. Mục tiêu là khám phá cách AI có thể được tận dụng để tự động hóa các công việc lặp đi lặp lại, từ đó giải phóng thời gian cho các chuyên viên tuyển dụng để họ tập trung vào các nhiệm vụ chiến lược hơn, như là những thách thức lớn mà đội ngũ thu hút nhân tài đang gặp phải đã đề cập trước đó.
 
 Thực tế cho thấy, AI đang dần thay đổi cách các đội ngũ TA giải quyết các vấn đề cố hữu. Bằng cách tự động hóa các tác vụ như lập lịch phỏng vấn, sàng lọc hồ sơ, và tạo báo cáo phân tích, công nghệ đã giúp các chuyên viên tuyển dụng có thêm thời gian để tập trung vào các ưu tiên chiến lược, chẳng hạn như tương tác và xây dựng mối quan hệ với các ứng viên tiềm năng giá trị cao.
 
@@ -29,3 +29,5 @@ Từ những phân tích trên, luận văn đề xuất xây dựng một hệ 
 ² Fuller, J. B., Raman, M., Sage-Gavin, E., & Hines, K. (2021). [Hidden Workers: Untapped Talent](https://www.hbs.edu/ris/Publication%20Files/2020/May/19-062_05.pdf). Harvard Business School.
 
 ³ GoodTime. (2024). [2025 Hiring Insights Report](https://goodtime.io/resources/thank-you-report-hiring-insights-2025/lessons-from-2024/).
+
+## 1.2. Trình bày bài toán
