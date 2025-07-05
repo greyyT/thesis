@@ -1,0 +1,2 @@
+- Sau covid, tất cả công việc giảm xuống (thực trạng).
+- Theo research A, các công ty tốn nhiều tài nguyên tìm kiếm ứng viên hơn mặc dù số lượng công việc lại giảm xuống (người thất nghiệp, tìm kiếm công việc nhiều, nhưng thực trạng lại nói lên rằng tốn thời gian tìm kiếm ứng viên hơn). Root cause là không hiệu quả trong toàn bộ quá trình (CV quá nhiều, source ứng viên) => dẫn đến ý tưởng nếu con người làm không hiệu quả do có quá nhiều manual work, có thể dùng AI để tự động hoá những cái manual work đó, yếu tố con người thêm vào cuối cùng để ra quyết định.
