@@ -10,13 +10,14 @@
 
 ### 1.2 - problem statement
 
-- [ ] Write problem statement @lelouvincx
-
-- [ ] Find suitable dataset for evaluating success metrics: Time-to-hire reduction percentage, Quality-of-hire scores, Diversity metrics improvement, False negative reduction rate @lelouvincx
-
-- [ ] Reference OECD AI Principles explicitly when discussing your human-in-the-loop system design, particularly Principles 2 (human-centered values) and 5 (accountability), https://www.oecd.org/en/topics/sub-issues/ai-principles.html
-
 - [ ] Content for this part @greyy-nguyen
   - Current ATS fail because of rigid keyword matching → Multi-agent system uses contextual understanding
   - Single-point decisions create bias → Multiple specialized agents provide checks and balances
   - Lack of transparency → Explainable AI with audit trails
+
+- [ ] Find suitable dataset for evaluating success metrics: Time-to-hire reduction percentage, Quality-of-hire scores, Diversity metrics improvement, False negative reduction rate @lelouvincx
+    - Approach: Since no time, Find datasets first, find out the evaluation method of those datasets, then design the problem statement based on the evaluation method
+
+- [ ] Reference OECD AI Principles explicitly when discussing your human-in-the-loop system design, particularly Principles 2 (human-centered values) and 5 (accountability), https://www.oecd.org/en/topics/sub-issues/ai-principles.html
+
+- [ ] Write problem statement @lelouvincx
