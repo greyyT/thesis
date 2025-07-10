@@ -30,4 +30,4 @@ Từ những phân tích trên, luận văn đề xuất xây dựng một hệ 
 
 ³ GoodTime. (2024). [2025 Hiring Insights Report](https://goodtime.io/resources/thank-you-report-hiring-insights-2025/lessons-from-2024/).
 
-## 1.2. Trình bày bài toán
+## 1.2. Problem space
