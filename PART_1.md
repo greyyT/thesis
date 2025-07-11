@@ -28,4 +28,33 @@ Như bà Megan Hennessy, cựu Trưởng phòng Nhân tài Cấp cao Toàn cầu
 
 ³ GoodTime. (2024). [2025 Hiring Insights Report](https://goodtime.io/resources/thank-you-report-hiring-insights-2025/lessons-from-2024/).
 
-## 1.2. Problem space
+## 1.2 Problem Space
+
+The contemporary recruitment landscape is defined by a central paradox: a large volume of applicants coupled with a pronounced scarcity of qualified talent. This disconnect highlights critical inefficiencies within traditional hiring workflows, which can be distilled into two primary, interconnected problems. While both stem from outdated processes, this thesis will argue that the second problem presents a more immediate and impactful opportunity for intervention through an intelligent, human-centric system.
+
+### 1.2.1 Inefficient Manual Processes and Resultant Hiring Delays
+
+A significant challenge identified by 27% of Talent Acquisition (TA) teams is the friction caused by overwhelming workloads and inadequate recruiting technology, leading to protracted hiring cycles (GoodTime, 2024). In this scenario, organizations possess the intent and budget to expand their workforce, but the operational capacity of the hiring process itself becomes the primary bottleneck. Recruiters are encumbered by repetitive, low-value administrative tasks—such as manual scheduling, data entry, and candidate communication—which detract from strategic activities like candidate engagement and talent pipeline development.
+
+This operational drag carries substantial business costs. It creates a competitive disadvantage, as high-value candidates are often lost to organizations with more agile hiring processes. Furthermore, it inflates the cost-per-hire by demanding more recruiter hours for each successful placement. Addressing this issue would necessitate a broad automation strategy across the entire recruitment lifecycle, from initial sourcing to final offer management. Such an approach, while valuable, presents high implementation complexity and suffers from a lack of standardized public datasets for workflow simulation, making it a less feasible initial target for a focused research endeavor.
+
+### 1.2.2 High False Rejection Rates and Systemic Talent Loss
+
+The more critical and insidious problem is the systemic loss of qualified candidates due to flawed screening mechanisms. Modern recruitment is heavily reliant on Applicant Tracking Systems (ATS), yet these tools are demonstrably failing. Research indicates that automated screening systems incorrectly reject between 12% and 35% of viable applicants (OECD, 2023). This issue is so pervasive that over 90% of managers acknowledge their ATS has erroneously disqualified suitable candidates (Fuller et al., 2021). The primary cause lies in the application of overly rigid, deterministic filters that penalize non-traditional yet highly competent profiles. For instance, systems automatically discard resumes with career gaps or those lacking specific, often unnecessary, degree qualifications, effectively creating a population of "hidden workers"—untapped talent pools that remain invisible to employers.
+
+This high false rejection rate is not merely a technical flaw; it represents a profound business and strategic failure with compounding negative effects:
+
+*   **Erosion of the Talent Pool:** It artificially shrinks the available pool of qualified candidates, exacerbating the perceived talent shortage and leading hiring managers to conclude that quality applicants do not exist.
+*   **High Opportunity Cost:** The direct cost of losing a top-tier candidate to a competitor is immense, impacting innovation, productivity, and market position.
+*   **Brand Damage:** A poor candidate experience, where qualified individuals are rejected without apparent reason, can damage an organization's employer brand and deter future applications.
+*   **Perpetuation of Bias:** Rigid filters can unintentionally penalize specific demographic groups, undermining Diversity, Equity, and Inclusion (DEI) initiatives and leading to homogenous, less innovative teams.
+
+Therefore, this thesis will concentrate on mitigating this specific problem. The objective is not to fully automate the hiring process, but to augment human recruiters by re-engineering the critical top-of-funnel screening stage. The proposed solution focuses on a human-in-the-loop system designed to dramatically reduce the false rejection rate and ensure that all potentially viable candidates are surfaced for human review. This approach offers a higher business value by directly addressing talent loss and presents a more tractable research problem with available datasets and clearer success metrics.
+
+The problem can be formally stated as follows:
+
+-   **Given:** A batch of job descriptions *J* and a diverse pool of candidate resumes *R*.
+-   **Task:** The system must process this input to generate a ranked shortlist *S ⊂ R* for each job *j ∈ J*. This shortlist should be accompanied by clear, explainable justifications for each candidate's ranking.
+-   **Objective:** The system must be optimized to **maximize the recall of truly qualified candidates** (as validated by a human reviewer) who would have been missed by traditional ATS filters, while simultaneously **minimizing the cognitive load on the recruiter** by providing accurate and concise summaries.
+
+Success will be measured by the reduction in the false rejection rate compared to a baseline ATS, the quality and coverage of the generated explanations, and the efficiency gained in the time-to-shortlist metric.

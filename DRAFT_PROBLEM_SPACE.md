@@ -1,5 +1,3 @@
-I'll coordinate this research team discussion. Let me first provide my analysis, then gather perspectives from Gemini and O3.
-
 ## My Analysis: Problem Space
 
 ### Problem 1: Inefficient Manual Processes in Talent Acquisition
