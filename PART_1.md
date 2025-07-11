@@ -58,3 +58,14 @@ The problem can be formally stated as follows:
 -   **Objective:** The system must be optimized to **maximize the recall of truly qualified candidates** (as validated by a human reviewer) who would have been missed by traditional ATS filters, while simultaneously **minimizing the cognitive load on the recruiter** by providing accurate and concise summaries.
 
 Success will be measured by the reduction in the false rejection rate compared to a baseline ATS, the quality and coverage of the generated explanations, and the efficiency gained in the time-to-shortlist metric.
+
+## 1.3 Problem Statement
+
+Contemporary applicant-tracking systems (ATS) and manual triage practices discard a non-trivial share (≈12 – 35 %) (add citation) of qualified candidates before substantive evaluation, inflating vacancy costs and undermining workforce diversity. This thesis investigates whether a human-in-the-loop (HITL) multi-agent architecture can lower the false-rejection rate (FRR) without proportionally increasing recruiter workload.
+
+The research will focus on the screening stage: given a job description and a corpus of résumés, the system must 
+1) generate a ranked shortlist whose recall of human-validated "interview-worthy" candidates exceeds a baseline ATS
+2) constrain recruiter review volume to a small fraction α of the total pool (Reviewer-Load Reduction, RLR)
+3) attach intelligible, auditable explanations to every recommended candidate. Publicly available résumé datasets (≈50 k labelled CVs) and web-scraped job postings will serve as training and test corpora.
+
+Expected outcomes include: (i) a prototypical multi-agent framework comprising Screening, Critic, HITL, and Data-Steward agents; (ii) empirical evidence of FRR reduction under realistic reviewer-load constraints; and (iii) guidelines on explanation strategies that balance recruiter trust with screening latency.
