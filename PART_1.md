@@ -22,8 +22,6 @@ Như bà Megan Hennessy, cựu Trưởng phòng Nhân tài Cấp cao Toàn cầu
 
 > "Tôi thấy trước sự nâng tầm thực sự của bộ phận thu hút nhân tài, họ sẽ không còn là những người tuyển dụng, tìm kiếm nguồn cung ứng và điều phối viên, mà giống như những cố vấn nhân tài hơn. Mọi người sẽ nói rằng, ‘này, đây là cách tuyển dụng, đây là chiến lược, đây là những gì chúng ta cần làm, đây là cách chúng ta thực hiện’ thay vì ‘Tuyệt vời, giám đốc tuyển dụng, tôi sẽ đi tìm người này cho ông.’"
 
-Từ những phân tích trên, luận văn đề xuất xây dựng một hệ thống đa tác tử (multi-agent system) chuyên biệt cho lĩnh vực quản trị nhân sự (HRM), tập trung vào việc tự động hóa các khâu tốn nhiều công sức như tìm kiếm và sàng lọc ứng viên. Điểm cốt lõi của hệ thống này là cơ chế "con người trong vòng lặp" (human-in-the-loop), nơi yếu tố con người không bị loại bỏ mà được tích hợp xuyên suốt quá trình vận hành để đưa ra phản hồi, tinh chỉnh và giám sát, đảm bảo hệ thống hoạt động hiệu quả, minh bạch và phù hợp với chiến lược của tổ chức.
-
 ¹ OECD (2023), OECD Employment Outlook 2023: Artificial Intelligence and the Labour Market, OECD Publishing, Paris, https://doi.org/10.1787/08785bba-en.
 
 ² Fuller, J. B., Raman, M., Sage-Gavin, E., & Hines, K. (2021). [Hidden Workers: Untapped Talent](https://www.hbs.edu/ris/Publication%20Files/2020/May/19-062_05.pdf). Harvard Business School.
