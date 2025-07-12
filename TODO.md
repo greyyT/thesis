@@ -40,3 +40,7 @@
 
 - [ ] @lelouvincx to draw use-case diagram
 - [ ] @lelouvincx to describe the use-case diagram
+
+## Part 4 - Evaluation Framework
+
+- [ ] @lelouvincx Comparative analysis vs. existing ATS on standardized datasets
