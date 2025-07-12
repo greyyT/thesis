@@ -24,6 +24,7 @@
 > "I foresee talent acquisition really uplifting, so they're not going to be recruiters, sourcers, and coordinators, but more of like talent advisors. Everyone's going to be saying, ‘hey, here's how to hire, here's the strategy, here's what we need to do, here's how we do it’ versus ‘Great, hiring manager, I will go find this for you.’"
 > Said Megan Hennessy, Former Global Senior Talent Leader at Meta
 
+# Problem Space
 1. Slow mannual processes lead to delays in hiring (27%)
   - In this case, companies still increase headcount, but the hiring process itself is slow
   - Emphasize this point to highlight the need for automation => technical value
