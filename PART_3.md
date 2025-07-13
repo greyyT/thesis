@@ -15,20 +15,57 @@ Principles:
 
 ## 3.2 Use-case Overview
 
-### System Actors
+### 3.2.1 System Actors
 
-#### a. Primary Actors
+#### Primary Actors (External)
+- **Recruiter**: Initiates job postings, defines evaluation criteria, manages candidate sourcing, and provides contextual input for complex cases
+- **HR Manager**: Provides oversight, handles HITL reviews for uncertain/high-stakes decisions, makes final hiring approvals, and guides bias mitigation strategies
+- **Job Candidate**: Submits applications, receives status updates, and may be contacted for additional information
+- **System Administrator**: Manages system configuration, user access controls, monitors compliance metrics, and generates audit reports
 
-- **Recruiter**: Initiates job postings, defines requirements, and oversees candidate sourcing
-- **HR Manager**: Provides oversight, handles HITL reviews, and makes final hiring decisions
-- **Job Candidate**: Submits applications and receives status updates
-- **System Administrator**: Manages system configuration, user access, and compliance reporting
+#### Secondary Actor
+- **External Data Sources**: Job boards, professional networks, and candidate databases that provide candidate information
 
-#### b. Multi-Agent System (Internal)
+#### System Actor (Internal)
+- **Multi-Agent System**: Autonomous collaborative framework consisting of specialized agents for (described in detail in Section 3.3):
+  - Candidate sourcing and discovery
+  - Resume screening and evaluation
+  - Bias detection and mitigation
+  - Human-AI collaboration coordination
+  - Audit trail and compliance management
 
-The system employs a collaborative multi-agent architecture that handles candidate sourcing, screening, bias detection, human-AI collaboration, and audit compliance autonomously. Individual agent responsibilities (described below) are detailed in the system architecture section.
+### 3.2.2 System Use Case Model
 
-### High-level Use Cases
+#### Core Use Case Categories
+
+##### 1. Job Management and Sourcing
+- **UC-JM-01: Post Job Requirements** - Recruiter defines job criteria, required skills, and evaluation rubric
+- **UC-JM-02: Source Candidates** - System automatically discovers candidates from multiple sources
+- **UC-JM-03: Manage Candidate Pool** - Deduplication, standardization, and eligibility filtering
+- **UC-JM-04: Manual Candidate Addition** - Recruiter adds candidates with contextual notes
+
+##### 2. Candidate Screening and Evaluation
+- **UC-CS-01: Screen Candidates** - Semantic analysis of resumes against job requirements
+- **UC-CS-02: Detect Bias** - Critic agent reviews screening decisions for discriminatory patterns
+- **UC-CS-03: Generate Candidate Scores** - Evidence-based scoring with detailed rationales
+- **UC-CS-04: Validate Decisions** - Cross-agent validation of screening outcomes
+
+##### 3. Human-in-the-Loop (HITL) Review
+- **UC-HITL-01: Trigger HITL Review** - Automatic escalation based on confidence thresholds or bias flags
+- **UC-HITL-02: Present Candidate Context** - Structured display of agent analysis and conflicts
+- **UC-HITL-03: Capture Human Decisions** - Record approvals, rejections, and feedback
+- **UC-HITL-04: Facilitate Multi-turn Discussion** - Support iterative clarification for complex cases
+
+##### 4. Decision Making and Compliance
+- **UC-DM-01: Generate Final Shortlist** - Produce ranked candidates with transparent rationales
+- **UC-DM-02: Maintain Audit Trail** - Complete logging of all decisions and interactions
+- **UC-DM-03: Monitor Bias Metrics** - Real-time diversity and fairness tracking
+- **UC-DM-04: Continuous Learning** - Model improvement from human feedback
+
+#### Use Case Relationships
+- **Includes**: UC-JM-01 includes UC-CS-01; UC-CS-01 includes UC-CS-02
+- **Extends**: UC-HITL-01 extends UC-CS-01 when confidence is low; UC-HITL-04 extends UC-HITL-03 for complex cases
+- **Generalizes**: UC-CS-03 generalizes to all evaluation contexts
 
 ```mermaid
 graph TB
@@ -76,145 +113,24 @@ graph TB
     class MAS agent
 ```
 
-Here I list the primary use cases for the multi-agent system.
+### 3.2.3 Key Operational Scenarios
 
-#### 1. Job Management and Sourcing
+#### Primary Use Case Scenarios
 
-- **Post Job Requirements**: Recruiter defines job criteria and evaluation rubric
-- **Source Candidates**: Automated discovery from job boards, databases, and referrals
-- **Manage Candidate Pool**: Deduplication, standardization, and eligibility filtering
+| UC-ID | Name | Primary Actor | Pre-conditions | Main Steps | Post-conditions |
+|-------|------|---------------|----------------|------------|-----------------|
+| UC-OP-01 | Standard Automated Screening | Multi-Agent System | • Job requirements posted<br>• Candidate pool sourced<br>• Evaluation rubric defined | 1. Retrieve candidate profiles from source pool<br>2. Analyze resumes against job rubric<br>3. Validate decisions via bias detection<br>4. Generate confidence scores and rationales<br>5. Process high-confidence decisions automatically<br>6. Send automated status updates to candidates<br>7. Log complete audit trail | • Candidates scored and categorized<br>• Audit trail recorded<br>• 70-80% processed without human intervention |
+| UC-OP-02 | HITL Intervention for Edge Cases | HR Manager | • Low confidence score (<0.7)<br>• Bias flag raised<br>• Agent disagreement detected | 1. Detect uncertainty in evaluation<br>2. Escalate case with structured context<br>3. Present agent analyses and conflicts<br>4. Facilitate interactive discussion<br>5. Capture human decision and rationale<br>6. Update system models with feedback<br>7. Communicate decision to candidate | • Human-validated decision recorded<br>• System learning updated<br>• Complex case resolved |
+| UC-OP-03 | Bias Detection and Mitigation | System Administrator | • Bias patterns detected<br>• Discrimination threshold exceeded<br>• Compliance review triggered | 1. Identify potential discrimination patterns<br>2. Send alerts to HR Manager and Admin<br>3. Analyze historical decisions<br>4. Implement mitigation strategies<br>5. Re-evaluate affected candidates<br>6. Generate compliance report<br>7. Initiate ongoing monitoring | • Bias mitigation applied<br>• Compliance documented<br>• Monitoring activated |
 
-#### 2. Candidate Screening and Evaluation
+#### Supporting Use Case Scenarios
 
-- **Screen Candidates**: Semantic analysis of resumes against job requirements
-- **Detect Bias**: Critic agent reviews for discriminatory patterns
-- **Generate Candidate Scores**: Evidence-based scoring with detailed rationales
+| UC-ID | Name | Primary Actor | Pre-conditions | Main Steps | Post-conditions |
+|-------|------|---------------|----------------|------------|-----------------|
+| UC-OP-04 | Manual Candidate Addition | Recruiter | • Active job posting<br>• Candidate information available<br>• Recruiter has system access | 1. Add candidate profile manually<br>2. Validate profile completeness<br>3. Request missing information if needed<br>4. Enrich profile with context notes<br>5. Attach portfolio/work samples<br>6. Tag with manual source indicator<br>7. Route to standard screening workflow | • Candidate integrated into pool<br>• Enhanced context preserved<br>• Screening initiated |
+| UC-OP-05 | Multi-turn HITL Discussion | HR Manager | • Complex case flagged<br>• Initial review incomplete<br>• Clarification needed | 1. Review initial case presentation<br>2. Request specific clarifications<br>3. System provides additional context<br>4. Iterative Q&A exchange<br>5. Reach informed decision<br>6. Document discussion thread<br>7. Finalize candidate status | • Complex case clarified<br>• Decision trail complete<br>• Learning data captured |
 
-#### 3. Human-in-the-Loop Review
-
-- **Trigger HITL Review**: Automatic escalation based on confidence thresholds
-- **Present Candidate Context**: Structured display of agent analysis and conflicts
-- **Capture Human Decisions**: Record approvals, rejections, and feedback
-- **Facilitate Multi-turn Discussion**: Support complex case clarification
-
-#### 4. Decision Making and Compliance
-
-- **Generate Final Shortlist**: Ranked candidates with decision rationales
-- **Maintain Audit Trail**: Complete logging of agent decisions and human inputs
-- **Monitor Bias Metrics**: Real-time diversity and fairness tracking
-- **Continuous Learning**: Model improvement from human feedback
-
-### Detailed Use Cases
-
-```mermaid
-graph TB
-    %% Actors
-    User((User))
-    HumanReviewer((Human Reviewer))
-    ExternalSources((External Data Sources))
-
-    %% System boundary
-    subgraph MultiAgentSystem["Multi-Agent Research System"]
-        %% Primary Use Cases
-        SubmitQuery[Submit Research Query]
-        InitializeResearch[Initialize Research Process]
-        PlanResearch[Plan Research Approach]
-        ManageMemory[Manage Research Memory]
-        CreateSubagents[Create Specialized Subagents]
-        ConductSearch[Conduct Web Search]
-        AnalyzeData[Analyze Research Data]
-        EvaluateResults[Evaluate Research Results]
-        SynthesizeFindings[Synthesize Research Findings]
-        MakeDecision[Make Continue/Stop Decision]
-        ProcessCitations[Process Citations]
-        StoreResults[Store Research Results]
-        DeliverResults[Deliver Final Results]
-
-        %% HITL Use Cases
-        ReviewProgress[Review Research Progress]
-        ProvideGuidance[Provide Research Guidance]
-        ApproveFindings[Approve Final Findings]
-
-        %% System Management
-        MonitorProgress[Monitor System Progress]
-        HandleErrors[Handle Process Errors]
-        ManageIterations[Manage Research Iterations]
-    end
-
-    %% User interactions
-    User --> SubmitQuery
-    User --> ReviewProgress
-    User --> ProvideGuidance
-    DeliverResults --> User
-
-    %% Human Reviewer interactions
-    HumanReviewer --> ReviewProgress
-    HumanReviewer --> ProvideGuidance
-    HumanReviewer --> ApproveFindings
-
-    %% External Sources
-    ExternalSources --> ConductSearch
-    ExternalSources --> AnalyzeData
-
-    %% Internal system relationships (includes)
-    SubmitQuery -.->|includes| InitializeResearch
-    InitializeResearch -.->|includes| PlanResearch
-    PlanResearch -.->|includes| ManageMemory
-    PlanResearch -.->|includes| CreateSubagents
-
-    CreateSubagents -.->|includes| ConductSearch
-    ConductSearch -.->|includes| AnalyzeData
-    AnalyzeData -.->|includes| EvaluateResults
-    EvaluateResults -.->|includes| SynthesizeFindings
-
-    SynthesizeFindings -.->|includes| MakeDecision
-    MakeDecision -.->|includes| ManageIterations
-    MakeDecision -.->|includes| ProcessCitations
-
-    ProcessCitations -.->|includes| StoreResults
-    StoreResults -.->|includes| DeliverResults
-
-    %% System management relationships
-    MonitorProgress -.->|includes| HandleErrors
-    ManageIterations -.->|includes| PlanResearch
-
-    %% Extends relationships
-    ReviewProgress ==>|extends| MakeDecision
-    ProvideGuidance ==>|extends| PlanResearch
-    ApproveFindings ==>|extends| DeliverResults
-
-    %% Styling
-    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef usecase fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef hitl fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef management fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
-
-    class User,HumanReviewer,ExternalSources actor
-    class SubmitQuery,InitializeResearch,PlanResearch,CreateSubagents,ConductSearch,AnalyzeData,EvaluateResults,SynthesizeFindings,ProcessCitations,StoreResults,DeliverResults usecase
-    class ReviewProgress,ProvideGuidance,ApproveFindings hitl
-    class ManageMemory,MakeDecision,MonitorProgress,HandleErrors,ManageIterations management
-```
-
-
-
-### Human-in-the-loop (HITL) Use Cases
-
-#### Scenario 1: Standard Screening Flow
-
-**Actor**: Recruiter, Multi-Agent System
-
-**Preconditions**: Job posted, candidate pool sourced
-
-**Main Flow**:
-
-- Multi-agent system analyzes candidate resumes against job rubric
-- System performs independent bias assessment and validation
-- If confidence high and analysis consistent, candidate auto-accepted/rejected
-- System logs decision with complete rationale and audit trail
-
-**Postconditions**: Candidate scored with audit trail
-
-#### Scenario 2: HITL Intervention Required
+#### HITL Review Process Flow
 
 ```mermaid
 graph TB
@@ -248,47 +164,6 @@ graph TB
     class TriggerReview,PresentContext,CaptureDecision,ProvideFeedback,UpdateModels usecase
     class BiasDetected,MultiTurn extend
 ```
-
-**Actor**: HR Manager, Multi-Agent System
-
-**Preconditions**: System uncertainty or potential bias detected
-
-**Main Flow**:
-
-- Multi-agent system escalates case to HR Manager
-- System presents candidate context with analysis summary
-- HR Manager reviews and makes decision
-- Decision rationale captured for system learning
-- Feedback updates system models and thresholds
-
-**Extensions**:
-
-- Multi-turn discussion if case requires clarification
-- Bias flag escalation to compliance team
-
-**Postconditions**: Human-validated decision with learning feedback
-
-#### Scenario 3: Manual Candidate Addition
-
-**Actor**: Recruiter, Job Candidate, Multi-Agent System
-
-**Preconditions**: Active job posting, recruiter has candidate information
-
-**Main Flow**:
-
-- Recruiter manually adds candidate profile to system
-- System validates profile data and requests missing information if needed
-- Recruiter enriches profile with context notes and additional files
-- System integrates candidate into sourcing pool with manual source tag
-- Candidate enters standard screening workflow with enhanced context
-
-**Extensions**:
-
-- Candidate contacted directly for missing information
-- Portfolio or work samples attached to profile
-- Recruiter adds contextual notes about candidate background
-
-**Postconditions**: Manually sourced candidate integrated into evaluation pipeline
 
 ## 3.3 Multi-Agent Architecture
 
