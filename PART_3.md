@@ -177,151 +177,79 @@ graph TB
 
 ### 3.3.1 Subagent Specifications
 
-#### a. Supervisor agent (orchestrator)
+The multi-agent recruitment system operates through a distributed plan where six specialized agents collaborate to transform job requirements and candidate pools into ranked shortlists. Each agent contributes a distinct capability—sourcing discovers candidates, screening evaluates fit, critic validates decisions, HITL handles ambiguity, supervisor orchestrates workflow, and data-steward ensures compliance—while maintaining shared context and advancing toward the common goal of identifying qualified candidates with minimal bias and maximal transparency.
 
-**Role**: Central coordinator implementing supervisor-router pattern
+#### a. Supervisor Agent (Orchestrator)
 
-**Responsibilities**:
+**Role**: Central coordinator implementing supervisor-router pattern for multi-agent recruitment workflows.
 
-- Decompose job descriptions into evaluation rubrics
-- Route tasks between specialized agents
-- Synthesize multi-agent outputs with conflict resolution
-- Execute triage logic to control human review rate
-- Generate final ranked shortlist
+**Core Responsibilities**: The supervisor decomposes job descriptions into evaluation rubrics, orchestrates task distribution across agents, and synthesizes their outputs while maintaining human review rates at 15-25% through intelligent triage.
 
-**Components**:
+**Plan Contribution**: Establishes the shared evaluation framework and orchestrates agent collaboration to achieve recruitment goals.
 
-- Input: Job description, candidate pool, agent analysis results, human feedback
-- Functionality: Workflow orchestration, requirement decomposition, conflict resolution, confidence scoring, triage decision-making
-- Output: Evaluation rubrics, task routing decisions, final ranked shortlist with rationales
-- Tools: Workflow orchestration engine, decision tree logic, scoring algorithms, message routing system, data aggregation tools
-- Memory:
-  - Short-term: Current workflow state, active candidate processing status, agent communication logs, real-time triage decisions
-  - Long-term: Historical performance metrics, successful triage patterns, workflow optimization data, agent collaboration effectiveness
-  - Permissions: Read/write access to all agent outputs, system-wide coordination data, workflow state management
-  - Shared Plan: Overall workflow strategy, triage threshold parameters, agent task assignment protocols, performance optimization guidelines
+**Inputs/Outputs**: Job descriptions, candidate pools, agent analyses, human feedback → evaluation rubrics, routing decisions, ranked shortlists.
 
-#### 2. Sourcing subagent
+**Memory**: Ephemeral—workflow states, candidate processing status, communication logs. Persistent—performance metrics, triage patterns, optimization data. Permissions—full read/write access to all agent outputs and system coordination data.
 
-**Role**: Multi-channel candidate sourcing and pool management
+#### b. Sourcing Subagent
 
-**Responsibilities**:
+**Role**: Multi-channel candidate discovery specialist building comprehensive candidate pools from external sources.
 
-- Search and aggregate candidates from multiple recruitment sources
-- Interface with job boards (LinkedIn, Indeed, Monster, etc.)
-- Connect to internal talent databases and ATS systems
-- Process manually added candidates from recruiters
-- Standardize and deduplicate candidate profiles
-- Maintain candidate sourcing metadata (source, date, channel)
-- Filter candidates based on basic eligibility criteria
+**Core Responsibilities**: The sourcing agent discovers and aggregates candidates from multiple channels, deduplicates profiles, and tracks metadata while applying initial eligibility filters.
 
-**Components**:
+**Plan Contribution**: Provides the raw candidate pool that feeds into screening and evaluation workflows.
 
-- Input: Job requirements, sourcing parameters, manual candidate uploads, external API data
-- Functionality: Multi-channel search, data aggregation, profile standardization, deduplication, basic eligibility filtering
-- Output: Standardized candidate pool with sourcing metadata and initial eligibility status
-- Tools: Job board APIs, web scraping tools, database connectors, file upload interfaces, data validation engines, deduplication algorithms, search optimization tools
-- Memory:
-  - Short-term: Current search sessions, API rate limits, active sourcing queries, temporary candidate staging area
-  - Long-term: Successful sourcing patterns, candidate source effectiveness metrics, historical search results, channel performance data
-  - Permissions: Read access to job requirements and sourcing parameters, write access to candidate pool and sourcing metadata
-  - Shared Plan: Sourcing strategy guidelines, target candidate profiles, channel priority rankings, search optimization techniques
+**Inputs/Outputs**: Job requirements, sourcing parameters, manual uploads → standardized candidate pools with metadata.
 
-#### 3. Screening subagent
+**Memory**: Ephemeral—search sessions, API rate limits. Persistent—sourcing patterns, channel effectiveness metrics. Permissions—read access to job requirements, write access to candidate pools.
 
-**Role**: Initial semantic analysis of candidate-job fit
+#### c. Screening Subagent
 
-**Responsibilities**:
+**Role**: Semantic analysis specialist evaluating candidate-job fit.
 
-- Parse resumes (PDF/DOCX) into structured data
-- Extract skills, experience, education with semantic understanding
-- Score candidates against job requirements rubric
-- Generate detailed rationale with evidence citations
-- Output structured JSON with scores and justifications
+**Core Responsibilities**: The screening agent transforms unstructured resumes into scored assessments, extracting skills and experience to generate evidence-based evaluations with cited rationales.
 
-**Components**:
+**Plan Contribution**: Transforms unstructured candidate data into scored assessments that feed into triage decisions.
 
-- Input: Candidate resumes/profiles, evaluation rubric, job requirements
-- Functionality: Document parsing, semantic analysis, skill extraction, requirement matching, evidence-based scoring
-- Output: Structured candidate analysis with skill scores, experience mapping, and detailed rationales
-- Tools: Document parsing engines, natural language processing models, semantic analysis tools, skill extraction algorithms, scoring frameworks, evidence citation systems
-- Memory:
-  - Short-term: Current candidate analysis sessions, parsing results, scoring calculations, temporary skill mappings
-  - Long-term: Successful match patterns, skill recognition improvements, evaluation accuracy metrics, semantic model performance
-  - Permissions: Read access to candidate data and evaluation rubrics, write access to analysis results and scoring data
-  - Shared Plan: Screening criteria standards, scoring methodology frameworks, quality threshold definitions, semantic analysis protocols
+**Inputs/Outputs**: Resumes, evaluation rubrics, job requirements → structured analyses with scores and rationales.
 
-#### 4. Critic subagent
+**Memory**: Ephemeral—analysis sessions, scoring calculations. Persistent—match patterns, skill recognition improvements. Permissions—read access to candidate data, write access to analysis results.
 
-**Role**: Second opinion to reduce false negatives
+#### d. Critic Subagent
 
-**Responsibilities**:
+**Role**: Independent validator identifying overlooked candidates and bias patterns.
 
-- Challenge screening decisions for bias and errors
-- Identify "hidden gems" with transferable skills
-- Flag potential discriminatory patterns
-- Detect resume inconsistencies
-- Provide contrarian analysis with specific examples
+**Core Responsibilities**: The critic re-examines rejected candidates through alternative lenses to identify transferable skills—recognizing, for instance, that "community organizing" transfers to "project management" or "military logistics" maps to "supply chain management."
 
-**Components**:
+**Plan Contribution**: Acts as quality control, ensuring qualified candidates aren’t incorrectly filtered out.
 
-- Input: Screening agent results, original candidate data, evaluation rubric
-- Functionality: Independent analysis, bias detection, alternative perspective generation, inconsistency checking
-- Output: Second opinion scores, bias flags, hidden gem identification, confidence assessments
-- Tools: Bias detection algorithms, pattern recognition engines, alternative analysis frameworks, inconsistency validators, transferable skills mappers, fairness auditing tools
-- Memory:
-  - Short-term: Current review cases, bias detection results, alternative analysis workbench, temporary contradiction flags
-  - Long-term: Bias patterns database, successful correction history, hidden gem discovery patterns, fairness improvement metrics
-  - Permissions: Read access to screening results and original candidate data, write access to bias flags and alternative assessments
-  - Shared Plan: Bias detection strategies, alternative analysis frameworks, quality assurance protocols, fairness monitoring standards
+**Inputs/Outputs**: Screening results, original candidate data → second opinions, bias flags, hidden gems, confidence assessments.
 
-#### 5. Human-in-the-loop (HITL) subagent
+**Memory**: Ephemeral—review cases, detection results. Persistent—bias patterns, correction histories, fairness metrics. Permissions—read access to screening outputs, write access to validation flags.
 
-**Role**: Seamless human-AI collaboration interface
+#### e. Human-in-the-Loop (HITL) Subagent
 
-**Responsibilities**:
+**Role**: Human-AI collaboration interface for ambiguous case resolution.
 
-- Present ambiguous cases with clear context
-- Display conflicting agent opinions side-by-side
-- Capture human decisions with reasoning
-- Support approve/reject/edit workflows
-- Enable multi-turn clarification conversations
+**Core Responsibilities**: The HITL agent presents ambiguous cases with highlighted conflicts, captures human verdicts and rationales, and enables multi-turn clarification when needed.
 
-**Components**:
+**Plan Contribution**: Ensures human judgment guides edge cases while capturing feedback to improve agent performance.
 
-- Input: Ambiguous candidate cases, conflicting agent opinions, human interactions
-- Functionality: Information presentation, decision capture, workflow facilitation, multi-turn conversation management
-- Output: Human decisions with reasoning, corrected evaluations, clarification responses
-- Tools: User interface frameworks, notification systems, decision capture forms, conversation management tools, workflow routing engines, real-time collaboration platforms
-- Memory:
-  - Short-term: Active human sessions, pending decisions, conversation context, real-time interaction state
-  - Long-term: Human decision patterns, successful interaction flows, user preferences, reviewer performance analytics
-  - Permissions: Read access to ambiguous cases and agent conflicts, write access to human feedback and decision overrides
-  - Shared Plan: Human interaction protocols, escalation procedures, decision capture methodologies, user experience optimization guidelines
+**Inputs/Outputs**: Ambiguous cases, conflicting opinions → human decisions, corrected evaluations, clarification responses.
 
-#### 6. Data-steward subagent
+**Memory**: Ephemeral—active sessions, pending decisions, conversation contexts. Persistent—decision patterns, interaction flows, reviewer analytics. Permissions—read access to uncertain cases, write access to human feedback.
 
-Role: Audit, privacy, and continuous improvement
+#### f. Data-Steward Subagent
 
-**Responsibilities**:
+**Role**: Compliance and continuous improvement specialist.
 
-- Maintain complete audit trails for compliance
-- Anonymize PII before external API calls
-- Collect structured feedback for model improvement
-- Monitor bias metrics across demographic groups
-- Generate training datasets from human corrections
+**Core Responsibilities**: The data-steward maintains immutable audit trails while anonymizing PII, monitoring bias metrics, and transforming human feedback into privacy-preserving training datasets.
 
-**Components**:
+**Plan Contribution**: Ensures all decisions are traceable and compliant while driving continuous improvement through learning loops.
 
-- Input: All system interactions, agent decisions, human feedback, candidate data
-- Functionality: Audit logging, privacy protection, bias monitoring, learning data collection, compliance tracking
-- Output: Complete audit trails, anonymized datasets, bias metrics reports, training data for system improvement
-- Tools: Audit logging systems, data anonymization engines, bias monitoring dashboards, compliance checkers, analytics platforms, data pipeline tools, privacy protection frameworks
-- Memory:
-  - Short-term: Current audit logs, active anonymization tasks, real-time monitoring alerts, temporary compliance checks
-  - Long-term: Complete audit history, bias trend analysis, learning datasets archive, compliance records, system improvement metrics
-  - Permissions: Read access to all system data and interactions, write access to audit logs and anonymized learning datasets
-  - Shared Plan: Data governance policies, privacy protection protocols, bias monitoring frameworks, continuous learning improvement strategies
+**Inputs/Outputs**: All system interactions and decisions → audit trails, anonymized datasets, bias reports, training data.
+
+**Memory**: Ephemeral—current audit records, monitoring alerts. Persistent—historical archives, bias trends, improvement metrics. Permissions—universal read access, restricted write to audit logs and anonymized data.
 
 ### 3.3.2 System Architecture Diagram
 
