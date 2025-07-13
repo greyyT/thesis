@@ -253,6 +253,318 @@ The multi-agent recruitment system operates through a distributed plan where six
 
 ### 3.3.2 System Architecture Diagram
 
+Claude's diagram.
+
+```mermaid
+graph TB
+    subgraph "Human Interface Layer"
+        HR[HR Manager/Recruiter]
+        UI[HITL Interface]
+        Dashboard[Admin Dashboard]
+        HR <--> UI
+        Dashboard <--> Admin[System Admin]
+    end
+    
+    subgraph "Multi-Agent Orchestration Layer"
+        Supervisor[Supervisor Agent<br/>Central Orchestrator]
+        Supervisor -.->|Routes & Coordinates| AgentPool
+        
+        subgraph AgentPool ["Agent Pool"]
+            Sourcing[Sourcing Agent]
+            Screening[Screening Agent] 
+            Critic[Critic Agent]
+            HITL_Agent[HITL Agent]
+            DataSteward[Data-Steward Agent]
+        end
+    end
+    
+    subgraph "Knowledge & Memory Layer"
+        subgraph "Memory Systems"
+            STM[(Short-Term Memory<br/>Session States)]
+            LTM[(Long-Term Memory<br/>Historical Data)]
+        end
+        
+        subgraph "Knowledge Bases"
+            VectorDB[(Vector Database<br/>Semantic Embeddings)]
+            CandidateDB[(Candidate Pool DB<br/>Structured Profiles)]
+            AuditDB[(Audit Database<br/>Immutable Logs)]
+        end
+        
+        subgraph "Control Systems"
+            Prompts[Prompt Libraries<br/>Agent Instructions]
+            Guardrails[Guardrails System<br/>Safety & Compliance]
+        end
+    end
+    
+    subgraph "External Integration Layer"
+        Tools[External Tools<br/>APIs & Services]
+        Sources[Data Sources<br/>Job Boards, Networks]
+    end
+    
+    %% Data flows
+    UI <--> HITL_Agent
+    Supervisor <--> STM
+    AgentPool <--> STM
+    DataSteward --> LTM
+    DataSteward --> AuditDB
+    
+    Screening <--> VectorDB
+    Critic <--> VectorDB
+    Sourcing <--> CandidateDB
+    Screening <--> CandidateDB
+    
+    Sourcing <--> Sources
+    Sourcing <--> Tools
+    Screening <--> Tools
+    
+    %% Control flows
+    Prompts -.-> AgentPool
+    Guardrails -.-> AgentPool
+    
+    %% Feedback loops
+    LTM -.->|Learning| Supervisor
+    AuditDB -.->|Compliance| Dashboard
+    
+    classDef human fill:#e3f2fd,stroke:#1976d2
+    classDef agent fill:#e8f5e9,stroke:#388e3c
+    classDef data fill:#fff3e0,stroke:#f57c00
+    classDef external fill:#f3e5f5,stroke:#7b1fa2
+    classDef control fill:#fce4ec,stroke:#c2185b
+    
+    class HR,Admin,UI,Dashboard human
+    class Supervisor,Sourcing,Screening,Critic,HITL_Agent,DataSteward agent
+    class STM,LTM,VectorDB,CandidateDB,AuditDB data
+    class Tools,Sources external
+    class Prompts,Guardrails control
+```
+
+Gemini's diagram.
+
+```mermaid
+graph TD
+    subgraph "Human Actors & Interfaces"
+        A[Recruiter] -- "1. Initiates Job Posting & Defines Criteria" --> B
+        C[HR Manager / Reviewer] -- "10. Provides Judgment" --> D{HITL UI}
+        D -- "Captures Feedback" --> E
+        B -- "12. Presents Ranked Shortlist & Audit Trail" --> A
+    end
+
+    subgraph "Multi-Agent System Core"
+        direction LR
+        B[Supervisor Agent]
+        F[Sourcing Subagent]
+        G[Screening Subagent]
+        H[Critic Subagent]
+        E[HITL Subagent]
+    
+        B -- "2. Dispatches Task" --> F
+        B -- "5. Dispatches Task" --> G
+        B -- "7. Routes Low-Confidence/Rejected" --> H
+        B -- "9. Triage Ambiguous Cases" --> E
+        
+        G -- "6. Submits Scored Assessments" --> B
+        H -- "8. Submits Second Opinion / Bias Flags" --> B
+        E -- "11. Returns Human-Validated Decisions" --> B
+    end
+
+    subgraph "Data & Knowledge Layer"
+        direction RL
+        K[(Candidate Pool Database)] -- "Raw/Structured Data" --> G & H
+        L[(Vector Database)] -- "Semantic Embeddings for Matching" --> G & H
+        M{{Prompt Libraries}} -- "Defines Agent Personas & Tasks" --> AgentCore
+        N{{Guardrails}} -- "Enforces Constraints & Safety" --> AgentCore
+        O[(Persistent Memory)] -- "Stores Models, Metrics, Audit Logs" <--> P
+        J[(Ephemeral Memory)] -- "Stores In-Flight Workflow State" <--> AgentCore
+
+        subgraph "Agent Core Logic"
+            direction LR
+            AgentCore --> K & L & J
+        end
+        style AgentCore fill:#fff,stroke:#fff
+
+        subgraph "Compliance & Learning"
+            direction LR
+            P[Data-Steward Subagent]
+        end
+
+    end
+
+    subgraph "External Systems"
+        I(Tools / APIs <br> Job Boards, Prof. Networks)
+    end
+    
+    %% Connections between major components
+    F -- "3. Fetches Candidates" --> I
+    F -- "4. Populates Pool" --> K
+    
+    B -- "Logs Orchestration" --> P
+    G -- "Logs Evaluations" --> P
+    H -- "Logs Validations" --> P
+    E -- "Logs Human Interactions" --> P
+    P -- "Drives Continuous Improvement" --> O
+
+    %% Link Agent Core to its foundational elements
+    linkStyle 12,13 stroke-dasharray: 5 5, stroke: #444
+    linkStyle 14,15,16,17 stroke-dasharray: 5 5, stroke: #444
+    linkStyle 18 stroke: #28a745, stroke-width: 2px
+
+    %% Styling
+    classDef human fill:#e3f2fd,stroke:#333
+    classDef agent fill:#e8f5e9,stroke:#388e3c
+    classDef data fill:#fff3e0,stroke:#f57c00
+    classDef external fill:#f3e5f5,stroke:#7b1fa2
+    classDef interface fill:#e0f7fa,stroke:#00796b
+    
+    class A,C human
+    class B,F,G,H,E,P agent
+    class K,L,M,N,O,J data
+    class I external
+    class D interface
+```
+
+O3's diagram.
+
+```mermaid
+graph TD
+%%==================== ACTORS ====================
+Recruiter((Recruiter))
+HR((HR&nbsp;Manager))
+Candidate((Job&nbsp;Candidate))
+Admin((System&nbsp;Administrator))
+
+%%==================== EXTERNAL SOURCES & TOOLS ====================
+ExternalSources([External&nbsp;Data&nbsp;Sources])
+Tools([External&nbsp;Tools&nbsp;&amp;&nbsp;APIs])
+
+%%==================== USER INTERFACES ====================
+Recruiter_UI([Recruiter&nbsp;Portal])
+HITL_UI([HITL&nbsp;Interface])
+Admin_UI([Admin&nbsp;Dashboard])
+Candidate_UI([Candidate&nbsp;Portal])
+
+%%==================== MULTI-AGENT SYSTEM ====================
+Supervisor[Supervisor&nbsp;Agent]
+Sourcing[Sourcing&nbsp;Agent]
+Screening[Screening&nbsp;Agent]
+Critic[Critic&nbsp;Agent]
+HITL_Agent[HITL&nbsp;Agent]
+DataSteward[Data-Steward&nbsp;Agent]
+
+%%==================== MEMORY LAYERS ====================
+STM[(Short-Term&nbsp;Memory/Cache)]
+VectorDB[(Vector&nbsp;DB&nbspLong-Term)]
+CandidateDB[(Candidate&nbsp;Pool&nbsp;DB)]
+AuditLog[(Immutable&nbsp;Audit&nbsp;Ledger)]
+
+%%==================== CONTROL LAYERS ====================
+Prompts[[Prompt&nbsp;Libraries]]
+Guardrails[[Guardrails&nbsp;&amp;&nbsp;Policy&nbsp;Layer]]
+
+%%==================== FLOWS ====================
+Recruiter --> Recruiter_UI
+HR --> HITL_UI
+Admin --> Admin_UI
+Candidate --> Candidate_UI
+
+Recruiter_UI --> Supervisor
+Candidate_UI --> Sourcing
+
+ExternalSources --> Sourcing
+Tools -.-> Sourcing
+Tools -.-> Screening
+Tools -.-> Critic
+
+Supervisor --> Sourcing
+Sourcing --> Screening
+Screening --> Critic
+Screening --> HITL_Agent
+Critic --> HITL_Agent
+HITL_UI --> HITL_Agent
+HITL_Agent --> Supervisor
+Critic --> Supervisor
+DataSteward --> Supervisor
+
+%%----------- Memory Interactions -----------
+Supervisor -- read/write --> STM
+Sourcing -- write --> CandidateDB
+Screening -- read --> CandidateDB
+Screening -- read/write --> VectorDB
+Critic -- read --> VectorDB
+DataSteward -- read/write --> AuditLog
+DataSteward -- read --> CandidateDB
+DataSteward -- read --> VectorDB
+
+%%----------- Guardrails & Prompts -----------
+Supervisor -.-> Prompts
+Screening -.-> Prompts
+Critic -.-> Prompts
+HITL_Agent -.-> Prompts
+
+Supervisor -.-> Guardrails
+Sourcing -.-> Guardrails
+Screening -.-> Guardrails
+Critic -.-> Guardrails
+HITL_Agent -.-> Guardrails
+DataSteward -.-> Guardrails
+```
+
+Grok's diagram.
+
+```mermaid
+graph TD
+    subgraph "External Inputs/Outputs"
+        A[Job Descriptions & Requirements] --> Supervisor
+        B[External Data Sources] --> Sourcing
+        C[Candidate Submissions] --> Sourcing
+        Supervisor --> RankedShortlists[Ranked Shortlists & Reports]
+    end
+
+    subgraph "Core Multi-Agent System"
+        Supervisor[Supervisor Agent<br/>Orchestrator] -->|Routes Tasks| Sourcing[Sourcing Subagent]
+        Supervisor -->|Routes Tasks| Screening[Screening Subagent]
+        Supervisor -->|Routes Tasks| Critic[Critic Subagent]
+        Supervisor -->|Triage for Ambiguity| HITL[HITL Subagent]
+        Supervisor -->|Compliance Checks| DataSteward[Data-Steward Subagent]
+        Sourcing -->|Candidate Pools| Screening
+        Screening -->|Scored Assessments| Critic
+        Critic -->|Validations & Flags| Supervisor
+        HITL -->|Human Decisions| Supervisor
+        DataSteward -->|Audit Trails & Datasets| Supervisor
+    end
+
+    subgraph "Human Factors"
+        HITL -->|Presents Cases| UI[UI for HITL Interaction<br/>HR Manager/Recruiter Input]
+        UI -->|Verdicts & Feedback| HITL
+    end
+
+    subgraph "Memory Components"
+        ShortTerm[Short-Term Memory<br/>Ephemeral: Sessions, States, Logs] <-->|Read/Write| Supervisor
+        ShortTerm <-->|Read/Write| Sourcing
+        ShortTerm <-->|Read/Write| Screening
+        ShortTerm <-->|Read/Write| Critic
+        ShortTerm <-->|Read/Write| HITL
+        ShortTerm <-->|Read/Write| DataSteward
+        LongTerm[Long-Term Memory<br/>Persistent: Metrics, Patterns, Histories] <-->|Read/Write| DataSteward
+        LongTerm -->|Feedback Loops| Supervisor
+    end
+
+    subgraph "Supporting Infrastructure"
+        PromptLibraries[Prompt Libraries<br/>Evaluation Rubrics, Queries] -->|Provides Templates| Supervisor
+        PromptLibraries -->|Provides Templates| Screening
+        PromptLibraries -->|Provides Templates| Critic
+        Guardrails[Guardrails<br/>Bias Mitigation, Compliance Rules] -->|Enforces Constraints| Supervisor
+        Guardrails -->|Enforces Constraints| Critic
+        Guardrails -->|Enforces Constraints| DataSteward
+        VectorDB[Vector Database<br/>Embeddings for Semantic Search] <-->|Query/Store| Screening
+        VectorDB <-->|Query/Store| Critic
+        CandidatePoolDB[Candidate Pool Database<br/>Standardized Profiles & Metadata] <-->|Store/Retrieve| Sourcing
+        CandidatePoolDB <-->|Retrieve| Screening
+        Tools[Tools<br/>API Integrations, Parsers, Analyzers] -->|Supports Operations| Sourcing
+        Tools -->|Supports Operations| Screening
+        Tools -->|Supports Operations| Critic
+    end
+```
+
 ### 3.3.3 Communication Patterns
 
 ### 3.3.4 Workflow State Management

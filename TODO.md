@@ -36,10 +36,10 @@
 
 ## Part 3 - High-level design
 
-- [ ] @lelouvincx to write the high-level system architecture design
-
-- [ ] @lelouvincx to draw use-case diagram
-- [ ] @lelouvincx to describe the use-case diagram
+- [x] @lelouvincx to write the high-level system architecture design
+- [x] @lelouvincx to draw use-case diagram
+- [x] @lelouvincx to describe the use-case diagram
+- [ ] @lelouvincx to synthesize all diagrams
 
 ## Part 4 - Evaluation Framework
 
