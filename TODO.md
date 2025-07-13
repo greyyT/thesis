@@ -39,7 +39,8 @@
 - [x] @lelouvincx to write the high-level system architecture design
 - [x] @lelouvincx to draw use-case diagram
 - [x] @lelouvincx to describe the use-case diagram
-- [ ] @lelouvincx to synthesize all diagrams
+- [ ] @lelouvincx to synthesize all diagrams to one System Architecture Diagram
+- [ ] @lelouvincx to write part 3.3.3 Communication Patterns
 
 ## Part 4 - Evaluation Framework
 
