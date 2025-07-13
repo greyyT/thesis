@@ -18,15 +18,18 @@ Principles:
 ### 3.2.1 System Actors
 
 #### Primary Actors (External)
+
 - **Recruiter**: Initiates job postings, defines evaluation criteria, manages candidate sourcing, and provides contextual input for complex cases
 - **HR Manager**: Provides oversight, handles HITL reviews for uncertain/high-stakes decisions, makes final hiring approvals, and guides bias mitigation strategies
 - **Job Candidate**: Submits applications, receives status updates, and may be contacted for additional information
 - **System Administrator**: Manages system configuration, user access controls, monitors compliance metrics, and generates audit reports
 
 #### Secondary Actor
+
 - **External Data Sources**: Job boards, professional networks, and candidate databases that provide candidate information
 
 #### System Actor (Internal)
+
 - **Multi-Agent System**: Autonomous collaborative framework consisting of specialized agents for (described in detail in Section 3.3):
   - Candidate sourcing and discovery
   - Resume screening and evaluation
@@ -39,30 +42,35 @@ Principles:
 #### Core Use Case Categories
 
 ##### 1. Job Management and Sourcing
+
 - **UC-JM-01: Post Job Requirements** - Recruiter defines job criteria, required skills, and evaluation rubric
 - **UC-JM-02: Source Candidates** - System automatically discovers candidates from multiple sources
 - **UC-JM-03: Manage Candidate Pool** - Deduplication, standardization, and eligibility filtering
 - **UC-JM-04: Manual Candidate Addition** - Recruiter adds candidates with contextual notes
 
 ##### 2. Candidate Screening and Evaluation
+
 - **UC-CS-01: Screen Candidates** - Semantic analysis of resumes against job requirements
 - **UC-CS-02: Detect Bias** - Critic agent reviews screening decisions for discriminatory patterns
 - **UC-CS-03: Generate Candidate Scores** - Evidence-based scoring with detailed rationales
 - **UC-CS-04: Validate Decisions** - Cross-agent validation of screening outcomes
 
 ##### 3. Human-in-the-Loop (HITL) Review
+
 - **UC-HITL-01: Trigger HITL Review** - Automatic escalation based on confidence thresholds or bias flags
 - **UC-HITL-02: Present Candidate Context** - Structured display of agent analysis and conflicts
 - **UC-HITL-03: Capture Human Decisions** - Record approvals, rejections, and feedback
 - **UC-HITL-04: Facilitate Multi-turn Discussion** - Support iterative clarification for complex cases
 
 ##### 4. Decision Making and Compliance
+
 - **UC-DM-01: Generate Final Shortlist** - Produce ranked candidates with transparent rationales
 - **UC-DM-02: Maintain Audit Trail** - Complete logging of all decisions and interactions
 - **UC-DM-03: Monitor Bias Metrics** - Real-time diversity and fairness tracking
 - **UC-DM-04: Continuous Learning** - Model improvement from human feedback
 
 #### Use Case Relationships
+
 - **Includes**: UC-JM-01 includes UC-CS-01; UC-CS-01 includes UC-CS-02
 - **Extends**: UC-HITL-01 extends UC-CS-01 when confidence is low; UC-HITL-04 extends UC-HITL-03 for complex cases
 - **Generalizes**: UC-CS-03 generalizes to all evaluation contexts
@@ -117,18 +125,18 @@ graph TB
 
 #### Primary Use Case Scenarios
 
-| UC-ID | Name | Primary Actor | Pre-conditions | Main Steps | Post-conditions |
-|-------|------|---------------|----------------|------------|-----------------|
-| UC-OP-01 | Standard Automated Screening | Multi-Agent System | • Job requirements posted<br>• Candidate pool sourced<br>• Evaluation rubric defined | 1. Retrieve candidate profiles from source pool<br>2. Analyze resumes against job rubric<br>3. Validate decisions via bias detection<br>4. Generate confidence scores and rationales<br>5. Process high-confidence decisions automatically<br>6. Send automated status updates to candidates<br>7. Log complete audit trail | • Candidates scored and categorized<br>• Audit trail recorded<br>• 70-80% processed without human intervention |
-| UC-OP-02 | HITL Intervention for Edge Cases | HR Manager | • Low confidence score (<0.7)<br>• Bias flag raised<br>• Agent disagreement detected | 1. Detect uncertainty in evaluation<br>2. Escalate case with structured context<br>3. Present agent analyses and conflicts<br>4. Facilitate interactive discussion<br>5. Capture human decision and rationale<br>6. Update system models with feedback<br>7. Communicate decision to candidate | • Human-validated decision recorded<br>• System learning updated<br>• Complex case resolved |
-| UC-OP-03 | Bias Detection and Mitigation | System Administrator | • Bias patterns detected<br>• Discrimination threshold exceeded<br>• Compliance review triggered | 1. Identify potential discrimination patterns<br>2. Send alerts to HR Manager and Admin<br>3. Analyze historical decisions<br>4. Implement mitigation strategies<br>5. Re-evaluate affected candidates<br>6. Generate compliance report<br>7. Initiate ongoing monitoring | • Bias mitigation applied<br>• Compliance documented<br>• Monitoring activated |
+| UC-ID    | Name                             | Primary Actor        | Pre-conditions                                                                                   | Main Steps                                                                                                                                                                                                                                                                                                                  | Post-conditions                                                                                                |
+| -------- | -------------------------------- | -------------------- | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| UC-OP-01 | Standard Automated Screening     | Multi-Agent System   | • Job requirements posted<br>• Candidate pool sourced<br>• Evaluation rubric defined             | 1. Retrieve candidate profiles from source pool<br>2. Analyze resumes against job rubric<br>3. Validate decisions via bias detection<br>4. Generate confidence scores and rationales<br>5. Process high-confidence decisions automatically<br>6. Send automated status updates to candidates<br>7. Log complete audit trail | • Candidates scored and categorized<br>• Audit trail recorded<br>• 70-80% processed without human intervention |
+| UC-OP-02 | HITL Intervention for Edge Cases | HR Manager           | • Low confidence score (<0.7)<br>• Bias flag raised<br>• Agent disagreement detected             | 1. Detect uncertainty in evaluation<br>2. Escalate case with structured context<br>3. Present agent analyses and conflicts<br>4. Facilitate interactive discussion<br>5. Capture human decision and rationale<br>6. Update system models with feedback<br>7. Communicate decision to candidate                              | • Human-validated decision recorded<br>• System learning updated<br>• Complex case resolved                    |
+| UC-OP-03 | Bias Detection and Mitigation    | System Administrator | • Bias patterns detected<br>• Discrimination threshold exceeded<br>• Compliance review triggered | 1. Identify potential discrimination patterns<br>2. Send alerts to HR Manager and Admin<br>3. Analyze historical decisions<br>4. Implement mitigation strategies<br>5. Re-evaluate affected candidates<br>6. Generate compliance report<br>7. Initiate ongoing monitoring                                                   | • Bias mitigation applied<br>• Compliance documented<br>• Monitoring activated                                 |
 
 #### Supporting Use Case Scenarios
 
-| UC-ID | Name | Primary Actor | Pre-conditions | Main Steps | Post-conditions |
-|-------|------|---------------|----------------|------------|-----------------|
-| UC-OP-04 | Manual Candidate Addition | Recruiter | • Active job posting<br>• Candidate information available<br>• Recruiter has system access | 1. Add candidate profile manually<br>2. Validate profile completeness<br>3. Request missing information if needed<br>4. Enrich profile with context notes<br>5. Attach portfolio/work samples<br>6. Tag with manual source indicator<br>7. Route to standard screening workflow | • Candidate integrated into pool<br>• Enhanced context preserved<br>• Screening initiated |
-| UC-OP-05 | Multi-turn HITL Discussion | HR Manager | • Complex case flagged<br>• Initial review incomplete<br>• Clarification needed | 1. Review initial case presentation<br>2. Request specific clarifications<br>3. System provides additional context<br>4. Iterative Q&A exchange<br>5. Reach informed decision<br>6. Document discussion thread<br>7. Finalize candidate status | • Complex case clarified<br>• Decision trail complete<br>• Learning data captured |
+| UC-ID    | Name                       | Primary Actor | Pre-conditions                                                                             | Main Steps                                                                                                                                                                                                                                                                      | Post-conditions                                                                           |
+| -------- | -------------------------- | ------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| UC-OP-04 | Manual Candidate Addition  | Recruiter     | • Active job posting<br>• Candidate information available<br>• Recruiter has system access | 1. Add candidate profile manually<br>2. Validate profile completeness<br>3. Request missing information if needed<br>4. Enrich profile with context notes<br>5. Attach portfolio/work samples<br>6. Tag with manual source indicator<br>7. Route to standard screening workflow | • Candidate integrated into pool<br>• Enhanced context preserved<br>• Screening initiated |
+| UC-OP-05 | Multi-turn HITL Discussion | HR Manager    | • Complex case flagged<br>• Initial review incomplete<br>• Clarification needed            | 1. Review initial case presentation<br>2. Request specific clarifications<br>3. System provides additional context<br>4. Iterative Q&A exchange<br>5. Reach informed decision<br>6. Document discussion thread<br>7. Finalize candidate status                                  | • Complex case clarified<br>• Decision trail complete<br>• Learning data captured         |
 
 #### HITL Review Process Flow
 
@@ -167,7 +175,7 @@ graph TB
 
 ## 3.3 Multi-Agent Architecture
 
-### List of subagents
+### 3.3.1 Subagent Specifications
 
 #### a. Supervisor agent (orchestrator)
 
@@ -315,7 +323,11 @@ Role: Audit, privacy, and continuous improvement
   - Permissions: Read access to all system data and interactions, write access to audit logs and anonymized learning datasets
   - Shared Plan: Data governance policies, privacy protection protocols, bias monitoring frameworks, continuous learning improvement strategies
 
-## Workflow Diagram
+### 3.3.2 System Architecture Diagram
+
+### 3.3.3 Communication Patterns
+
+### 3.3.4 Workflow State Management
 
 ```mermaid
 flowchart TD
@@ -389,57 +401,57 @@ flowchart TD
     class Triage,MoreCandidates decisionNode
 ```
 
-### Phase 1: Initialization (Supervisor Agent)
+#### Phase 1: Initialization (Supervisor Agent)
 
 - Decomposes job description into structured evaluation criteria
 - Extracts required skills, experience levels, qualifications
 - Sets up workflow state management for tracking progress
 
-### Phase 2: Parallel Screening (Multi-Agent Processing)
+#### Phase 2: Parallel Screening (Multi-Agent Processing)
 
 - Multiple screening agents process resumes concurrently
 - Semantic analysis extracts structured data and initial scoring
 - Load balancing across agent instances for scalability
 
-### Phase 3: Critical Review (Bias Mitigation)
+#### Phase 3: Critical Review (Bias Mitigation)
 
 - Critic agent provides independent second opinion
 - Identifies potential biases in screening decisions
 - Flags "hidden gems" that may have been undervalued
 
-### Phase 4: Intelligent Triage (Workload Control)
+#### Phase 4: Intelligent Triage (Workload Control)
 
 - Confidence scoring determines routing path
 - Dynamic thresholds maintain review rate at small fraction (target: 15-25% to human review)
 - Auto-decisions for clear cases, human review for ambiguous ones
 
-### Phase 5: Human-in-the-Loop (Quality Assurance)
+#### Phase 5: Human-in-the-Loop (Quality Assurance)
 
 - Structured interface presents conflicting opinions
 - Multiple interaction patterns: approve/reject/edit/clarify
 - Captures not just decisions but reasoning for learning
 
-### Phase 6: Continuous Learning (System Evolution)
+#### Phase 6: Continuous Learning (System Evolution)
 
 - Data-Steward maintains complete audit trail
 - Privacy protection through PII anonymization
 - Feedback loops improve agent performance over time
 
-## Human-in-the-Loop (HITL) Interaction
+### 3.3.5 Human-in-the-Loop (HITL) Interaction
 
-### Triage Criteria for Human Review:
+#### Triage Criteria for Human Review:
 
 - `|Screening_Score - Critic_Score|` > `disagreement_threshold`
 - Confidence_Score < uncertainty_threshold
 - Borderline candidates near acceptance boundary
 
-### HITL Patterns:
+#### HITL Patterns:
 
 - Approve/Reject: Standard review workflow
 - Edit/Annotate: Corrective feedback for learning
 - Multi-turn: Complex case discussions
 
-## Evaluation Framework
+## 3.4 Evaluation Method
 
 ### Primary Metrics
 
