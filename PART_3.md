@@ -430,6 +430,22 @@ The system implements a layered memory architecture:
 
 **Polyglot Persistence**: Different data stores serve different needs - relational for structured data, vector for embeddings, key-value for state, and immutable logs for audit trails.
 
+#### 3.3.2.5 AgentCore Infrastructure
+
+The diagram includes a special node labeled "AgentCore" that differs fundamentally from the other agent nodes. This represents the **shared runtime infrastructure** rather than a specific agent:
+
+**Not an Agent, but a Platform**: Unlike the named agents (Supervisor, Sourcing, Screening, etc.), AgentCore is the underlying framework that enables all agents to function. It provides common services and abstractions that agents build upon.
+
+**Infrastructure Services**:
+- **Policy Enforcement**: Receives configuration from Prompt Libraries and Guardrails, applying these consistently across all agent operations
+- **Data Access Layer**: Manages connections to the Candidate Pool Database, Vector Database, and Ephemeral Memory on behalf of all agents
+- **State Management**: Handles session state and workflow context that agents can access but don't manage directly
+- **Runtime Isolation**: Ensures agents remain independent while sharing common infrastructure
+
+**Architectural Significance**: The invisible styling (white fill, white stroke) in the diagram emphasizes that AgentCore operates "behind the scenes" as infrastructure rather than as a participant in the business workflow. This separation of concerns allows agents to focus on their specific tasks while the framework handles cross-cutting concerns like data access, policy enforcement, and state management.
+
+This design pattern is similar to container orchestration platforms where the runtime (like Kubernetes) provides services to applications without being an application itself.
+
 ### 3.3.3 Communication Patterns
 
 The multi-agent system employs message-based communication with several key characteristics:
