@@ -17,63 +17,106 @@ Principles:
 
 ### 3.2.1 System Actors
 
-#### Primary Actors (External)
+**External Human Users**
 
-- **Recruiter**: Initiates job postings, defines evaluation criteria, manages candidate sourcing, and provides contextual input for complex cases
-- **HR Manager**: Provides oversight, handles HITL reviews for uncertain/high-stakes decisions, makes final hiring approvals, and guides bias mitigation strategies
-- **Job Candidate**: Submits applications, receives status updates, and may be contacted for additional information
-- **System Administrator**: Manages system configuration, user access controls, monitors compliance metrics, and generates audit reports
+**Recruiter** – Hiring process owner  
+Drives the end-to-end recruitment workflow and candidate evaluation.
 
-#### Secondary Actor
+- Create job postings and criteria
+- Source and manage candidates
+- Provide context for edge cases
 
-- **External Data Sources**: Job boards, professional networks, and candidate databases that provide candidate information
+**HR Manager** – Strategic oversight  
+Ensures quality control and makes final hiring decisions.
 
-#### System Actor (Internal)
+- Review uncertain cases (HITL\*)
+- Approve final hiring decisions
+- Monitor compliance and bias
 
-- **Multi-Agent System**: Autonomous collaborative framework consisting of specialized agents for (described in detail in Section 3.3):
-  - Candidate sourcing and discovery
-  - Resume screening and evaluation
-  - Bias detection and mitigation
-  - Human-AI collaboration coordination
-  - Audit trail and compliance management
+**Job Candidate** – System applicant  
+Engages with the system throughout the application process.
+
+- Submit applications and documents
+- Receive status updates
+- Provide additional information
+
+**System Administrator** – Technical operations  
+Maintains system health and security.
+
+- Configure system settings
+- Manage user permissions
+- Generate compliance reports
+
+**External Systems**
+
+**Data Sources** – Information providers  
+Supply candidate information from various platforms.
+
+- Job boards and aggregators
+- Professional networks (LinkedIn, etc.)
+- Talent databases
+
+**Internal System**
+
+**Multi-Agent System** – Automated processing engine  
+Coordinates specialized AI agents to automate hiring tasks:
+
+- **Sourcing Agents**: Find candidates across platforms
+- **Screening Agents**: Evaluate against requirements
+- **Bias Detection Agents**: Monitor for fairness
+- **Collaboration Agents**: Manage human-AI handoffs
+- **Compliance Agents**: Track decisions and audits
+
+\*HITL = Human-in-the-Loop for complex decision review
 
 ### 3.2.2 System Use Case Model
 
 #### Core Use Case Categories
 
-##### 1. Job Management and Sourcing
+| ID        | Use Case              | Actor         | Description                                            | Category              |
+| --------- | --------------------- | ------------- | ------------------------------------------------------ | --------------------- |
+| **JM-01** | Post Job Requirements | 👤 Recruiter  | Creates job posting with skills and criteria           | Define & Publish Jobs |
+| **JM-02** | Source Candidates     | 🤖 System     | Discovers candidates from multiple platforms           | Define & Publish Jobs |
+| **JM-03** | Manage Candidate Pool | 🤖 System     | Deduplicates and filters eligible applicants           | Define & Publish Jobs |
+| **JM-04** | Add Manual Candidates | 👤 Recruiter  | Includes specific candidates with notes                | Define & Publish Jobs |
+| **CS-01** | Screen Resumes        | 🤖 System     | Matches candidate skills to job requirements           | Discover & Screen     |
+| **CS-02** | Detect Bias           | 🤖 System     | Checks screening decisions for discrimination patterns | Discover & Screen     |
+| **CS-03** | Score Candidates      | 🤖 System     | Generates rankings with evidence-based rationales      | Discover & Screen     |
+| **CS-04** | Validate Results      | 🤖 System     | Cross-checks outcomes between multiple agents          | Discover & Screen     |
+| **HR-01** | Trigger Human Review  | 🤖 System     | Escalates low-confidence or flagged cases              | Human Review          |
+| **HR-02** | Present Context       | 🤖 System     | Displays agent analysis and conflicting assessments    | Human Review          |
+| **HR-03** | Capture Decisions     | 👤 HR Manager | Records human approvals, rejections, and feedback      | Human Review          |
+| **HR-04** | Enable Discussion     | 👤 HR Manager | Supports clarification for complex cases               | Human Review          |
+| **DM-01** | Generate Shortlist    | 🤖 System     | Produces final rankings with transparent rationales    | Decide & Improve      |
+| **DM-02** | Maintain Audit Trail  | 🤖 System     | Logs all decisions for compliance review               | Decide & Improve      |
+| **DM-03** | Monitor Fairness      | 🤖 System     | Tracks diversity metrics and bias indicators           | Decide & Improve      |
+| **DM-04** | Learn from Feedback   | 🤖 System     | Improves models based on human decisions               | Decide & Improve      |
 
-- **UC-JM-01: Post Job Requirements** - Recruiter defines job criteria, required skills, and evaluation rubric
-- **UC-JM-02: Source Candidates** - System automatically discovers candidates from multiple sources
-- **UC-JM-03: Manage Candidate Pool** - Deduplication, standardization, and eligibility filtering
-- **UC-JM-04: Manual Candidate Addition** - Recruiter adds candidates with contextual notes
+**Category Descriptions:**
 
-##### 2. Candidate Screening and Evaluation
+- **Define & Publish Jobs**: Set up job openings and requirements for automated processing
+- **Discover & Screen**: Evaluate applicants against job requirements with bias detection
+- **Human Review**: Handle uncertain cases requiring human judgment
+- **Decide & Improve**: Finalize selections and learn from outcomes
 
-- **UC-CS-01: Screen Candidates** - Semantic analysis of resumes against job requirements
-- **UC-CS-02: Detect Bias** - Critic agent reviews screening decisions for discriminatory patterns
-- **UC-CS-03: Generate Candidate Scores** - Evidence-based scoring with detailed rationales
-- **UC-CS-04: Validate Decisions** - Cross-agent validation of screening outcomes
+#### Use Case Flow
 
-##### 3. Human-in-the-Loop (HITL) Review
+```
+Post Job → Source Candidates → Screen Resumes → Detect Bias
+                                      ↓
+                              (low confidence)
+                                      ↓
+                              Human Review → Capture Decision
+                                      ↓
+                              Generate Shortlist → Audit Trail
+```
 
-- **UC-HITL-01: Trigger HITL Review** - Automatic escalation based on confidence thresholds or bias flags
-- **UC-HITL-02: Present Candidate Context** - Structured display of agent analysis and conflicts
-- **UC-HITL-03: Capture Human Decisions** - Record approvals, rejections, and feedback
-- **UC-HITL-04: Facilitate Multi-turn Discussion** - Support iterative clarification for complex cases
+Key relationships:
 
-##### 4. Decision Making and Compliance
-
-- **UC-DM-01: Generate Final Shortlist** - Produce ranked candidates with transparent rationales
-- **UC-DM-02: Maintain Audit Trail** - Complete logging of all decisions and interactions
-- **UC-DM-03: Monitor Bias Metrics** - Real-time diversity and fairness tracking
-- **UC-DM-04: Continuous Learning** - Model improvement from human feedback
-
-#### Use Case Relationships
-
-- **Includes**: UC-JM-01 includes UC-CS-01; UC-CS-01 includes UC-CS-02
-- **Extends**: UC-HITL-01 extends UC-CS-01 when confidence is low; UC-HITL-04 extends UC-HITL-03 for complex cases
-- **Generalizes**: UC-CS-03 generalizes to all evaluation contexts
+- Job posting automatically triggers candidate sourcing
+- All screening includes mandatory bias detection
+- Low-confidence cases escalate to human review
+- Complex reviews may require multiple discussion rounds
 
 ```mermaid
 graph TB
@@ -253,150 +296,56 @@ The multi-agent recruitment system operates through a distributed plan where six
 
 ### 3.3.2 System Architecture Diagram
 
-Claude's diagram.
-
-```mermaid
-graph TB
-    subgraph "Human Interface Layer"
-        HR[HR Manager/Recruiter]
-        UI[HITL Interface]
-        Dashboard[Admin Dashboard]
-        HR <--> UI
-        Dashboard <--> Admin[System Admin]
-    end
-    
-    subgraph "Multi-Agent Orchestration Layer"
-        Supervisor[Supervisor Agent<br/>Central Orchestrator]
-        Supervisor -.->|Routes & Coordinates| AgentPool
-        
-        subgraph AgentPool ["Agent Pool"]
-            Sourcing[Sourcing Agent]
-            Screening[Screening Agent] 
-            Critic[Critic Agent]
-            HITL_Agent[HITL Agent]
-            DataSteward[Data-Steward Agent]
-        end
-    end
-    
-    subgraph "Knowledge & Memory Layer"
-        subgraph "Memory Systems"
-            STM[(Short-Term Memory<br/>Session States)]
-            LTM[(Long-Term Memory<br/>Historical Data)]
-        end
-        
-        subgraph "Knowledge Bases"
-            VectorDB[(Vector Database<br/>Semantic Embeddings)]
-            CandidateDB[(Candidate Pool DB<br/>Structured Profiles)]
-            AuditDB[(Audit Database<br/>Immutable Logs)]
-        end
-        
-        subgraph "Control Systems"
-            Prompts[Prompt Libraries<br/>Agent Instructions]
-            Guardrails[Guardrails System<br/>Safety & Compliance]
-        end
-    end
-    
-    subgraph "External Integration Layer"
-        Tools[External Tools<br/>APIs & Services]
-        Sources[Data Sources<br/>Job Boards, Networks]
-    end
-    
-    %% Data flows
-    UI <--> HITL_Agent
-    Supervisor <--> STM
-    AgentPool <--> STM
-    DataSteward --> LTM
-    DataSteward --> AuditDB
-    
-    Screening <--> VectorDB
-    Critic <--> VectorDB
-    Sourcing <--> CandidateDB
-    Screening <--> CandidateDB
-    
-    Sourcing <--> Sources
-    Sourcing <--> Tools
-    Screening <--> Tools
-    
-    %% Control flows
-    Prompts -.-> AgentPool
-    Guardrails -.-> AgentPool
-    
-    %% Feedback loops
-    LTM -.->|Learning| Supervisor
-    AuditDB -.->|Compliance| Dashboard
-    
-    classDef human fill:#e3f2fd,stroke:#1976d2
-    classDef agent fill:#e8f5e9,stroke:#388e3c
-    classDef data fill:#fff3e0,stroke:#f57c00
-    classDef external fill:#f3e5f5,stroke:#7b1fa2
-    classDef control fill:#fce4ec,stroke:#c2185b
-    
-    class HR,Admin,UI,Dashboard human
-    class Supervisor,Sourcing,Screening,Critic,HITL_Agent,DataSteward agent
-    class STM,LTM,VectorDB,CandidateDB,AuditDB data
-    class Tools,Sources external
-    class Prompts,Guardrails control
-```
-
-Gemini's diagram.
-
 ```mermaid
 graph TD
-    subgraph "Human Actors & Interfaces"
-        A[Recruiter] -- "1. Initiates Job Posting & Defines Criteria" --> B
-        C[HR Manager / Reviewer] -- "10. Provides Judgment" --> D{HITL UI}
-        D -- "Captures Feedback" --> E
-        B -- "12. Presents Ranked Shortlist & Audit Trail" --> A
-    end
+    %% Human Actors & Interfaces
+    A[Recruiter] -- "1 - Initiates Job Posting & Defines Criteria" --> B
+    C[HR Manager / Reviewer] -- "10 - Provides Judgment" --> D{HITL UI}
+    D -- "Captures Feedback" --> E
+    B -- "12 - Presents Ranked Shortlist & Audit Trail" --> A
 
-    subgraph "Multi-Agent System Core"
-        direction LR
-        B[Supervisor Agent]
-        F[Sourcing Subagent]
-        G[Screening Subagent]
-        H[Critic Subagent]
-        E[HITL Subagent]
-    
-        B -- "2. Dispatches Task" --> F
-        B -- "5. Dispatches Task" --> G
-        B -- "7. Routes Low-Confidence/Rejected" --> H
-        B -- "9. Triage Ambiguous Cases" --> E
-        
-        G -- "6. Submits Scored Assessments" --> B
-        H -- "8. Submits Second Opinion / Bias Flags" --> B
-        E -- "11. Returns Human-Validated Decisions" --> B
-    end
+    %% Multi-Agent System Core
+    B[Supervisor Agent]
+    F[Sourcing Subagent]
+    G[Screening Subagent]
+    H[Critic Subagent]
+    E[HITL Subagent]
 
-    subgraph "Data & Knowledge Layer"
-        direction RL
-        K[(Candidate Pool Database)] -- "Raw/Structured Data" --> G & H
-        L[(Vector Database)] -- "Semantic Embeddings for Matching" --> G & H
-        M{{Prompt Libraries}} -- "Defines Agent Personas & Tasks" --> AgentCore
-        N{{Guardrails}} -- "Enforces Constraints & Safety" --> AgentCore
-        O[(Persistent Memory)] -- "Stores Models, Metrics, Audit Logs" <--> P
-        J[(Ephemeral Memory)] -- "Stores In-Flight Workflow State" <--> AgentCore
+    B -- "2 - Dispatches Task" --> F
+    B -- "5 - Dispatches Task" --> G
+    B -- "7 - Routes Low-Confidence/Rejected" --> H
+    B -- "9 - Triage Ambiguous Cases" --> E
 
-        subgraph "Agent Core Logic"
-            direction LR
-            AgentCore --> K & L & J
-        end
-        style AgentCore fill:#fff,stroke:#fff
+    G -- "6 - Submits Scored Assessments" --> B
+    H -- "8 - Submits Second Opinion / Bias Flags" --> B
+    E -- "11 - Returns Human-Validated Decisions" --> B
 
-        subgraph "Compliance & Learning"
-            direction LR
-            P[Data-Steward Subagent]
-        end
+    %% Data & Knowledge Layer
+    K[(Candidate Pool Database)] -- "Raw/Structured Data" --> G
+    K -- "Raw/Structured Data" --> H
+    L[(Vector Database)] -- "Semantic Embeddings for Matching" --> G
+    L -- "Semantic Embeddings for Matching" --> H
+    M{{Prompt Libraries}} -- "Defines Agent Personas & Tasks" --> AgentCore
+    N{{Guardrails}} -- "Enforces Constraints & Safety" --> AgentCore
+    O[(Persistent Memory)] -- "Stores Models, Metrics, Audit Logs" <--> P
+    J[(Ephemeral Memory)] -- "Stores In-Flight Workflow State" <--> AgentCore
 
-    end
+    %% Agent Core Logic
+    AgentCore --> K
+    AgentCore --> L
+    AgentCore --> J
+    style AgentCore fill:#fff,stroke:#fff
 
-    subgraph "External Systems"
-        I(Tools / APIs <br> Job Boards, Prof. Networks)
-    end
-    
+    %% Compliance & Learning
+    P[Data-Steward Subagent]
+
+    %% External Systems
+    I(Tools / APIs <br> Job Boards, Prof. Networks)
+
     %% Connections between major components
-    F -- "3. Fetches Candidates" --> I
-    F -- "4. Populates Pool" --> K
-    
+    F -- "3 - Fetches Candidates" --> I
+    F -- "4 - Populates Pool" --> K
+
     B -- "Logs Orchestration" --> P
     G -- "Logs Evaluations" --> P
     H -- "Logs Validations" --> P
@@ -414,7 +363,7 @@ graph TD
     classDef data fill:#fff3e0,stroke:#f57c00
     classDef external fill:#f3e5f5,stroke:#7b1fa2
     classDef interface fill:#e0f7fa,stroke:#00796b
-    
+
     class A,C human
     class B,F,G,H,E,P agent
     class K,L,M,N,O,J data
@@ -422,150 +371,76 @@ graph TD
     class D interface
 ```
 
-O3's diagram.
+#### 3.3.2.1 Architectural Patterns
 
-```mermaid
-graph TD
-%%==================== ACTORS ====================
-Recruiter((Recruiter))
-HR((HR&nbsp;Manager))
-Candidate((Job&nbsp;Candidate))
-Admin((System&nbsp;Administrator))
+The system employs several key architectural patterns:
 
-%%==================== EXTERNAL SOURCES & TOOLS ====================
-ExternalSources([External&nbsp;Data&nbsp;Sources])
-Tools([External&nbsp;Tools&nbsp;&amp;&nbsp;APIs])
+**Orchestrator Pattern**: The Supervisor Agent acts as a central coordinator, receiving high-level requests from recruiters and decomposing them into specific tasks for downstream agents. This provides clear separation of concerns and enables independent scaling of components.
 
-%%==================== USER INTERFACES ====================
-Recruiter_UI([Recruiter&nbsp;Portal])
-HITL_UI([HITL&nbsp;Interface])
-Admin_UI([Admin&nbsp;Dashboard])
-Candidate_UI([Candidate&nbsp;Portal])
+**Micro-Agent Architecture**: Each agent (Sourcing, Screening, Critic, HITL, Data-Steward) operates as an independent, task-specific service with well-defined interfaces. Agents communicate through messages, not shared memory, enabling versioning and hot-swapping without system-wide changes.
 
-%%==================== MULTI-AGENT SYSTEM ====================
-Supervisor[Supervisor&nbsp;Agent]
-Sourcing[Sourcing&nbsp;Agent]
-Screening[Screening&nbsp;Agent]
-Critic[Critic&nbsp;Agent]
-HITL_Agent[HITL&nbsp;Agent]
-DataSteward[Data-Steward&nbsp;Agent]
+**Human-in-the-Loop Control**: The system implements conditional escalation where low-confidence or policy-violating outputs trigger human review. The HITL Agent manages this break-glass mechanism, ensuring human oversight for edge cases while maintaining automation efficiency.
 
-%%==================== MEMORY LAYERS ====================
-STM[(Short-Term&nbsp;Memory/Cache)]
-VectorDB[(Vector&nbsp;DB&nbspLong-Term)]
-CandidateDB[(Candidate&nbsp;Pool&nbsp;DB)]
-AuditLog[(Immutable&nbsp;Audit&nbsp;Ledger)]
+**Post-Decisional Critique Pattern**: The Critic Agent reviews screening decisions after they're made, focusing on bias detection and hidden gem discovery. This separation of generation from evaluation ensures systematic quality control.
 
-%%==================== CONTROL LAYERS ====================
-Prompts[[Prompt&nbsp;Libraries]]
-Guardrails[[Guardrails&nbsp;&amp;&nbsp;Policy&nbsp;Layer]]
+**Sidecar Compliance Pattern**: The Data-Steward Agent operates as an observer, capturing all system interactions for audit trails without interfering with core business logic. This enables compliance with regulations while maintaining system performance.
 
-%%==================== FLOWS ====================
-Recruiter --> Recruiter_UI
-HR --> HITL_UI
-Admin --> Admin_UI
-Candidate --> Candidate_UI
+#### 3.3.2.2 Data Flow Semantics
 
-Recruiter_UI --> Supervisor
-Candidate_UI --> Sourcing
+The numbered flow (1-12) represents a complete recruitment cycle:
 
-ExternalSources --> Sourcing
-Tools -.-> Sourcing
-Tools -.-> Screening
-Tools -.-> Critic
+1. **Initiation**: Recruiter defines job posting and criteria → Supervisor Agent
+2. **Task Distribution**: Supervisor dispatches to Sourcing Agent
+3. **External Integration**: Sourcing fetches from job boards and networks
+4. **Data Population**: Candidates stored in Candidate Pool Database
+5. **Screening Dispatch**: Supervisor initiates evaluation process
+6. **Assessment Generation**: Screening Agent returns scored candidates
+7. **Quality Review**: Low-confidence cases routed to Critic Agent
+8. **Bias Detection**: Critic provides second opinion and flags issues
+9. **Human Escalation**: Ambiguous cases sent to HITL Agent
+10. **Human Decision**: HR Manager provides judgment via HITL UI
+11. **Decision Capture**: Human-validated outcomes return to Supervisor
+12. **Result Delivery**: Final shortlist with audit trail to Recruiter
 
-Supervisor --> Sourcing
-Sourcing --> Screening
-Screening --> Critic
-Screening --> HITL_Agent
-Critic --> HITL_Agent
-HITL_UI --> HITL_Agent
-HITL_Agent --> Supervisor
-Critic --> Supervisor
-DataSteward --> Supervisor
+Parallel to this main flow, all agents continuously log activities to the Data-Steward Agent for compliance and learning purposes.
 
-%%----------- Memory Interactions -----------
-Supervisor -- read/write --> STM
-Sourcing -- write --> CandidateDB
-Screening -- read --> CandidateDB
-Screening -- read/write --> VectorDB
-Critic -- read --> VectorDB
-DataSteward -- read/write --> AuditLog
-DataSteward -- read --> CandidateDB
-DataSteward -- read --> VectorDB
+#### 3.3.2.3 Memory Architecture
 
-%%----------- Guardrails & Prompts -----------
-Supervisor -.-> Prompts
-Screening -.-> Prompts
-Critic -.-> Prompts
-HITL_Agent -.-> Prompts
+The system implements a layered memory architecture:
 
-Supervisor -.-> Guardrails
-Sourcing -.-> Guardrails
-Screening -.-> Guardrails
-Critic -.-> Guardrails
-HITL_Agent -.-> Guardrails
-DataSteward -.-> Guardrails
-```
+**Ephemeral Memory**: Stores active workflow states, in-flight conversations, and session data. This memory is cleared after job completion, optimizing for performance and privacy.
 
-Grok's diagram.
+**Persistent Memory**: Maintains long-term audit logs, bias trend analysis, model performance metrics, and compliance records. Bi-directional connection with Data-Steward enables continuous learning.
 
-```mermaid
-graph TD
-    subgraph "External Inputs/Outputs"
-        A[Job Descriptions & Requirements] --> Supervisor
-        B[External Data Sources] --> Sourcing
-        C[Candidate Submissions] --> Sourcing
-        Supervisor --> RankedShortlists[Ranked Shortlists & Reports]
-    end
+**Vector Database**: Houses semantic embeddings for advanced matching between job requirements and candidate profiles. Both Screening and Critic agents leverage this for similarity-based evaluation.
 
-    subgraph "Core Multi-Agent System"
-        Supervisor[Supervisor Agent<br/>Orchestrator] -->|Routes Tasks| Sourcing[Sourcing Subagent]
-        Supervisor -->|Routes Tasks| Screening[Screening Subagent]
-        Supervisor -->|Routes Tasks| Critic[Critic Subagent]
-        Supervisor -->|Triage for Ambiguity| HITL[HITL Subagent]
-        Supervisor -->|Compliance Checks| DataSteward[Data-Steward Subagent]
-        Sourcing -->|Candidate Pools| Screening
-        Screening -->|Scored Assessments| Critic
-        Critic -->|Validations & Flags| Supervisor
-        HITL -->|Human Decisions| Supervisor
-        DataSteward -->|Audit Trails & Datasets| Supervisor
-    end
+**Candidate Pool Database**: Structured storage for candidate profiles, standardized data, and metadata. Serves as the primary source of truth for candidate information.
 
-    subgraph "Human Factors"
-        HITL -->|Presents Cases| UI[UI for HITL Interaction<br/>HR Manager/Recruiter Input]
-        UI -->|Verdicts & Feedback| HITL
-    end
+**Prompt Libraries & Guardrails**: Static governance assets that define agent behaviors and enforce policy constraints. These act as cross-cutting concerns applied to all agent operations.
 
-    subgraph "Memory Components"
-        ShortTerm[Short-Term Memory<br/>Ephemeral: Sessions, States, Logs] <-->|Read/Write| Supervisor
-        ShortTerm <-->|Read/Write| Sourcing
-        ShortTerm <-->|Read/Write| Screening
-        ShortTerm <-->|Read/Write| Critic
-        ShortTerm <-->|Read/Write| HITL
-        ShortTerm <-->|Read/Write| DataSteward
-        LongTerm[Long-Term Memory<br/>Persistent: Metrics, Patterns, Histories] <-->|Read/Write| DataSteward
-        LongTerm -->|Feedback Loops| Supervisor
-    end
+#### 3.3.2.4 Key Design Decisions
 
-    subgraph "Supporting Infrastructure"
-        PromptLibraries[Prompt Libraries<br/>Evaluation Rubrics, Queries] -->|Provides Templates| Supervisor
-        PromptLibraries -->|Provides Templates| Screening
-        PromptLibraries -->|Provides Templates| Critic
-        Guardrails[Guardrails<br/>Bias Mitigation, Compliance Rules] -->|Enforces Constraints| Supervisor
-        Guardrails -->|Enforces Constraints| Critic
-        Guardrails -->|Enforces Constraints| DataSteward
-        VectorDB[Vector Database<br/>Embeddings for Semantic Search] <-->|Query/Store| Screening
-        VectorDB <-->|Query/Store| Critic
-        CandidatePoolDB[Candidate Pool Database<br/>Standardized Profiles & Metadata] <-->|Store/Retrieve| Sourcing
-        CandidatePoolDB <-->|Retrieve| Screening
-        Tools[Tools<br/>API Integrations, Parsers, Analyzers] -->|Supports Operations| Sourcing
-        Tools -->|Supports Operations| Screening
-        Tools -->|Supports Operations| Critic
-    end
-```
+**Post-Decisional Review**: Bias detection occurs after initial screening, allowing for independent validation rather than constraining the primary evaluation process.
+
+**Confidence-Based Routing**: The system uses dynamic confidence thresholds to determine which decisions require human review, optimizing the balance between automation and oversight.
+
+**Centralized Orchestration**: The Supervisor Agent maintains workflow state and coordination logic, while execution remains distributed across specialized agents.
+
+**Event-Driven Architecture**: Asynchronous message passing enables scalability and resilience, with each agent processing tasks independently.
+
+**Polyglot Persistence**: Different data stores serve different needs - relational for structured data, vector for embeddings, key-value for state, and immutable logs for audit trails.
 
 ### 3.3.3 Communication Patterns
+
+The multi-agent system employs message-based communication with several key characteristics:
+
+**Agent Isolation**: No shared state between agents ensures fault isolation and enables independent deployment cycles.
+
+**Cross-Cutting Logging**: Every agent interaction is observed by the Data-Steward, creating comprehensive audit trails without modifying core agent logic.
+
+**Feedback Integration**: The HITL UI captures not just decisions but also reasoning and corrections, feeding back into system improvement.
+
+**Asynchronous Messaging**: Non-blocking communication patterns prevent cascading failures and enable elastic scaling based on workload.
 
 ### 3.3.4 Workflow State Management
 
