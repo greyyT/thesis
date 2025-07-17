@@ -18,9 +18,11 @@ The methodology is structured in three logical units:
 
 **Definition Box**
 
-> **False Rejection Rate (FRR)** = (Qualified Applicants Rejected by ATS) ÷ (Total Applicants Screened)
+> **False Rejection Rate (FRR)** = (Qualified Applicants Rejected by ATS) ÷ (Total Qualified Applicants)
 >
-> When FRR exceeds 10%, staffing researchers classify a system as "high-risk" for talent loss. Current ATS platforms routinely operate at 12-35% FRR.
+> FRR measures the proportion of candidates who meet job requirements but are incorrectly filtered out by automated screening. While no industry-standard threshold exists, Harvard Business School research (Fuller et al., 2021) found that 88% of executives acknowledge their ATS systems reject qualified candidates. Industry estimates suggest current ATS platforms operate at 12-35% FRR, though precise measurement remains challenging due to limited access to ground-truth data.
+>
+> _Note: While FRR is not standard HR terminology, this thesis adopts it to quantify the systematic exclusion of qualified candidates in automated recruitment._
 
 ## 3.1 How Existing ATS Work—and Where They Fail
 
