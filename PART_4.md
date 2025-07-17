@@ -1,6 +1,6 @@
-# Chapter 3: System Design
+# Chapter 4: System Design
 
-## 3.1 System Requirements
+## 4.1 System Requirements
 
 Goal:
 
@@ -13,9 +13,9 @@ Principles:
 - Layered intelligences: autonomous agents handle bulk processing, while human handle edge cases
 - Feedback loop to improve over time
 
-## 3.2 Use-case Overview
+## 4.2 Use-case Overview
 
-### 3.2.1 System Actors
+### 4.2.1 System Actors
 
 **External Human Users**
 
@@ -69,7 +69,7 @@ Coordinates specialized AI agents to automate hiring tasks:
 
 \*HITL = Human-in-the-Loop for complex decision review
 
-### 3.2.2 System Use Case Model
+### 4.2.2 System Use Case Model
 
 #### Core Use Case Categories
 
@@ -164,7 +164,7 @@ graph TB
     class MAS agent
 ```
 
-### 3.2.3 Key Operational Scenarios
+### 4.2.3 Key Operational Scenarios
 
 #### Primary Use Case Scenarios
 
@@ -216,9 +216,9 @@ graph TB
     class BiasDetected,MultiTurn extend
 ```
 
-## 3.3 Multi-Agent Architecture
+## 4.3 Multi-Agent Architecture
 
-### 3.3.1 Subagent Specifications
+### 4.3.1 Subagent Specifications
 
 The multi-agent recruitment system operates through a distributed plan where six specialized agents collaborate to transform job requirements and candidate pools into ranked shortlists. Each agent contributes a distinct capability—sourcing discovers candidates, screening evaluates fit, critic validates decisions, HITL handles ambiguity, supervisor orchestrates workflow, and data-steward ensures compliance—while maintaining shared context and advancing toward the common goal of identifying qualified candidates with minimal bias and maximal transparency.
 
@@ -294,7 +294,7 @@ The multi-agent recruitment system operates through a distributed plan where six
 
 **Memory**: Ephemeral—current audit records, monitoring alerts. Persistent—historical archives, bias trends, improvement metrics. Permissions—universal read access, restricted write to audit logs and anonymized data.
 
-### 3.3.2 System Architecture Diagram
+### 4.3.2 System Architecture Diagram
 
 ```mermaid
 graph TD
@@ -364,7 +364,7 @@ graph TD
     class AgentCoreSystem agentCore
 ```
 
-#### 3.3.2.1 Architectural Patterns
+#### 4.3.2.1 Architectural Patterns
 
 The system employs several key architectural patterns:
 
@@ -378,26 +378,26 @@ The system employs several key architectural patterns:
 
 **Sidecar Compliance Pattern**: The Data-Steward Agent operates as an observer, capturing all system interactions for audit trails without interfering with core business logic. This enables compliance with regulations while maintaining system performance.
 
-#### 3.3.2.2 Data Flow Semantics
+#### 4.3.2.2 Data Flow Semantics
 
 The numbered flow (1-12) represents a complete recruitment cycle:
 
-1. **Initiation**: Recruiter defines job posting and criteria → Supervisor Agent
-2. **Task Distribution**: Supervisor dispatches to Sourcing Agent
-3. **External Integration**: Sourcing fetches from job boards and networks
-4. **Data Population**: Candidates stored in Candidate Pool Database
-5. **Screening Dispatch**: Supervisor initiates evaluation process
-6. **Assessment Generation**: Screening Agent returns scored candidates
-7. **Quality Review**: Low-confidence cases routed to Critic Agent
-8. **Bias Detection**: Critic provides second opinion and flags issues
-9. **Human Escalation**: Ambiguous cases sent to HITL Agent
+1. **Initiation**: Recruiter defines job posting and criteria → AgentCore System
+2. **Task Distribution**: Supervisor dispatches sourcing task → Sourcing Subagent
+3. **External Integration**: AgentCore fetches candidates → External APIs (job boards, LinkedIn)
+4. **Data Population**: AgentCore populates → Candidate Pool Database
+5. **Screening Dispatch**: Supervisor dispatches evaluation → Screening Subagent
+6. **Assessment Generation**: Screening Subagent submits scored assessments → Supervisor
+7. **Quality Review**: Supervisor routes low-confidence/rejected cases → Critic Subagent
+8. **Bias Detection**: Critic submits second opinion/bias flags → Supervisor
+9. **Human Escalation**: Supervisor triages ambiguous cases → HITL Subagent
 10. **Human Decision**: HR Manager provides judgment via HITL UI
-11. **Decision Capture**: Human-validated outcomes return to Supervisor
-12. **Result Delivery**: Final shortlist with audit trail to Recruiter
+11. **Decision Capture**: HITL returns human-validated decisions → Supervisor
+12. **Result Delivery**: AgentCore presents ranked shortlist & audit trail → Recruiter
 
-Parallel to this main flow, all agents continuously log activities to the Data-Steward Agent for compliance and learning purposes.
+Parallel to this main flow, all agents continuously log activities to the Data-Steward Subagent for compliance and learning purposes.
 
-#### 3.3.2.3 Memory Architecture
+#### 4.3.2.3 Memory Architecture
 
 The system implements a layered memory architecture:
 
@@ -411,7 +411,7 @@ The system implements a layered memory architecture:
 
 **Prompt Libraries & Guardrails**: Static governance assets that define agent behaviors and enforce policy constraints. These act as cross-cutting concerns applied to all agent operations.
 
-#### 3.3.2.4 Key Design Decisions
+#### 4.3.2.4 Key Design Decisions
 
 **Post-Decisional Review**: Bias detection occurs after initial screening, allowing for independent validation rather than constraining the primary evaluation process.
 
@@ -423,7 +423,7 @@ The system implements a layered memory architecture:
 
 **Polyglot Persistence**: Different data stores serve different needs - relational for structured data, vector for embeddings, key-value for state, and immutable logs for audit trails.
 
-#### 3.3.2.5 AgentCore Infrastructure
+#### 4.3.2.5 AgentCore Infrastructure
 
 The diagram includes a special node labeled "AgentCore" that differs fundamentally from the other agent nodes. This represents the **shared runtime infrastructure** rather than a specific agent:
 
@@ -440,7 +440,7 @@ The diagram includes a special node labeled "AgentCore" that differs fundamental
 
 This design pattern is similar to container orchestration platforms where the runtime (like Kubernetes) provides services to applications without being an application itself.
 
-### 3.3.3 Communication Patterns
+### 4.3.3 Communication Patterns
 
 The multi-agent system employs message-based communication with several key characteristics:
 
@@ -452,7 +452,7 @@ The multi-agent system employs message-based communication with several key char
 
 **Asynchronous Messaging**: Non-blocking communication patterns prevent cascading failures and enable elastic scaling based on workload.
 
-### 3.3.4 Workflow State Management
+### 4.3.4 Workflow State Management
 
 ```mermaid
 flowchart TD
@@ -615,7 +615,7 @@ flowchart TD
 - Privacy protection through PII anonymization
 - Feedback loops improve agent performance over time
 
-### 3.3.5 Human-in-the-Loop (HITL) Interaction
+### 4.3.5 Human-in-the-Loop (HITL) Interaction
 
 #### Triage Criteria for Human Review:
 
@@ -629,7 +629,7 @@ flowchart TD
 - Edit/Annotate: Corrective feedback for learning
 - Multi-turn: Complex case discussions
 
-## 3.4 Evaluation Method
+## 4.4 Evaluation Method
 
 ### Primary Metrics
 
