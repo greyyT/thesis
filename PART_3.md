@@ -437,6 +437,7 @@ The diagram includes a special node labeled "AgentCore" that differs fundamental
 **Not an Agent, but a Platform**: Unlike the named agents (Supervisor, Sourcing, Screening, etc.), AgentCore is the underlying framework that enables all agents to function. It provides common services and abstractions that agents build upon.
 
 **Infrastructure Services**:
+
 - **Policy Enforcement**: Receives configuration from Prompt Libraries and Guardrails, applying these consistently across all agent operations
 - **Data Access Layer**: Manages connections to the Candidate Pool Database, Vector Database, and Ephemeral Memory on behalf of all agents
 - **State Management**: Handles session state and workflow context that agents can access but don't manage directly
