@@ -30,17 +30,17 @@
 
 ## Part 2 - Theory
 
-- [ ] @greyy-nguyen to write the theory part
-  - [ ] Multi-agent system
-  - [ ] Explainable AI
-  - [ ] Human-in-the-loop
-  - [ ] Human resources management
+- [x] @greyy-nguyen to write the theory part
+  - [x] Multi-agent system
+  - [x] Explainable AI
+  - [x] Human-in-the-loop
+  - [x] Human resources management
 
 ## Part 3 - Methodology
 
 ### 3.1 - Understanding Existing ATS Systems
 
-#### Research Phase (Week 1)
+#### Research Phase
 
 - [x] @lelouvincx Select 5 major ATS platforms for analysis (based on market share and OECD AI concerns):
   - **Workday** (22.6% Fortune 500) - Enterprise leader, examine AI screening features
@@ -70,7 +70,7 @@
 - [x] @lelouvincx For Lever - create 1-page summary with same structure
 - [x] @lelouvincx For iCIMS - create 1-page summary with same structure
 
-#### Documentation Phase (Week 2)
+#### Documentation Phase
 
 - [x] @lelouvincx Build visual flowchart showing common ATS workflow stages:
   - [x] Job posting creation → Resume submission
@@ -80,7 +80,7 @@
 
 ### 3.2 - False Rejection Rate Analysis
 
-#### Literature Review (Week 1)
+#### Literature Review
 
 - [x] @lelouvincx Search IEEE Xplore for "ATS false rejection" papers (target: 3-4 papers)
 - [x] @lelouvincx Search Google Scholar for industry reports on ATS effectiveness (target: 2-3 papers)
@@ -90,131 +90,99 @@
     - Key finding: 75% of resumes disqualified by ATS before human review; false negatives from keyword matching
   - IAXOV Inc. (2025). "STRATEVITA: Intelligence Revolutionizes Talent Management." https://www1.iaxov.com/publications/STRATEVITA_%20Intelligence%20Revolutionizes%20Talent%20Management.pdf
     - Key finding: 99.7% recruiter ATS usage creates systematic exclusion through "keyword fallacy"
-- [ ] @lelouvincx Extract and tabulate FRR statistics from each source:
-  - [ ] Study name, year, sample size
-  - [ ] Reported FRR percentage
-  - [ ] Methodology used
-  - [ ] Key findings
-  - [ ] Note: Be aware of "75% rejection rate" myth from 2012 Preptel sales pitch - no valid research backs this claim
-- [ ] @lelouvincx Research Harvard Business School 2021 study findings:
-  - [ ] 88% of companies' tech screens out qualified applicants due to search term mismatches
-  - [ ] 50%+ companies reject candidates with 6+ month resume gaps
-- [ ] @lelouvincx Create annotated bibliography with 2-3 sentence methodology summaries
+- [x] @lelouvincx Research Harvard Business School 2021 study findings:
+  - [x] 88% of companies' tech screens out qualified applicants due to search term mismatches
+  - [x] 50%+ companies reject candidates with 6+ month resume gaps
+- [x] @lelouvincx Extract and tabulate FRR statistics from each source:
+  - [x] Study name, year, sample size
+  - [x] Reported FRR percentage
+  - [x] Methodology used
+  - [x] Key findings
+  - [x] Note: Be aware of "75% rejection rate" myth from 2012 Preptel sales pitch - no valid research backs this claim
+- [x] @lelouvincx Create annotated bibliography with 2-3 sentence methodology summaries
 
-#### Metrics Definition (Week 2)
+#### Dataset Research
 
-- [ ] @lelouvincx Define "qualified candidate" criteria (minimum 5 attributes):
-  - [ ] Required skills match percentage threshold
-  - [ ] Experience level alignment
-  - [ ] Education requirements met
-  - [ ] Location/availability match
-  - [ ] Salary expectations alignment
-- [ ] @lelouvincx Document FRR calculation formula with concrete example:
-  - [ ] Formula: FRR = (False Rejections / Total Qualified Candidates) × 100
-  - [ ] Example calculation with sample data
-  - [ ] Sensitivity analysis on threshold changes
-- [ ] @lelouvincx Identify 3 validation approaches:
-  - [ ] Expert recruiter review (gold standard)
-  - [ ] Historical hiring outcome analysis
-  - [ ] A/B testing with control group
-
-#### Dataset Research (Week 3)
-
-- [ ] @lelouvincx Evaluate Resume Dataset from Kaggle:
-  - [ ] Dataset size and diversity metrics
-  - [ ] Available features and annotations
-  - [ ] Presence of hiring outcome labels
-  - [ ] Data quality assessment
-- [ ] @lelouvincx Evaluate Indeed/LinkedIn public datasets (if available)
-- [ ] @lelouvincx Evaluate academic resume datasets (e.g., from prior research)
-- [ ] @lelouvincx Document dataset gaps requiring synthetic data:
-  - [ ] Missing hiring outcomes
-  - [ ] Lack of diversity in roles/industries
-  - [ ] Insufficient edge cases
-- [ ] @lelouvincx Create dataset requirements specification:
-  - [ ] Minimum size: X resumes
-  - [ ] Required features list
-  - [ ] Label requirements
-  - [ ] Diversity requirements
+- [x] @lelouvincx Evaluate Resume Dataset from Kaggle:
+  - [x] Dataset size and diversity metrics
+  - [x] Available features and annotations
+  - [x] Presence of hiring outcome labels
+  - [x] Data quality assessment
+- [x] @lelouvincx Evaluate Indeed/LinkedIn public datasets (if available)
+- [x] @lelouvincx Evaluate academic resume datasets (e.g., from prior research)
+- [x] @lelouvincx Document dataset gaps requiring synthetic data:
+  - [x] Missing hiring outcomes
+  - [x] Lack of diversity in roles/industries
+  - [x] Insufficient edge cases
+- [x] @lelouvincx Create dataset requirements specification:
+  - [x] Minimum size: X resumes
+  - [x] Required features list
+  - [x] Label requirements
+  - [x] Diversity requirements
 
 ### 3.3 - ATS System Drawbacks Documentation
 
-#### Categorization (Week 1)
+#### Categorization
 
-- [ ] @lelouvincx Create detailed limitation categories:
-  - [ ] Keyword Dependency Issues (3-5 examples):
-    - [ ] Synonym blindness (e.g., "software engineer" vs "developer")
-    - [ ] Context ignorance (e.g., "Java" coffee vs programming)
-    - [ ] Abbreviation misses (e.g., "ML" vs "Machine Learning")
-  - [ ] Format Parsing Failures (3-5 examples):
-    - [ ] Complex PDF layouts breaking parsers
-    - [ ] Table/column formatting issues
-    - [ ] Non-standard section headers
-  - [ ] Bias Amplification (3-5 examples):
-    - [ ] University name bias
-    - [ ] Years of experience over-weighting
-    - [ ] Geographic discrimination
-  - [ ] Context Blindness (3-5 examples):
-    - [ ] Career transition penalties
-    - [ ] Transferable skills ignored
-    - [ ] Project-based experience missed
-- [ ] @lelouvincx Build visual failure taxonomy diagram
-- [ ] @lelouvincx Map limitations to affected candidate groups (veterans, career changers, etc.)
-
-#### Case Study Collection (Week 2)
-
-- [ ] @lelouvincx Find and document 5 ATS failure cases from:
-  - [ ] News articles and investigative reports
-  - [ ] Reddit/forum testimonials
-  - [ ] Academic case studies
-- [ ] @lelouvincx Interview 3 recruiters about ATS frustrations:
-  - [ ] Prepare interview questions
-  - [ ] Conduct 30-minute interviews
-  - [ ] Transcribe key insights
-- [ ] @lelouvincx Compile pattern analysis report:
-  - [ ] Common failure patterns
-  - [ ] Frequency estimates
-  - [ ] Impact assessment
+- [x] @lelouvincx Create detailed limitation categories:
+  - [x] Keyword Dependency Issues (3-5 examples):
+    - [x] Synonym blindness (e.g., "software engineer" vs "developer")
+    - [x] Context ignorance (e.g., "Java" coffee vs programming)
+    - [x] Abbreviation misses (e.g., "ML" vs "Machine Learning")
+  - [x] Format Parsing Failures (3-5 examples):
+    - [x] Complex PDF layouts breaking parsers
+    - [x] Table/column formatting issues
+    - [x] Non-standard section headers
+  - [x] Bias Amplification (3-5 examples):
+    - [x] University name bias
+    - [x] Years of experience over-weighting
+    - [x] Geographic discrimination
+  - [x] Context Blindness (3-5 examples):
+    - [x] Career transition penalties
+    - [x] Transferable skills ignored
+    - [x] Project-based experience missed
+- [x] @lelouvincx Build visual failure taxonomy diagram
+- [x] @lelouvincx Map limitations to affected candidate groups (veterans, career changers, etc.)
 
 ### 3.4 - Proposed System Methodology
 
-#### Agent Mapping (Week 1)
+#### Agent Mapping
 
-- [ ] @lelouvincx Create agent-to-limitation mapping table:
-  - [ ] Sourcing Agent → addresses limited candidate discovery
-  - [ ] Screening Agent → addresses rigid keyword matching
-  - [ ] Critic Agent → addresses bias amplification
-  - [ ] HITL Agent → addresses context blindness
-  - [ ] Data-Steward Agent → addresses lack of transparency
-- [ ] @lelouvincx Design agent interaction sequence diagram:
-  - [ ] Message flow between agents
-  - [ ] Decision handoff points
-  - [ ] Feedback loops
-- [ ] @lelouvincx Write 1-page specification for each agent:
-  - [ ] Supervisor Agent logic and coordination rules
-  - [ ] Sourcing Agent search strategies
-  - [ ] Screening Agent evaluation criteria
-  - [ ] Critic Agent bias detection methods
-  - [ ] HITL Agent escalation triggers
+- [x] @lelouvincx Create agent-to-limitation mapping table:
+  - [x] Sourcing Agent → addresses limited candidate discovery
+  - [x] Screening Agent → addresses rigid keyword matching
+  - [x] Critic Agent → addresses bias amplification
+  - [x] HITL Agent → addresses context blindness
+  - [x] Data-Steward Agent → addresses lack of transparency
+- [x] @lelouvincx Design agent interaction sequence diagram:
+  - [x] Message flow between agents
+  - [x] Decision handoff points
+  - [x] Feedback loops
+- [x] @lelouvincx Write 1-page specification for each agent:
+  - [x] Supervisor Agent logic and coordination rules
+  - [x] Sourcing Agent search strategies
+  - [x] Screening Agent evaluation criteria
+  - [x] Critic Agent bias detection methods
+  - [x] HITL Agent escalation triggers
 
-#### Evaluation Design (Week 2)
+#### Evaluation Design
 
-- [ ] @lelouvincx Define 5 quantitative success metrics:
-  - [ ] False Rejection Rate reduction (target: 50% improvement)
-  - [ ] Recall@K for top candidates (target: >80%)
-  - [ ] Human review workload (target: <25% of applications)
-  - [ ] Time-to-shortlist (target: <24 hours)
-  - [ ] Diversity metric improvement (target: 20% increase)
-- [ ] @lelouvincx Design baseline measurement protocol:
-  - [ ] Control group using traditional ATS
-  - [ ] Test group using multi-agent system
-  - [ ] Measurement timeline and checkpoints
-- [ ] @lelouvincx Create A/B test framework outline:
-  - [ ] Random assignment methodology
-  - [ ] Sample size calculations
-  - [ ] Statistical significance thresholds
+- [x] @lelouvincx Define 5 quantitative success metrics:
+  - [x] False Rejection Rate reduction (target: 50% improvement)
+  - [x] Recall@K for top candidates (target: >80%)
+  - [x] Human review workload (target: <25% of applications)
+  - [x] Time-to-shortlist (target: <24 hours)
+  - [x] Diversity metric improvement (target: 20% increase)
+- [x] @lelouvincx Design baseline measurement protocol:
+  - [x] Control group using traditional ATS
+  - [x] Test group using multi-agent system
+  - [x] Measurement timeline and checkpoints
+- [x] @lelouvincx Create A/B test framework outline:
+  - [x] Random assignment methodology
+  - [x] Sample size calculations
+  - [x] Statistical significance thresholds
 
-#### Proof of Concept (Week 3)
+#### Proof of Concept
 
 - [ ] @lelouvincx Select 3 core features for MVP:
   - [ ] Basic multi-agent orchestration
