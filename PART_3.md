@@ -58,34 +58,34 @@ The methodology is structured in three logical units:
 ```mermaid
 flowchart TD
     %% Probability tracking
-    Start([Job Posted by Recruiter<br/>📊 Average Applications: 250]) --> Submit[Candidate Submits Resume<br/>📊 100% Candidate Pool]
+    Start([Job Posted by Recruiter<br/>Average Applications: 250]) --> Submit[Candidate Submits Resume<br/>100% Candidate Pool]
 
-    Submit --> Parse{Tokenisation Process<br/>PDF/DOC → Text<br/>📊 E₁: Parsing Error}
-    Parse -->|Success 82.7%| Extract[Keyword Extraction<br/>Skills, Experience, Education<br/>📊 Processing: 207 candidates]
-    Parse -->|Failure 17.3%| RejectParse[❌ AUTO-REJECT<br/>Tokenisation Error (E₁)<br/>📊 43 candidates excluded]
+    Submit --> Parse{Tokenisation Process<br/>PDF/DOC → Text<br/>E₁: Parsing Error}
+    Parse -->|Success 82.7%| Extract[Keyword Extraction<br/>Skills, Experience, Education<br/>Processing: 207 candidates]
+    Parse -->|Failure 17.3%| RejectParse[AUTO-REJECT<br/>Tokenisation Error - E₁<br/>43 candidates excluded]
 
-    Extract --> Screen{Boolean Filter Logic<br/>Screening/Filtering<br/>📊 E₂: False Negatives}
+    Extract --> Screen{Boolean Filter Logic<br/>Screening/Filtering<br/>E₂: False Negatives}
 
-    Screen -->|Pass 57%| Rank[Ranking Algorithm<br/>Weighted Scoring<br/>📊 Processing: 118 candidates]
-    Screen -->|Fail 43%| RejectScreen[❌ AUTO-REJECT<br/>Boolean Filter False-Negatives (E₂)<br/>📊 89 candidates excluded<br/>(40-60% qualified)]
+    Screen -->|Pass 57%| Rank[Ranking Algorithm<br/>Weighted Scoring<br/>Processing: 118 candidates]
+    Screen -->|Fail 43%| RejectScreen[AUTO-REJECT<br/>Boolean Filter False-Negatives - E₂<br/>89 candidates excluded<br/>40-60% qualified]
 
-    Rank --> Threshold{Ranking Cutoff Algorithm<br/>Top 15% Selection<br/>📊 E₃: Threshold Bias}
-    Threshold -->|Above| Human[Human Review Queue<br/>📊 18 candidates]
-    Threshold -->|Below| RejectThreshold[❌ AUTO-REJECT<br/>Ranking Cutoff (E₃)<br/>📊 100 candidates excluded]
+    Rank --> Threshold{Ranking Cutoff Algorithm<br/>Top 15% Selection<br/>E₃: Threshold Bias}
+    Threshold -->|Above| Human[Human Review Queue<br/>18 candidates]
+    Threshold -->|Below| RejectThreshold[AUTO-REJECT<br/>Ranking Cutoff E₃<br/>100 candidates excluded]
 
-    Human --> Final{Final Human Decision<br/>📊 Reviewer Fatigue Factor}
-    Final -->|Hire 22%| Accept[✅ ACCEPTED<br/>📊 4 successful hires]
-    Final -->|Reject 78%| RejectFinal[❌ REJECTED<br/>Human Decision<br/>📊 14 candidates excluded]
+    Human --> Final{Final Human Decision<br/>Reviewer Fatigue Factor}
+    Final -->|Hire 22%| Accept[ACCEPTED<br/>4 successful hires]
+    Final -->|Reject 78%| RejectFinal[REJECTED<br/>Human Decision<br/>14 candidates excluded]
 
     %% Highlight critical failure points with Harvard study findings
-    RejectScreen -.->|Contains| QualifiedPool[Harvard Study Finding:<br/>88% of executives acknowledge<br/>viable candidates rejected<br/>📊 Estimated 30-53 qualified<br/>candidates wrongly excluded]
+    RejectScreen -.->|Contains| QualifiedPool[Harvard Study Finding:<br/>88% of executives acknowledge<br/>viable candidates rejected<br/>Estimated 30-53 qualified<br/>candidates wrongly excluded]
 
     %% Design flaw annotations with Section references
-    Extract -.->|Design Flaw #1<br/>See Section 3.3.1| StaticKeywords["Tokenisation Errors (E₁):<br/>• 'Software Engineer' ≠ 'Developer'<br/>• 'ML' ≠ 'Machine Learning'<br/>• 'PL/SQL' ≠ 'SQL'<br/>📊 Source: Fuller et al. (2021)"]
+    Extract -.->|Design Flaw #1<br/>See Section 3.3.1| StaticKeywords["Tokenisation Errors (E₁):<br/>• 'Software Engineer' ≠ 'Developer'<br/>• 'ML' ≠ 'Machine Learning'<br/>• 'PL/SQL' ≠ 'SQL'<br/>Source: Fuller et al. (2021)"]
 
-    Screen -.->|Design Flaw #2<br/>See Section 3.3.1| HomogeneityBias["Boolean False-Negatives (E₂):<br/>• 6+ month gaps auto-rejected<br/>• Military → Civilian bias<br/>• Non-traditional paths penalized<br/>📊 67% higher rejection rate"]
+    Screen -.->|Design Flaw #2<br/>See Section 3.3.1| HomogeneityBias["Boolean False-Negatives (E₂):<br/>• 6+ month gaps auto-rejected<br/>• Military → Civilian bias<br/>• Non-traditional paths penalized<br/>67% higher rejection rate"]
 
-    Human -.->|Design Flaw #3<br/>See Section 3.3.1| BlackBox["Human Review Inconsistency (E₃):<br/>• Reviewer fatigue after 50-100 resumes<br/>• Same candidate: reject/maybe/hire<br/>• No learning from past decisions<br/>📊 Quality drops 40% after 100 reviews"]
+    Human -.->|Design Flaw #3<br/>See Section 3.3.1| BlackBox["Human Review Inconsistency (E₃):<br/>• Reviewer fatigue after 50-100 resumes<br/>• Same candidate: reject/maybe/hire<br/>• No learning from past decisions<br/>Quality drops 40% after 100 reviews"]
 
     %% Color-blind friendly styling (WCAG 2.1 AA compliant)
     classDef rejectNode fill:#ffe6e6,stroke:#D55E00,stroke-width:2px,color:#000
