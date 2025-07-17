@@ -529,40 +529,40 @@ _This unit establishes the evaluation framework with empirically-validated basel
 
 ### 3.5.1 Success Metrics Definition
 
-#### A. Primary Metrics (Based on Empirical Findings)
+#### A. Core Success Metrics (Direct Impact on False Rejections)
 
-1. **False Rejection Rate (FRR)**
+1. **False Rejection Rate (FRR)** - PRIMARY METRIC
 
    - **Baseline**: 12-35% (validated range from literature review)
-   - **Target**: 50% reduction (6-18% range)
+   - **Target**: 50% reduction (to 6-18% range)
    - **Measurement**: Expert panel validation against known qualified candidates
+   - **Why this matters**: This single metric directly measures our thesis goal
 
-2. **Recall@K**
+2. **Recall@25**
 
-   - **Definition**: % of qualified candidates in top K recommendations
-   - **Target**: >80% for K=25
-   - **Validation**: Against hiring outcomes and expert assessment
+   - **Definition**: % of qualified candidates in top 25 recommendations
+   - **Target**: >80%
+   - **Why this matters**: Every qualified candidate missed is a false rejection
 
-3. **Human Review Efficiency**
-   - **Metric**: % requiring human review
-   - **Target**: 15-25% of applications (optimized triage)
-   - **Balance**: Automation efficiency vs. quality oversight
+#### B. Fairness Constraints (Must-Pass Criteria)
 
-#### B. Secondary Metrics (Validated Against Current ATS Performance)
+1. **Demographic Parity Gap**
 
-1. **Processing Efficiency**
+   - **Target**: Maximum 5% difference in FRR across protected groups
+   - **Includes**: Gender, race, age, employment gaps (6+ months)
+   - **Hard constraint**: System fails if threshold exceeded
 
-   - **Time-to-shortlist**: <24 hours (vs. current 15-23 day delays)
-   - **Cost per candidate**: Baseline -20% (from $750K-$3.45M impact reduction)
-   - **System throughput**: 1000+ resumes/day with consistent quality
+2. **Human Review Rate**
+   - **Target**: 15-25% of applications escalated for review
+   - **Purpose**: Prevents gaming metrics by passing everyone
 
-2. **Bias Reduction**
+#### C. Operational Thresholds (Pre-deployment Gates)
 
-   - **Diversity metrics**: +20% improvement in non-traditional candidate inclusion
-   - **Gap penalty reduction**: Address 50% rejection rate for 6+ month gaps
-   - **Demographic parity**: Within 5% across protected classes
+1. **Time-to-shortlist**: <24 hours (pass/fail)
+2. **System throughput**: 1000+ resumes/day (pass/fail)
+3. **Cost reduction**: -20% per candidate (pass/fail)
 
-### 3.5.2 Experimental Design
+These are binary requirements, not optimization targets.
 
 ## Key Empirical Findings
 
