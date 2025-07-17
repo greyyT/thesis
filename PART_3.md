@@ -392,16 +392,6 @@ Words used in similar contexts have similar meanings. Just as humans understand 
 **Real-World Example**  
 Like how Google knows "sneakers" = "trainers" = "athletic shoes", our system recognizes "Full-Stack Developer" = "Software Engineer with frontend and backend experience".
 
-<details>
-<summary>**Technical Details** (for ML researchers)</summary>
-
-- **Ontology Sources**: O\*NET (19,000 occupations), ESCO (13,500 skills), proprietary industry mappings
-- **Embedding Model**: Sentence-BERT fine-tuned on 3M job-resume pairs, 768-dimensional output
-- **Retrieval**: Hybrid approach combining dense retrieval (FAISS, cosine similarity) with sparse retrieval (BM25)
-- **Score Fusion**: 0.6 × semantic_score + 0.4 × lexical_score, optimized via grid search
-
-</details>
-
 **Measurable Impact**
 
 - False rejections drop from 48% to 13% (tested on 40,000 real applications)
@@ -430,16 +420,6 @@ Skills transfer across contexts. Managing military logistics requires the same c
 
 **Real-World Example**  
 Like how LinkedIn translates profiles for international users, we translate "10 years leading 50-person military unit" into "10 years team leadership with budget management and crisis response experience".
-
-<details>
-<summary>**Technical Details** (for ML researchers)</summary>
-
-- **Crosswalk Databases**: DoD MOS to O\*NET mapping, academic-to-industry skill bridges
-- **Gap Encoding**: Temporal embeddings with context tokens (parental, education, health, economic)
-- **Fairness Constraints**: Demographic parity ≤ 5% via constrained optimization (fairlearn library)
-- **Scoring Model**: Gradient-boosted trees with monotonic constraints, calibrated probabilities
-
-</details>
 
 **Measurable Impact**
 
@@ -470,16 +450,6 @@ Every decision should be explainable and educational. Like a good teacher who sh
 
 **Real-World Example**  
 Like Netflix explaining "Because you watched..." but for hiring: "Recommended because: strong Python skills (5 years vs. 3 required), similar background to your top performers, and proven remote work success."
-
-<details>
-<summary>**Technical Details** (for ML researchers)</summary>
-
-- **Model Architecture**: Generalized Additive Models (GAMs) with spline features, monotonic constraints
-- **Explanations**: SHAP values computed per decision, translated to natural language via templates
-- **Active Learning**: Uncertainty sampling (entropy > 0.4) triggers human review request
-- **Calibration**: Platt scaling across reviewers, updated weekly based on decision distributions
-
-</details>
 
 **Measurable Impact**
 
