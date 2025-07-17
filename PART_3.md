@@ -301,52 +301,79 @@ _This unit presents the multi-agent system methodology designed to address the t
 
 ### 3.4.1 Multi-Agent System Design Approach
 
-_Design rationale: Each agent addresses specific flaws identified in Unit 1, creating a comprehensive solution to the false rejection crisis._
+#### A. Agent-to-Problem Mapping
 
-#### Agent-to-Problem Mapping
+| Agent              | Addresses                   | Key Capabilities                         |
+| ------------------ | --------------------------- | ---------------------------------------- |
+| Sourcing Agent     | Limited candidate discovery | Multi-channel search, deduplication      |
+| Screening Agent    | Rigid keyword matching      | Semantic analysis, context understanding |
+| Critic Agent       | Bias amplification          | Bias detection, second opinion           |
+| HITL Agent         | Context blindness           | Human escalation, feedback capture       |
+| Data-Steward Agent | Lack of transparency        | Audit trails, compliance                 |
+| Supervisor Agent   | Coordination issues         | Orchestration, optimization              |
 
-The multi-agent architecture directly addresses the three systemic design flaws through specialized agents:
+#### B. System Architecture Design Principles
 
-| Agent                  | Addresses Design Flaw  | Key Capabilities                         | Expected Impact                                |
-| ---------------------- | ---------------------- | ---------------------------------------- | ---------------------------------------------- |
-| **Screening Agent**    | Static Keywords        | Semantic analysis, context understanding | Reduce 40-60% miss rate                        |
-| **Critic Agent**       | Homogeneity Algorithms | Bias detection, second opinion           | Address 67% bias against non-traditional paths |
-| **HITL Agent**         | Black-Box Scoring      | Human escalation, feedback capture       | Enable accountability and learning             |
-| **Sourcing Agent**     | Limited discovery      | Multi-channel search, deduplication      | Expand candidate pool                          |
-| **Data-Steward Agent** | Lack of transparency   | Audit trails, compliance                 | OECD AI Principles compliance                  |
-| **Supervisor Agent**   | Coordination issues    | Orchestration, optimization              | Workflow efficiency                            |
+1. **Microservices Architecture**
 
-#### System Architecture Design Principles
+   - Independent agent deployment
+   - Scalable processing
+   - Fault isolation
 
-The architecture follows three core principles that directly counter traditional ATS limitations:
+2. **Message-Based Communication**
 
-**Microservices Architecture**: Independent agent deployment enables scalable processing and fault isolation, addressing the monolithic limitations of traditional systems.
+   - Asynchronous processing
+   - Event-driven workflow
+   - Audit trail generation
 
-**Message-Based Communication**: Asynchronous processing with event-driven workflows generates comprehensive audit trails, solving the transparency problem.
-
-**Human-in-the-Loop Integration**: Confidence-based escalation with multi-turn interaction support incorporates human feedback, addressing the learning deficit in traditional systems.
+3. **Human-in-the-Loop Integration**
+   - Confidence-based escalation
+   - Multi-turn interaction support
+   - Feedback incorporation
 
 ### 3.4.2 Agent Specification Framework
 
-_Agent design: Each agent specification follows a proposition-rationale-implementation structure, ensuring clear functionality and measurable outcomes._
+#### A. Supervisor Agent
 
-#### Core Agent Specifications
+- **Role**: Central orchestrator
+- **Inputs**: Job requirements, candidate pool
+- **Processing**: Task decomposition, routing
+- **Outputs**: Coordinated workflow, final rankings
 
-**Supervisor Agent** serves as the central orchestrator, addressing coordination issues found in traditional ATS systems. This agent decomposes job requirements into evaluation rubrics, orchestrates task distribution, and synthesizes outputs while maintaining human review rates at 15-25%.
+#### B. Sourcing Agent
 
-**Screening Agent** provides semantic evaluation capabilities, directly countering the static keyword limitation. Through NLP analysis and skill extraction, it transforms unstructured resumes into structured assessments with evidence-based rationales, targeting the 40-60% miss rate reduction.
+- **Role**: Candidate discovery
+- **Inputs**: Job criteria, source parameters
+- **Processing**: Multi-channel search, deduplication
+- **Outputs**: Enriched candidate pool
 
-**Critic Agent** implements bias detection and validation, addressing the homogeneity algorithm flaw. By providing independent second opinions and bias flags, it specifically targets the 67% bias against non-traditional paths through alternative evaluation frameworks.
+#### C. Screening Agent
 
-**HITL Agent** manages the human interface, solving the black-box scoring problem. It presents low-confidence cases with structured context, captures human decisions and rationales, and enables multi-turn clarification for complex cases.
+- **Role**: Semantic evaluation
+- **Inputs**: Resumes, evaluation rubric
+- **Processing**: NLP analysis, skill extraction
+- **Outputs**: Structured assessments, scores
 
-**Data-Steward Agent** ensures compliance and learning, addressing the transparency deficit. Through anonymization and aggregation of all system interactions, it maintains audit trails and generates training data for continuous improvement.
+#### D. Critic Agent
 
-**Sourcing Agent** expands candidate discovery beyond traditional limitations. Using multi-channel search and deduplication, it creates enriched candidate pools that address the limited discovery scope of traditional systems.
+- **Role**: Bias detection and validation
+- **Inputs**: Screening results, candidate data
+- **Processing**: Alternative evaluation, bias checks
+- **Outputs**: Second opinions, bias flags
 
-#### Agent Interaction Framework
+#### E. HITL Agent
 
-The agents operate through message-based communication with confidence-based escalation. Low-confidence or conflicting assessments trigger human review, while high-confidence decisions process automatically. This framework directly addresses the 88% acknowledgment of screening failures by providing transparent, traceable decision paths.
+- **Role**: Human interface
+- **Inputs**: Low-confidence cases
+- **Processing**: Context presentation, decision capture
+- **Outputs**: Human-validated decisions
+
+#### F. Data-Steward Agent
+
+- **Role**: Compliance and learning
+- **Inputs**: All system interactions
+- **Processing**: Anonymization, aggregation
+- **Outputs**: Audit trails, training data
 
 ### 3.4.3 Implementation Methodology
 
@@ -371,8 +398,6 @@ The agents operate through message-based communication with confidence-based esc
 - Continuous integration
 - Iterative refinement based on feedback
 
-**So far we have shown**: The multi-agent architecture provides a systematic solution to the three identified systemic flaws through semantic understanding, bias detection, and human-in-the-loop oversight, with each agent directly addressing specific limitations of traditional ATS systems.
-
 ---
 
 # Unit 3: Validation Logic - Measuring Success
@@ -383,59 +408,49 @@ _This unit establishes the evaluation framework with empirically-validated basel
 
 ### 3.5.1 Success Metrics Definition
 
-_Metric design: Success criteria are anchored to empirically-validated baselines from Unit 1, ensuring measurable improvements against documented problems._
+#### A. Primary Metrics (Based on Empirical Findings)
 
-#### Primary Success Metrics
+1. **False Rejection Rate (FRR)**
 
-**False Rejection Rate (FRR) Reduction**
+   - **Baseline**: 12-35% (validated range from literature review)
+   - **Target**: 50% reduction (6-18% range)
+   - **Measurement**: Expert panel validation against known qualified candidates
 
-```
-Baseline: 12-35% (validated range from literature review)
-Target: 50% reduction → 6-18% range
-Measurement: Expert panel validation against known qualified candidates
-```
+2. **Recall@K**
 
-This metric directly measures the core problem. The 50% reduction target addresses the Harvard Business School finding that 88% of companies acknowledge screening failures.
+   - **Definition**: % of qualified candidates in top K recommendations
+   - **Target**: >80% for K=25
+   - **Validation**: Against hiring outcomes and expert assessment
 
-**Recall@K Performance**
+3. **Human Review Efficiency**
+   - **Metric**: % requiring human review
+   - **Target**: 15-25% of applications (optimized triage)
+   - **Balance**: Automation efficiency vs. quality oversight
 
-- **Definition**: Percentage of qualified candidates in top K recommendations
-- **Target**: >80% for K=25 (industry standard shortlist size)
-- **Validation**: Against hiring outcomes and expert assessment
+#### B. Secondary Metrics (Validated Against Current ATS Performance)
 
-**Human Review Efficiency**
+1. **Processing Efficiency**
 
-- **Metric**: Percentage requiring human review
-- **Target**: 15-25% of applications (optimized triage)
-- **Rationale**: Balances automation efficiency with quality oversight
+   - **Time-to-shortlist**: <24 hours (vs. current 15-23 day delays)
+   - **Cost per candidate**: Baseline -20% (from $750K-$3.45M impact reduction)
+   - **System throughput**: 1000+ resumes/day with consistent quality
 
-#### Secondary Metrics (Validated Against Current ATS Performance)
+2. **Bias Reduction**
 
-**Processing Efficiency Improvements**:
+   - **Diversity metrics**: +20% improvement in non-traditional candidate inclusion
+   - **Gap penalty reduction**: Address 50% rejection rate for 6+ month gaps
+   - **Demographic parity**: Within 5% across protected classes
 
-- **Time-to-shortlist**: <24 hours (vs. current 15-23 day delays)
-- **Cost per candidate**: Baseline -20% (from $750K-$3.45M impact reduction)
-- **System throughput**: 1000+ resumes/day with consistent quality
+3. **User Satisfaction**
+   - **Recruiter satisfaction**: >4/5 (vs. 54% Taleo inefficiency rating)
+   - **Candidate experience**: Improved transparency and reduced 23% pipeline shrinkage
+   - **Hiring manager efficiency**: Reduced 58% ATS frustration as pain point
 
-**Bias Reduction Targets**:
+#### C. Business Impact Metrics
 
-- **Diversity metrics**: +20% improvement in non-traditional candidate inclusion
-- **Gap penalty reduction**: Address 50% rejection rate for 6+ month gaps
-- **Demographic parity**: Within 5% across protected classes
-
-**User Satisfaction Benchmarks**:
-
-- **Recruiter satisfaction**: >4/5 (vs. 54% Taleo inefficiency rating)
-- **Candidate experience**: Improved transparency and reduced 23% pipeline shrinkage
-- **Hiring manager efficiency**: Reduced 58% ATS frustration as pain point
-
-#### Business Impact Validation
-
-> **Expected Cost Reduction**: $300K - $1.38M annually per 100 hires (40% reduction from $750K-$3.45M baseline)
-
-**Competitive Advantage**: Access to 12-35% additional qualified candidate pool currently rejected by traditional systems
-
-**Quality Improvement**: Address 18% performance gap in keyword-matched hires vs. human-selected candidates
+- **Cost reduction**: Target 40% reduction in extended time-to-hire costs
+- **Competitive advantage**: Access to 12-35% additional qualified candidate pool
+- **Quality improvement**: Address 18% performance gap in keyword-matched hires
 
 ### 3.5.2 Experimental Design
 
@@ -476,28 +491,6 @@ This metric directly measures the core problem. The 50% reduction target address
 - Bias audit by external party
 - Compliance with regulations
 - Transparency assessment
-
-## Chapter Summary
-
-This methodology establishes a comprehensive research framework for developing and evaluating a multi-agent system to reduce false rejections in talent acquisition. The three-unit structure provides clear logical progression from problem identification to solution design to validation.
-
-### Unit 1: Evidence Base - Problem Validation
-
-- **Empirical Analysis**: Taleo/Oracle and Lever platforms demonstrate identical keyword-based failures
-- **Quantified Impact**: 12-35% false rejection rate validated; $750K-$3.45M annual business impact
-- **Systemic Design Flaws**: Static Keywords (40-60% miss rate), Homogeneity Algorithms (67% bias), Black-Box Scoring (no accountability)
-
-### Unit 2: Proposed Design - Architectural Solution
-
-- **Agent-to-Problem Mapping**: Each agent addresses specific identified flaws
-- **Evidence-Based Design**: Multi-agent architecture directly counters traditional ATS limitations
-- **OECD AI Principles**: Human-in-the-loop integration ensures transparency and accountability
-
-### Unit 3: Validation Logic - Measurable Success
-
-- **Baseline-Validated Metrics**: Success criteria anchored to empirical findings
-- **Business Impact Focus**: Targets $300K-$1.38M annual cost reductions
-- **Competitive Advantage**: Access to 12-35% additional qualified candidate pool
 
 ## Key Empirical Findings
 
