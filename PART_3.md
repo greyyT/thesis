@@ -299,63 +299,54 @@ The multi-agent recruitment system operates through a distributed plan where six
 ```mermaid
 graph TD
     %% Human Actors & Interfaces
-    A[Recruiter] -- "1 - Initiates Job Posting & Defines Criteria" --> B
+    A[Recruiter] -- "1 - Initiates Job Posting & Defines Criteria" --> AgentCoreSystem
     C[HR Manager / Reviewer] -- "10 - Provides Judgment" --> D{HITL UI}
-    D -- "Captures Feedback" --> E
-    B -- "12 - Presents Ranked Shortlist & Audit Trail" --> A
+    D -- "Captures Feedback" --> AgentCoreSystem
 
-    %% Multi-Agent System Core
-    B[Supervisor Agent]
-    F[Sourcing Subagent]
-    G[Screening Subagent]
-    H[Critic Subagent]
-    E[HITL Subagent]
+    %% AgentCore System with all agents
+    subgraph AgentCoreSystem["AgentCore Multi-Agent System"]
+        %% Multi-Agent System Core
+        B[Supervisor Agent]
+        F[Sourcing Subagent]
+        G[Screening Subagent]
+        H[Critic Subagent]
+        E[HITL Subagent]
+        P[Data-Steward Subagent]
 
-    B -- "2 - Dispatches Task" --> F
-    B -- "5 - Dispatches Task" --> G
-    B -- "7 - Routes Low-Confidence/Rejected" --> H
-    B -- "9 - Triage Ambiguous Cases" --> E
+        %% Internal Agent Communications
+        B -- "2 - Dispatches Task" --> F
+        B -- "5 - Dispatches Task" --> G
+        B -- "7 - Routes Low-Confidence/Rejected" --> H
+        B -- "9 - Triage Ambiguous Cases" --> E
 
-    G -- "6 - Submits Scored Assessments" --> B
-    H -- "8 - Submits Second Opinion / Bias Flags" --> B
-    E -- "11 - Returns Human-Validated Decisions" --> B
+        G -- "6 - Submits Scored Assessments" --> B
+        H -- "8 - Submits Second Opinion / Bias Flags" --> B
+        E -- "11 - Returns Human-Validated Decisions" --> B
+
+        %% Logging connections
+        B -- "Logs Orchestration" --> P
+        G -- "Logs Evaluations" --> P
+        H -- "Logs Validations" --> P
+        E -- "Logs Human Interactions" --> P
+    end
+
+    AgentCoreSystem -- "12 - Presents Ranked Shortlist & Audit Trail" --> A
 
     %% Data & Knowledge Layer
-    K[(Candidate Pool Database)] -- "Raw/Structured Data" --> G
-    K -- "Raw/Structured Data" --> H
-    L[(Vector Database)] -- "Semantic Embeddings for Matching" --> G
-    L -- "Semantic Embeddings for Matching" --> H
-    M{{Prompt Libraries}} -- "Defines Agent Personas & Tasks" --> AgentCore
-    N{{Guardrails}} -- "Enforces Constraints & Safety" --> AgentCore
-    O[(Persistent Memory)] -- "Stores Models, Metrics, Audit Logs" <--> P
-    J[(Ephemeral Memory)] -- "Stores In-Flight Workflow State" <--> AgentCore
-
-    %% Agent Core Logic
-    AgentCore --> K
-    AgentCore --> L
-    AgentCore --> J
-    style AgentCore fill:#fff,stroke:#fff
-
-    %% Compliance & Learning
-    P[Data-Steward Subagent]
+    K[(Candidate Pool Database)] -- "Raw/Structured Data" --> AgentCoreSystem
+    L[(Vector Database)] -- "Semantic Embeddings for Matching" --> AgentCoreSystem
+    M{{Prompt Libraries}} -- "Defines Agent Personas & Tasks" --> AgentCoreSystem
+    N{{Guardrails}} -- "Enforces Constraints & Safety" --> AgentCoreSystem
+    O[(Persistent Memory)] -- "Stores Models, Metrics, Audit Logs" <--> AgentCoreSystem
+    J[(Ephemeral Memory)] -- "Stores In-Flight Workflow State" <--> AgentCoreSystem
 
     %% External Systems
     I(Tools / APIs <br> Job Boards, Prof. Networks)
 
-    %% Connections between major components
-    F -- "3 - Fetches Candidates" --> I
-    F -- "4 - Populates Pool" --> K
-
-    B -- "Logs Orchestration" --> P
-    G -- "Logs Evaluations" --> P
-    H -- "Logs Validations" --> P
-    E -- "Logs Human Interactions" --> P
-    P -- "Drives Continuous Improvement" --> O
-
-    %% Link Agent Core to its foundational elements
-    linkStyle 12,13 stroke-dasharray: 5 5, stroke: #444
-    linkStyle 14,15,16,17 stroke-dasharray: 5 5, stroke: #444
-    linkStyle 18 stroke: #28a745, stroke-width: 2px
+    %% External connections
+    AgentCoreSystem -- "3 - Fetches Candidates" --> I
+    AgentCoreSystem -- "4 - Populates Pool" --> K
+    AgentCoreSystem -- "Drives Continuous Improvement" --> O
 
     %% Styling
     classDef human fill:#e3f2fd,stroke:#333
@@ -363,12 +354,14 @@ graph TD
     classDef data fill:#fff3e0,stroke:#f57c00
     classDef external fill:#f3e5f5,stroke:#7b1fa2
     classDef interface fill:#e0f7fa,stroke:#00796b
+    classDef agentCore fill:#e8eaf6,stroke:#3f51b5,stroke-width:3px
 
     class A,C human
     class B,F,G,H,E,P agent
     class K,L,M,N,O,J data
     class I external
     class D interface
+    class AgentCoreSystem agentCore
 ```
 
 #### 3.3.2.1 Architectural Patterns
@@ -463,16 +456,71 @@ The multi-agent system employs message-based communication with several key char
 
 ```mermaid
 flowchart TD
-    Start([Job Description + Resume Pool]) --> Supervisor{Supervisor Agent}
-    Supervisor --> Decompose[Decompose JD into<br/>Evaluation Rubric]
+    Start([Job Description + Resume Pool]) --> AgentCore
+
+    subgraph AgentCore["AgentCore Infrastructure"]
+        direction TB
+
+        %% Core Infrastructure Services
+        subgraph CoreServices["Shared Runtime Services"]
+            direction LR
+            Policy[Policy Enforcement<br/>- Auth & Security<br/>- Rate Limiting]
+            DataAccess[Data Access Layer<br/>- Unified DB Interface<br/>- Query Optimization]
+            StateManager[State Management<br/>- Workflow Tracking<br/>- Recovery & Rollback]
+            CommHub[Communication Hub<br/>- Message Queue<br/>- Event Bus]
+            Monitor[Monitoring Service<br/>- Performance Metrics<br/>- Logging & Alerts]
+        end
+
+        %% Agent Layer
+        subgraph Agents["Multi-Agent System"]
+            direction TB
+
+            Supervisor{Supervisor Agent<br/>Orchestrator}
+
+            subgraph ProcessingAgents["Processing Agents"]
+                Screen[Screening Agent<br/>Semantic Analysis]
+                Screen2[Screening Agent 2]
+                Screen3[Screening Agent N]
+                Critic[Critic Agent<br/>Bias Check & Review]
+            end
+
+            subgraph InterfaceAgents["Interface Agents"]
+                HITLAgent[HITL Agent<br/>Human Interface]
+                DataSteward[Data-Steward Agent<br/>Compliance & Learning]
+            end
+        end
+
+        %% Internal Connections within AgentCore
+        Policy -.-> Supervisor
+        Policy -.-> Screen
+        Policy -.-> Critic
+        Policy -.-> HITLAgent
+        Policy -.-> DataSteward
+
+        DataAccess -.-> Screen
+        DataAccess -.-> Critic
+        DataAccess -.-> DataSteward
+
+        StateManager -.-> Supervisor
+        StateManager -.-> DataSteward
+
+        CommHub -.-> Supervisor
+        CommHub -.-> Screen
+        CommHub -.-> Critic
+        CommHub -.-> HITLAgent
+
+        Monitor -.-> Supervisor
+        Monitor -.-> DataSteward
+    end
+
+    %% Main Workflow
+    AgentCore --> Decompose[Decompose JD into<br/>Evaluation Rubric]
     Decompose --> InitState[Initialize Workflow State<br/>- Candidates<br/>- ReviewQueue<br/>- Results]
 
     InitState --> ScreeningLoop{For Each Resume}
-    ScreeningLoop --> Screen[Screening Agent<br/>Semantic Analysis]
-    Screen --> ScreenOutput[Output:<br/>- Structured Data<br/>- Skill Scores<br/>- Evidence Citations<br/>- Initial Rating]
+    ScreeningLoop --> ScreenOutput[Output:<br/>- Structured Data<br/>- Skill Scores<br/>- Evidence Citations<br/>- Initial Rating]
 
-    ScreenOutput --> Critic[Critic Agent<br/>Bias Check & Review]
-    Critic --> CriticOutput[Output:<br/>- Second Opinion<br/>- Bias Flags<br/>- Hidden Gems<br/>- Confidence Score]
+    ScreenOutput --> CriticOutput[Output:<br/>- Second Opinion<br/>- Bias Flags<br/>- Hidden Gems<br/>- Confidence Score]
 
     CriticOutput --> Triage{Triage Logic<br/>Confidence Scoring}
 
@@ -480,8 +528,7 @@ flowchart TD
     Triage -->|Low Confidence<br/>Clear Mismatch| AutoReject[Auto-Reject<br/>Log Decision]
     Triage -->|Medium Confidence<br/>or Agent Conflict| HITLQueue[Add to HITL<br/>Review Queue]
 
-    HITLQueue --> HITLAgent[HITL Agent<br/>Human Interface]
-    HITLAgent --> HITLDisplay[Present to Recruiter:<br/>- Resume + Context<br/>- Agent Opinions<br/>- Conflict Highlights]
+    HITLQueue --> HITLDisplay[Present to Recruiter:<br/>- Resume + Context<br/>- Agent Opinions<br/>- Conflict Highlights]
 
     HITLDisplay --> HITLDecision{Human Decision}
     HITLDecision -->|Approve| HITLApprove[Accept with<br/>Human Validation]
@@ -489,14 +536,13 @@ flowchart TD
     HITLDecision -->|Edit/Annotate| HITLEdit[Edit Scores +<br/>Provide Feedback]
     HITLDecision -->|Need More Info| HITLQuery[Multi-turn<br/>Conversation]
 
-    HITLQuery --> HITLAgent
-    HITLApprove --> DataSteward[Data-Steward Agent]
-    HITLReject --> DataSteward
-    HITLEdit --> DataSteward
-    AutoAccept --> DataSteward
-    AutoReject --> DataSteward
+    HITLQuery --> HITLDisplay
+    HITLApprove --> Audit[Log Decision:<br/>- Full Agent Trail<br/>- Human Feedback<br/>- Reasoning Chain]
+    HITLReject --> Audit
+    HITLEdit --> Audit
+    AutoAccept --> Audit
+    AutoReject --> Audit
 
-    DataSteward --> Audit[Log Decision:<br/>- Full Agent Trail<br/>- Human Feedback<br/>- Reasoning Chain]
     Audit --> Privacy[PII Protection:<br/>- Anonymize Data<br/>- Secure Storage]
     Privacy --> Learning[Continuous Learning:<br/>- Collect Feedback<br/>- Update Models<br/>- Bias Monitoring]
 
@@ -506,30 +552,30 @@ flowchart TD
 
     FinalRanking --> Output[Deliver Results:<br/>- Ranked Shortlist<br/>- Decision Rationales<br/>- Diversity Metrics<br/>- Audit Trail]
 
-    %% Parallel Processing Paths
-    ScreeningLoop -.->|Batch Processing| Screen2[Screening Agent 2]
-    ScreeningLoop -.->|Batch Processing| Screen3[Screening Agent N]
-    Screen2 --> CriticOutput
-    Screen3 --> CriticOutput
+    %% Parallel Processing
+    ScreeningLoop -.->|Batch Processing| ScreenOutput
 
     %% Feedback Loop
-    Learning -.->|Model Updates| Screen
-    Learning -.->|Bias Adjustments| Critic
+    Learning -.->|Model Updates| AgentCore
     Learning -.->|Threshold Tuning| Triage
 
-    %% Monitoring
-    DataSteward -.->|Real-time Monitoring| Monitor[Bias Metrics<br/>Performance KPIs<br/>α Rate Control]
-    Monitor -.->|Alerts| Supervisor
+    %% External Monitoring
+    Audit -.->|Real-time Metrics| ExternalMonitor[External Dashboard:<br/>- Bias Metrics<br/>- Performance KPIs<br/>- α Rate Control]
+    ExternalMonitor -.->|Alerts| AgentCore
 
     %% Styling
     classDef agentNode fill:#e1f5fe,stroke:#01579b,stroke-width:2px
     classDef humanNode fill:#fff3e0,stroke:#e65100,stroke-width:2px
     classDef dataNode fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef decisionNode fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    classDef infraNode fill:#e8eaf6,stroke:#3f51b5,stroke-width:3px
+    classDef coreService fill:#f3e5f5,stroke:#6a1b9a,stroke-width:1px
 
-    class Supervisor,Screen,Critic,HITLAgent,DataSteward agentNode
+    class AgentCore,Agents,CoreServices infraNode
+    class Policy,DataAccess,StateManager,CommHub,Monitor coreService
+    class Supervisor,Screen,Screen2,Screen3,Critic,HITLAgent,DataSteward agentNode
     class HITLDisplay,HITLDecision,HITLApprove,HITLReject,HITLEdit,HITLQuery humanNode
-    class Audit,Privacy,Learning,Monitor dataNode
+    class Audit,Privacy,Learning,ExternalMonitor dataNode
     class Triage,MoreCandidates decisionNode
 ```
 
