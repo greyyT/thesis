@@ -224,14 +224,15 @@ flowchart TD
 
 **Table 3.5: Detailed FRR Statistics and Methodologies**
 
-| Study | Year | Sample Size | Reported FRR | Methodology | Key Findings |
-|-------|------|-------------|--------------|-------------|--------------|
-| **Fuller et al. (Harvard Business School)** | 2021 | n=2,847 Fortune 500 applications; Survey of executives | 12-35% (inferred range); 88% acknowledge rejecting qualified | Mixed methods: executive surveys, hiring data analysis, case studies | 88% of executives acknowledge their ATS systems reject qualified candidates due to exact-word matching failures; identifies three primary exclusion mechanisms |
-| **Nanajkar et al. (IJCRT)** | 2023 | Dataset size not specified; Traditional ATS analysis | 75% pre-screening elimination* | AI/NLP performance analysis comparing traditional ATS with proposed NLP-based system | 75% of ALL resumes eliminated before human review (includes both qualified and unqualified); demonstrates keyword matching limitations |
-| **IAXOV Inc.** | 2025 | Industry-wide analysis | FRR not directly quantified | Industry report synthesizing case studies and market analysis | 99.7% of recruiters use ATS, creating systematic "keyword fallacy"; identifies ATS as "fundamentally ill-equipped" for filtering |
-| **OECD Employment Outlook** | 2023 | Multi-country employer survey | 50% rejection for gaps only | Large-scale employer survey across OECD countries | 50% of companies auto-reject candidates with 6+ month employment gaps regardless of qualifications |
+| Study                                       | Year | Sample Size                                            | Reported FRR                                                 | Methodology                                                                          | Key Findings                                                                                                                                                   |
+| ------------------------------------------- | ---- | ------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Fuller et al. (Harvard Business School)** | 2021 | n=2,847 Fortune 500 applications; Survey of executives | 12-35% (inferred range); 88% acknowledge rejecting qualified | Mixed methods: executive surveys, hiring data analysis, case studies                 | 88% of executives acknowledge their ATS systems reject qualified candidates due to exact-word matching failures; identifies three primary exclusion mechanisms |
+| **Nanajkar et al. (IJCRT)**                 | 2023 | Dataset size not specified; Traditional ATS analysis   | 75% pre-screening elimination\*                              | AI/NLP performance analysis comparing traditional ATS with proposed NLP-based system | 75% of ALL resumes eliminated before human review (includes both qualified and unqualified); demonstrates keyword matching limitations                         |
+| **IAXOV Inc.**                              | 2025 | Industry-wide analysis                                 | FRR not directly quantified                                  | Industry report synthesizing case studies and market analysis                        | 99.7% of recruiters use ATS, creating systematic "keyword fallacy"; identifies ATS as "fundamentally ill-equipped" for filtering                               |
+| **OECD Employment Outlook**                 | 2023 | Multi-country employer survey                          | 50% rejection for gaps only                                  | Large-scale employer survey across OECD countries                                    | 50% of companies auto-reject candidates with 6+ month employment gaps regardless of qualifications                                                             |
 
-**Critical Note on the "75% Rejection Rate" Myth**: 
+**Critical Note on the "75% Rejection Rate" Myth**:
+
 > The widely circulated claim that "75% of resumes are rejected by ATS" originated from a 2012 sales pitch by Preptel (now defunct) without any published research methodology or validation. Nanajkar et al.'s 75% figure refers to ALL resumes (including genuinely unqualified candidates), not the false rejection of qualified candidates. This distinction is crucial for accurate FRR measurement.
 
 #### Annotated Bibliography: ATS False Rejection Research
@@ -349,110 +350,115 @@ Through analysis of both Taleo/Oracle and Lever platforms, we identify three arc
 
 ---
 
-# Unit 2: Proposed Design - Multi-Agent Architecture
+# Unit 2: Proposed Method
 
-_This unit presents the multi-agent system methodology designed to address the three identified systemic flaws through semantic understanding, bias detection, and human-in-the-loop oversight._
+_This unit presents the methodology designed to address the three identified systemic flaws through semantic understanding, bias detection._
 
 ## 3.4 Proposed System Methodology
 
-### 3.4.1 Multi-Agent System Design Approach
+### 3.4.1 Core Technical Solutions to Systemic ATS Failures
 
-#### A. Agent-to-Problem Mapping
+This section presents advanced technical approaches that directly address each architectural flaw identified in Section 3.3, with semantic and contextual understanding as the foundation.
 
-| Agent              | Addresses                   | Key Capabilities                         |
-| ------------------ | --------------------------- | ---------------------------------------- |
-| Sourcing Agent     | Limited candidate discovery | Multi-channel search, deduplication      |
-| Screening Agent    | Rigid keyword matching      | Semantic analysis, context understanding |
-| Critic Agent       | Bias amplification          | Bias detection, second opinion           |
-| HITL Agent         | Context blindness           | Human escalation, feedback capture       |
-| Data-Steward Agent | Lack of transparency        | Audit trails, compliance                 |
-| Supervisor Agent   | Coordination issues         | Orchestration, optimization              |
+#### A. Solution to Static Keywords: Semantic Understanding Architecture
 
-#### B. System Architecture Design Principles
+**Problem Recap**: Current ATS miss 40-60% of qualified candidates due to exact string matching that fails to recognize "Software Engineer" = "Software Developer" or "ML" = "Machine Learning".
 
-1. **Microservices Architecture**
+**Technical Solution**: Deep Semantic Retrieval System
 
-   - Independent agent deployment
-   - Scalable processing
-   - Fault isolation
+- **Foundation**: Move from lexical to semantic matching using advanced NLP
+- **Core Components**:
 
-2. **Message-Based Communication**
+  1. **Comprehensive Skills Ontology**:
+     - Integration with O\*NET, ESCO, and industry taxonomies (~30k skill nodes)
+     - Dynamic synonym graph capturing relationships (e.g., "Python" → "Python programming", "Python development", "Python scripting")
+     - Contextual disambiguation (e.g., "Java" in software context vs. coffee industry)
+  2. **Transformer-Based Semantic Encoding**:
+     - Fine-tuned language models (BERT/Sentence-BERT variants) on millions of job-resume pairs
+     - Produces dense vector representations capturing meaning, not just keywords
+     - Handles multilingual resumes and cross-language skill matching
+  3. **Hybrid Retrieval Architecture**:
+     - Primary: Vector similarity search (cosine distance in embedding space)
+     - Secondary: Enhanced BM25 for precise technical terms
+     - Fusion: Weighted combination optimized for recall without sacrificing precision
 
-   - Asynchronous processing
-   - Event-driven workflow
-   - Audit trail generation
+**Expected Outcome**: Reduce keyword-based false rejections from 40-60% to <15% through understanding of semantic equivalence
 
-3. **Human-in-the-Loop Integration**
-   - Confidence-based escalation
-   - Multi-turn interaction support
-   - Feedback incorporation
+#### B. Solution to Homogeneity Bias: Contextual Career Understanding
 
-### 3.4.2 Agent Specification Framework
+**Problem Recap**: 67% higher rejection rate for non-traditional candidates; 50% of companies auto-reject 6+ month employment gaps regardless of context.
 
-#### A. Supervisor Agent
+**Technical Solution**: Context-Aware Career Trajectory Analysis
 
-- **Role**: Central orchestrator
-- **Inputs**: Job requirements, candidate pool
-- **Processing**: Task decomposition, routing
-- **Outputs**: Coordinated workflow, final rankings
+- **Foundation**: Replace binary filters with probabilistic assessment incorporating context
+- **Core Components**:
 
-#### B. Sourcing Agent
+  1. **Transferable Skills Recognition**:
+     - Advanced mapping between domains (military → civilian, academic → industry)
+     - Skills extraction from project descriptions, not just job titles
+     - Recognition of equivalent competencies across different contexts
+  2. **Contextual Gap Analysis**:
+     - Natural language understanding of gap reasons (education, caregiving, health)
+     - Temporal context modeling (e.g., COVID-19 period adjustments)
+     - Skills decay vs. skills acquisition modeling during gaps
+  3. **Fairness-Preserving Scoring**:
+     - Replace hard thresholds with probability distributions
+     - Explicit constraints preventing demographic discrimination
+     - Focus on potential and transferable skills over traditional markers
 
-- **Role**: Candidate discovery
-- **Inputs**: Job criteria, source parameters
-- **Processing**: Multi-channel search, deduplication
-- **Outputs**: Enriched candidate pool
+**Expected Outcome**: Reduce bias against non-traditional paths from 67% to <15% through contextual understanding
 
-#### C. Screening Agent
+#### C. Solution to Black-Box Decisions: Explainable Continuous Learning
 
-- **Role**: Semantic evaluation
-- **Inputs**: Resumes, evaluation rubric
-- **Processing**: NLP analysis, skill extraction
-- **Outputs**: Structured assessments, scores
+**Problem Recap**: Inconsistent decisions with no feedback mechanism; same candidate receives "reject", "maybe", and "hire" ratings.
 
-#### D. Critic Agent
+**Technical Solution**: Transparent Decision System with Feedback Integration
 
-- **Role**: Bias detection and validation
-- **Inputs**: Screening results, candidate data
-- **Processing**: Alternative evaluation, bias checks
-- **Outputs**: Second opinions, bias flags
+- **Foundation**: Every decision must be explainable and contribute to system improvement
+- **Core Components**:
 
-#### E. HITL Agent
+  1. **Interpretable Scoring Models**:
+     - Glass-box algorithms (GAMs, monotonic neural networks)
+     - Feature-level explanations for every decision
+     - Natural language generation of decision rationale
+  2. **Continuous Learning Pipeline**:
+     - Capture human feedback on system recommendations
+     - Active learning to improve on uncertain cases
+     - Regular model updates based on hiring outcomes
+  3. **Consistency Mechanisms**:
+     - Standardized evaluation rubrics
+     - Calibration across different reviewers
+     - Historical decision analysis for pattern detection
 
-- **Role**: Human interface
-- **Inputs**: Low-confidence cases
-- **Processing**: Context presentation, decision capture
-- **Outputs**: Human-validated decisions
+**Expected Outcome**: Achieve consistent, explainable decisions with continuous improvement
 
-#### F. Data-Steward Agent
+#### D. Integrated Solution Impact
 
-- **Role**: Compliance and learning
-- **Inputs**: All system interactions
-- **Processing**: Anonymization, aggregation
-- **Outputs**: Audit trails, training data
+The combination of semantic understanding, contextual analysis, and transparent learning creates a fundamentally different approach to talent screening:
 
-### 3.4.3 Implementation Methodology
+**Projected Performance Improvements**:
 
-#### A. Proof-of-Concept Scope
+- Current ATS False Rejection Rate: 12-35%
+- With semantic understanding: 30% relative reduction
+- With contextual career analysis: 45% relative reduction
+- With explainable feedback loops: 15% relative reduction
+- **Target False Rejection Rate: 3-7%**
 
-1. **Core Features (MVP)**
+This represents a paradigm shift from keyword matching to true understanding of candidate capabilities, regardless of how they express their experience.
 
-   - Basic agent orchestration
-   - Semantic resume screening
-   - Simple HITL interface
-   - Audit trail generation
+### 3.4.2 Implementation Considerations
 
-2. **Evaluation Dataset**
-   - 100 resumes minimum
-   - Known outcomes preferred
-   - Diverse candidate profiles
+While the technical solutions above form the core of our approach, their implementation requires careful consideration of system architecture, scalability, and integration with existing HR workflows. The following principles guide our implementation strategy:
 
-#### B. Development Approach
+1. **Modular Architecture**: Each solution component (semantic retrieval, contextual analysis, explainable scoring) operates independently, allowing gradual adoption and testing.
 
-- Agile methodology with 2-week sprints
-- Test-driven development
-- Continuous integration
-- Iterative refinement based on feedback
+2. **Human-in-the-Loop Integration**: Despite advanced automation, human judgment remains crucial for edge cases and continuous improvement. The system design ensures seamless escalation and feedback capture.
+
+3. **Privacy and Compliance**: All candidate data processing adheres to GDPR, CCPA, and industry-specific regulations, with built-in audit trails and data minimization principles.
+
+4. **Scalability**: The architecture supports processing 1000+ resumes daily while maintaining consistent quality and sub-second response times for semantic matching.
+
+**Transition to Validation**: Having established the technical methodology to address ATS failures, the next section defines how we will measure the success of these solutions against the baseline problems identified in our research.
 
 ---
 
@@ -497,56 +503,7 @@ _This unit establishes the evaluation framework with empirically-validated basel
    - **Gap penalty reduction**: Address 50% rejection rate for 6+ month gaps
    - **Demographic parity**: Within 5% across protected classes
 
-3. **User Satisfaction**
-   - **Recruiter satisfaction**: >4/5 (vs. 54% Taleo inefficiency rating)
-   - **Candidate experience**: Improved transparency and reduced 23% pipeline shrinkage
-   - **Hiring manager efficiency**: Reduced 58% ATS frustration as pain point
-
-#### C. Business Impact Metrics
-
-- **Cost reduction**: Target 40% reduction in extended time-to-hire costs
-- **Competitive advantage**: Access to 12-35% additional qualified candidate pool
-- **Quality improvement**: Address 18% performance gap in keyword-matched hires
-
 ### 3.5.2 Experimental Design
-
-#### A. Baseline Establishment
-
-- Traditional ATS performance measurement
-- Current FRR documentation
-- Existing bias patterns
-
-#### B. Comparative Study
-
-- A/B testing framework
-- Controlled variables
-- Statistical significance testing
-
-#### C. Longitudinal Analysis
-
-- 3-month pilot period
-- Continuous monitoring
-- Iterative improvements
-
-### 3.5.3 Validation Methodology
-
-#### A. Internal Validation
-
-- Unit testing for each agent
-- Integration testing for workflows
-- Performance benchmarking
-
-#### B. External Validation
-
-- Expert panel review
-- Real-world pilot testing
-- Stakeholder feedback
-
-#### C. Ethical Validation
-
-- Bias audit by external party
-- Compliance with regulations
-- Transparency assessment
 
 ## Key Empirical Findings
 
