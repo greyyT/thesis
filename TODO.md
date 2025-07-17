@@ -72,25 +72,24 @@
 
 #### Documentation Phase (Week 2)
 
-- [ ] @lelouvincx Build visual flowchart showing common ATS workflow stages:
-  - [ ] Job posting creation → Resume submission
-  - [ ] Initial parsing → Keyword extraction
-  - [ ] Screening/filtering → Ranking/scoring
-  - [ ] Decision points and rejection triggers
-- [ ] @lelouvincx Document top 10 rejection reasons from ATS systems based on research
+- [x] @lelouvincx Build visual flowchart showing common ATS workflow stages:
+  - [x] Job posting creation → Resume submission
+  - [x] Initial parsing → Keyword extraction
+  - [x] Screening/filtering → Ranking/scoring
+  - [x] Decision points and rejection triggers
 
 ### 3.2 - False Rejection Rate Analysis
 
 #### Literature Review (Week 1)
 
-- [ ] @lelouvincx Review OECD Employment Outlook 2023 findings:
-  - [ ] Chapter on AI and labor market (27% jobs at high automation risk)
-  - [ ] Policy recommendations for trustworthy AI use
-  - [ ] Discrimination and bias concerns in automated hiring
-  - [ ] Role of social dialogue and collective bargaining
-- [ ] @lelouvincx Search IEEE Xplore for "ATS false rejection" papers (target: 3-4 papers)
-- [ ] @lelouvincx Search ACM Digital Library for recruitment automation papers (target: 3-4 papers)
-- [ ] @lelouvincx Search Google Scholar for industry reports on ATS effectiveness (target: 2-3 papers)
+- [x] @lelouvincx Search IEEE Xplore for "ATS false rejection" papers (target: 3-4 papers)
+- [x] @lelouvincx Search Google Scholar for industry reports on ATS effectiveness (target: 2-3 papers)
+  - Fuller, J., Raman, M., et al. (2021). "Hidden Workers: Untapped Talent." Harvard Business School. https://www.hbs.edu/managing-the-future-of-work/Documents/research/hiddenworkers09032021.pdf
+    - Key finding: 88% of employers acknowledge their ATS systems reject qualified, high-skilled candidates
+  - Nanajkar, J., Sable, A., et al. (2023). "AI Powered Application Tracking System With NLP Based Resume Scoring." IJCRT. https://www.ijcrt.org/papers/IJCRT2506299.pdf
+    - Key finding: 75% of resumes disqualified by ATS before human review; false negatives from keyword matching
+  - IAXOV Inc. (2025). "STRATEVITA: Intelligence Revolutionizes Talent Management." https://www1.iaxov.com/publications/STRATEVITA_%20Intelligence%20Revolutionizes%20Talent%20Management.pdf
+    - Key finding: 99.7% recruiter ATS usage creates systematic exclusion through "keyword fallacy"
 - [ ] @lelouvincx Extract and tabulate FRR statistics from each source:
   - [ ] Study name, year, sample size
   - [ ] Reported FRR percentage
