@@ -188,13 +188,6 @@
   - [ ] Basic multi-agent orchestration
   - [ ] Semantic resume screening
   - [ ] Simple HITL interface
-- [ ] @lelouvincx Create 2-week implementation sprint plan:
-  - [ ] Week 1: Agent framework and basic screening
-  - [ ] Week 2: HITL integration and testing
-- [ ] @lelouvincx Define pilot success criteria:
-  - [ ] Process 100 resumes successfully
-  - [ ] Achieve 70% recall on test set
-  - [ ] Complete end-to-end workflow demo
 
 ## Part 4 - High-level Design
 

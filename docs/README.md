@@ -62,23 +62,47 @@ uv pip sync
 # Configure environment
 export OPENROUTER_API_KEY="your-api-key"
 
-# Run prototype
-python resume_job_predictor.py
+# Run scripts from the scripts directory
+cd src/scripts
+uv run python resume_job_predictor.py
 ```
 
 ## Project Structure
 
 ```
 thesis/
-├── src/                      # Core implementation
-│   ├── resume_job_predictor.py
-│   └── extract_categories.py
-├── docs/                     # Documentation
-│   ├── PART_1.md            # Introduction
-│   ├── PART_2.md            # Theory (WIP)
-│   └── PART_3.md            # System Design
-├── data/                     # Datasets
-└── CLAUDE.md                 # Development guide
+├── src/                              # Source code
+│   ├── data/                         # All datasets
+│   │   ├── Entity Recognition in Resumes.jsonl
+│   │   ├── UpdatedResumeDataSet.csv
+│   │   ├── candidates.csv
+│   │   ├── resume_job_predictions.csv
+│   │   ├── updated_dataset_predictions_async.csv
+│   │   └── unified_resume_predictions.csv
+│   │
+│   ├── scripts/                      # Python scripts
+│   │   ├── resume_job_predictor.py  # Main resume processing
+│   │   ├── extract_categories.py    # Category extraction
+│   │   ├── extract_from_updated_dataset_async.py  # Async processing
+│   │   └── unify_datasets.py        # Dataset unification
+│   │
+│   └── notebooks/                    # Jupyter notebooks
+│       └── poc.ipynb                # Proof of concept
+│
+├── docs/                             # Documentation
+│   ├── README.md                    # This file
+│   ├── CLAUDE.md                    # Development guide
+│   ├── PART_1.md                    # Introduction
+│   ├── PART_2.md                    # Theory (WIP)
+│   ├── PART_3.md                    # System Design
+│   ├── PART_4.md                    # Requirements
+│   ├── PART_5.md                    # Implementation (WIP)
+│   └── TODO.md                      # Task tracking
+│
+├── media/                            # Images and diagrams
+├── distinct_categories.txt           # Job categories list
+├── pyproject.toml                   # Project dependencies
+└── uv.lock                          # Dependency lock file
 ```
 
 ## Current Status
@@ -88,6 +112,8 @@ thesis/
 - Problem analysis and system requirements
 - Multi-agent architecture design
 - Initial prototype (single-model proof of concept)
+- Async processing implementation for batch operations
+- Dataset unification tool for multiple data sources
 
 🚧 **In Progress**
 
@@ -112,10 +138,18 @@ thesis/
 - Decision explainability score
 - Demographic fairness metrics
 
+## Key Scripts
+
+- **`resume_job_predictor.py`**: Processes annotated resumes from JSONL, extracts features, and predicts job positions using OpenRouter API
+- **`extract_from_updated_dataset_async.py`**: Async processing for UpdatedResumeDataSet.csv with concurrent API calls (5x faster)
+- **`unify_datasets.py`**: Combines multiple resume datasets into a unified format for analysis
+- **`extract_categories.py`**: Extracts unique job categories from the dataset
+
 ## Documentation
 
 - [Introduction & Problem Analysis](PART_1.md)
 - [System Architecture & Design](PART_3.md)
+- [System Requirements](PART_4.md)
 - [Development Guidelines](CLAUDE.md)
 - [Task Tracking](TODO.md)
 
