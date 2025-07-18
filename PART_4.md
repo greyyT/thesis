@@ -701,42 +701,78 @@ The Human-in-the-Loop (HITL) system serves as a critical quality control mechani
 The core confidence metric is based on the agreement between the Screening Agent and Critic Agent evaluations:
 
 **Primary Formula:**
+
 ```
 agent_agreement_score = abs(screening_score - critic_score)
 confidence_score = 1 - agent_agreement_score
 ```
 
 Where:
+
 - `agent_agreement_score` ranges from 0 (perfect agreement) to 1 (complete disagreement)
 - `confidence_score` ranges from 1 (high confidence) to 0 (low confidence)
 - Both `screening_score` and `critic_score` are normalized to [0,1] scale
 
 **Screening Score Components:**
 
-The Screening Agent evaluates candidates against explicit job requirements using traditional matching criteria:
+The Screening Agent implements the "Meaning Matcher" solution from Chapter 3, using advanced semantic understanding to evaluate candidates against job requirements:
 
-| Component | Weight Range | Description | Calculation Method |
-|-----------|-------------|-------------|-------------------|
-| **Hard Skill Match** | 30-45% | Direct semantic matching between resume skills and required skills | Cosine similarity of skill embeddings + exact keyword bonus |
-| **Experience Match** | 10-20% | Years of experience relative to requirements | Band-pass scoring: full credit within range, partial outside |
-| **Education/Certification** | 5-15% | Degree level, relevant certifications, accreditations | min(1, candidate_level / required_level) |
-| **Domain Experience** | 5-15% | Industry-specific background alignment | Binary or graduated score based on industry match |
-| **Must-Have Keywords** | 20-25% | Critical requirements that cannot be compromised | Hit ratio of mandatory keywords |
-| **Location/Authorization** | 5-10% | Work authorization status, location feasibility | Binary eligibility check |
-| **Quality Penalty** | -10% to 0 | Deductions for incomplete information, parsing errors | Negative adjustment based on data quality |
+| Component                   | Weight Range | Description                                                                                        | Calculation Method                                                                                                              |
+| --------------------------- | ------------ | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **Semantic Skill Match**    | 30-45%       | Advanced matching that understands skill relationships and synonyms using a 30,000+ skill ontology | Cosine similarity in embedding space where "ML"="Machine Learning", "React"="React.js", "Python Developer"="Python Programming" |
+| **Experience Match**        | 10-20%       | Contextual experience evaluation beyond just years                                                 | Band-pass scoring with semantic understanding of role progression and skill application                                         |
+| **Education/Certification** | 5-15%        | Intelligent matching of equivalent qualifications                                                  | Semantic similarity recognizing "Computer Engineering"≈"Software Engineering", bootcamps as valid alternatives                  |
+| **Domain Experience**       | 5-15%        | Cross-industry skill transferability recognition                                                   | Graduated scoring based on skill overlap between industries (e.g., e-commerce→fintech payment systems)                          |
+| **Contextual Requirements** | 20-25%       | Understanding of must-have skills in context                                                       | Semantic matching that recognizes "cloud experience" includes AWS, Azure, GCP without explicit mention                          |
+| **Location/Authorization**  | 5-10%        | Flexible location and remote work compatibility                                                    | Intelligent matching considering remote options, timezone overlap                                                               |
+| **Quality Bonus**           | 0 to +10%    | Rewards well-structured, complete information                                                      | Positive adjustment for comprehensive skill descriptions and clear career narratives                                            |
 
 **Critic Score Components:**
 
 The Critic Agent provides an independent assessment focusing on potential, transferable skills, and bias detection:
 
-| Component | Weight Range | Description | Calculation Method |
-|-----------|-------------|-------------|-------------------|
-| **Transferable Skills** | 20-30% | Skills that could transfer from other domains | Skill graph embeddings, adjacency scoring |
-| **Growth Trajectory** | 15-25% | Learning agility, upskilling patterns, career progression | Promotion velocity, continuous learning indicators |
-| **Non-Traditional Background** | 10-20% | Career changers, military, self-taught, bootcamp graduates | Boost score for alternative pathways |
-| **Bias Detection** | 10-30% | Identifies potential systematic discrimination | Statistical analysis of rejection patterns |
-| **Diversity & Inclusion** | 10-15% | Underrepresented backgrounds (without using protected attributes) | School diversity, geographic distribution |
-| **Resilience Indicators** | 5-10% | Overcoming adversity, explained gaps, recovery from setbacks | Context-aware gap analysis |
+| Component                      | Weight Range | Description                                                       | Calculation Method                                 |
+| ------------------------------ | ------------ | ----------------------------------------------------------------- | -------------------------------------------------- |
+| **Transferable Skills**        | 20-30%       | Skills that could transfer from other domains                     | Skill graph embeddings, adjacency scoring          |
+| **Growth Trajectory**          | 15-25%       | Learning agility, upskilling patterns, career progression         | Promotion velocity, continuous learning indicators |
+| **Non-Traditional Background** | 10-20%       | Career changers, military, self-taught, bootcamp graduates        | Boost score for alternative pathways               |
+| **Bias Detection**             | 10-30%       | Identifies potential systematic discrimination                    | Statistical analysis of rejection patterns         |
+| **Diversity & Inclusion**      | 10-15%       | Underrepresented backgrounds (without using protected attributes) | School diversity, geographic distribution          |
+| **Resilience Indicators**      | 5-10%        | Overcoming adversity, explained gaps, recovery from setbacks      | Context-aware gap analysis                         |
+
+##### Semantic Matching in Action
+
+The Screening Agent's semantic capabilities represent a paradigm shift from traditional keyword matching to genuine skill understanding:
+
+**Traditional ATS Would Reject:**
+
+- Resume says "ML Engineer" → Job requires "Machine Learning Specialist" ❌
+- Resume says "Built containerized microservices" → Job requires "Docker experience" ❌
+- Resume says "Python developer for 5 years" → Job requires "Python programming" ❌
+
+**Semantic Screening Agent Correctly Matches:**
+
+- "ML Engineer" ≈ "Machine Learning Specialist" ✓ (0.92 cosine similarity)
+- "Containerized microservices" → implies Docker/Kubernetes knowledge ✓
+- "Python developer" = "Python programming" + development context ✓
+
+**How It Works:**
+
+1. **Skill Ontology**: 30,000+ skills mapped in high-dimensional space
+2. **Contextual Embeddings**: Skills understood within job role context
+3. **Synonym Recognition**: Automatic expansion of related terms
+4. **Concept Hierarchy**: "Full-stack developer" → {frontend, backend, databases}
+
+This addresses the 40-60% false rejection rate caused by static keyword matching, as documented in Chapter 3.
+
+##### Agent Role Distinction
+
+While both agents use semantic understanding, they serve complementary purposes:
+
+- **Screening Agent**: Solves the "Static Keywords" problem by understanding that different words can mean the same skill
+- **Critic Agent**: Solves the "Homogeneity Bias" problem by recognizing non-traditional paths to the same competencies
+
+Together, they reduce false rejections from 12-35% to the target 6-18% range.
 
 #### 4.3.5.2 HITL Triggering Thresholds
 
@@ -744,25 +780,28 @@ The system uses dynamic thresholds to route decisions appropriately:
 
 **Standard Operating Bands:**
 
-| Agreement Score Range | Confidence Level | HITL Action | Target Volume |
-|----------------------|-----------------|-------------|---------------|
-| 0.00 - 0.15 | High Agreement (85-100%) | Automated decision with logging | 70-75% of candidates |
-| 0.15 - 0.35 | Moderate Disagreement (65-85%) | Quick review (< 2 min per candidate) | 15-20% of candidates |
-| > 0.35 | Strong Disagreement (< 65%) | Deep review with documentation | 5-10% of candidates |
+| Agreement Score Range | Confidence Level               | HITL Action                          | Target Volume        |
+| --------------------- | ------------------------------ | ------------------------------------ | -------------------- |
+| 0.00 - 0.15           | High Agreement (85-100%)       | Automated decision with logging      | 70-75% of candidates |
+| 0.15 - 0.35           | Moderate Disagreement (65-85%) | Quick review (< 2 min per candidate) | 15-20% of candidates |
+| > 0.35                | Strong Disagreement (< 65%)    | Deep review with documentation       | 5-10% of candidates  |
 
 **Special Case Triggers:**
 
 1. **Hidden Gem Detection:**
+
    - Condition: `critic_score ≥ 0.70 AND screening_score ≤ 0.40`
    - Action: Mandatory human review regardless of agreement score
    - Rationale: Prevents loss of high-potential non-traditional candidates
 
 2. **False Positive Flag:**
+
    - Condition: `screening_score ≥ 0.85 AND critic_score ≤ 0.50`
    - Action: Optional review flag for verification
    - Rationale: Catches over-qualified or potentially mismatched candidates
 
 3. **Bias Alert Override:**
+
    - Condition: Bias detection component > 0.7 (high bias probability)
    - Action: Escalate to senior reviewer with bias analysis report
    - Rationale: Ensures fair consideration despite systematic patterns
@@ -779,32 +818,37 @@ The system uses dynamic thresholds to route decisions appropriately:
 ```
 Candidate: Senior Software Engineer Application
 
-Hard Skill Match (40% weight):
+Semantic Skill Match (40% weight):
 - Required: Python, AWS, Docker, Kubernetes
-- Found: Python (exact), AWS (exact), Containerization (semantic match to Docker)
-- Score: 0.75 × 0.40 = 0.30
+- Found: "Python developer", "Amazon Web Services", "Containerized applications", "K8s orchestration"
+- Semantic matches: Python (1.0), AWS≈Amazon Web Services (0.95), Docker≈Containerized (0.88), Kubernetes≈K8s (0.97)
+- Score: 0.95 × 0.40 = 0.38
 
 Experience Match (20% weight):
-- Required: 5-7 years
-- Found: 6 years
+- Required: 5-7 years senior-level experience
+- Found: "6 years building scalable systems" + "Led team of 5 engineers"
+- Contextual understanding: Leadership experience validates seniority
 - Score: 1.0 × 0.20 = 0.20
 
 Education (10% weight):
 - Required: Bachelor's in CS or equivalent
-- Found: Bachelor's in Computer Engineering
+- Found: "B.Eng Computer Engineering + AWS Solutions Architect"
+- Semantic match: Computer Engineering ≈ CS (0.92), Certification adds value
 - Score: 1.0 × 0.10 = 0.10
 
 Domain Experience (15% weight):
 - Required: FinTech experience
-- Found: E-commerce platforms
-- Score: 0.5 × 0.15 = 0.075
+- Found: "Built payment processing systems for e-commerce"
+- Semantic understanding: Payment systems ≈ FinTech domain (0.78)
+- Score: 0.78 × 0.15 = 0.117
 
-Must-Have Keywords (15% weight):
-- Required: Python, Cloud, API Design
-- Found: 3/3
+Contextual Requirements (15% weight):
+- Required: Cloud-native development, API design, Microservices
+- Found: "Designed RESTful services", "Deployed on AWS ECS", "Microservice architecture"
+- All requirements semantically matched through context
 - Score: 1.0 × 0.15 = 0.15
 
-Total Screening Score: 0.825
+Total Screening Score: 0.947 (Traditional ATS would score: ~0.65)
 ```
 
 **Critic Agent Scoring Example:**
@@ -842,10 +886,16 @@ Total Critic Score: 0.8175
 ```
 
 **Agreement Calculation:**
+
 ```
-agent_agreement_score = |0.825 - 0.8175| = 0.0075
-confidence_score = 1 - 0.0075 = 0.9925 (99.25%)
+agent_agreement_score = |0.947 - 0.8175| = 0.1295
+confidence_score = 1 - 0.1295 = 0.8705 (87.05%)
 Decision: High agreement → Automated acceptance
+
+Note: The semantic screening agent's higher score (0.947 vs traditional 0.65)
+demonstrates how semantic matching captures qualified candidates that keyword
+matching would miss. The slight disagreement with the critic agent (0.1295)
+is within acceptable bounds, showing both agents recognize the candidate's value.
 ```
 
 #### 4.3.5.4 HITL Decision Flow
@@ -853,31 +903,31 @@ Decision: High agreement → Automated acceptance
 ```mermaid
 flowchart TB
     Start([Candidate Evaluation Complete]) --> DualScore[Calculate Agent Scores]
-    
+
     DualScore --> ScreenScore[Screening Agent Score<br/>Traditional Fit: 0-1]
     DualScore --> CriticScore[Critic Agent Score<br/>Potential & Fairness: 0-1]
-    
+
     ScreenScore --> Agreement[Calculate Agreement Score<br/>|screening - critic|]
     CriticScore --> Agreement
-    
+
     Agreement --> Confidence[Calculate Confidence<br/>1 - agreement_score]
-    
+
     Confidence --> Decision{Evaluate Confidence<br/>& Special Cases}
-    
+
     %% High Confidence Path
     Decision -->|Confidence > 0.85<br/>Agreement < 0.15| AutoProcess[Automated Decision<br/>70-75% of cases]
-    
+
     %% Moderate Confidence Path
     Decision -->|0.65 < Confidence < 0.85<br/>0.15 < Agreement < 0.35| QuickReview[Quick HITL Review<br/>15-20% of cases<br/><2 min per candidate]
-    
+
     %% Low Confidence Path
     Decision -->|Confidence < 0.65<br/>Agreement > 0.35| DeepReview[Deep HITL Review<br/>5-10% of cases<br/>Full documentation]
-    
+
     %% Special Cases
     Decision -->|Hidden Gem<br/>Critic≥0.7 AND Screen≤0.4| ForceReview[Mandatory Review<br/>High-potential detection]
     Decision -->|False Positive<br/>Screen≥0.85 AND Critic≤0.5| FlagReview[Optional Flag<br/>Verification needed]
     Decision -->|Bias Alert<br/>Bias component > 0.7| EscalateReview[Senior Review<br/>Bias mitigation]
-    
+
     %% Outcomes
     AutoProcess --> Log[Log Decision<br/>Update Models]
     QuickReview --> HumanDecision[Human Verdict +<br/>Brief Rationale]
@@ -885,20 +935,20 @@ flowchart TB
     ForceReview --> DetailedReview
     FlagReview --> QuickReview
     EscalateReview --> SeniorReview[Senior HR +<br/>Bias Report]
-    
+
     HumanDecision --> Log
     DetailedReview --> Log
     SeniorReview --> Log
-    
+
     Log --> End([Decision Complete])
-    
+
     %% Styling
     classDef automated fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
     classDef quick fill:#fff3e0,stroke:#f57c00,stroke-width:2px
     classDef deep fill:#ffebee,stroke:#c62828,stroke-width:2px
     classDef special fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
     classDef process fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
-    
+
     class AutoProcess automated
     class QuickReview,HumanDecision quick
     class DeepReview,DetailedReview,SeniorReview deep
