@@ -2,16 +2,93 @@
 
 ## 4.1 System Requirements
 
-Goal:
+### 4.1.1 Executive Summary
 
-- `P1` Enhanced recall: generate a ranked shortlist of candidates with better recall than baseline ATS
-- `P1` Explanable decisions: provide an auditable, transparent recommendations via logging and human-in-the-loop
-- `P3` Controlled workload: maintain reviewer load at small fraction of total pool (15-25%)
+**Goal**: Reduce false rejection rate (FRR) in talent acquisition from 12-35% to 6-18% through AI-powered semantic understanding.
 
-Principles:
+**Key Performance Targets**
 
-- Layered intelligences: autonomous agents handle bulk processing, while human handle edge cases
-- Feedback loop to improve over time
+| Metric                | Current Baseline | Target        | Business Impact                         |
+| --------------------- | ---------------- | ------------- | --------------------------------------- |
+| False Rejection Rate  | 12-35%           | 6-18% (50% ↓) | 25% more qualified candidates reviewed  |
+| Keyword Miss Rate     | 40-60%           | <15%          | 73% fewer synonym-based rejections      |
+| Non-Traditional Bias  | 67% penalty      | <15% penalty  | 340% increase in career-changer success |
+| Human Review Workload | 100%             | 15-25%        | 75-85% efficiency gain                  |
+| Decision Consistency  | 0.31 kappa       | >0.85 kappa   | 3× more reliable outcomes               |
+
+**Primary Goals**: (1) Reduce FRR by 50% via semantic understanding, (2) Cut bias to <15% via transferable skills, (3) Provide 100% decision transparency, (4) Optimize human review to 15-25%
+
+### 4.1.2 Functional Requirements
+
+| ID        | Module   | Requirement                                                    | Priority | Tag        |
+| --------- | -------- | -------------------------------------------------------------- | -------- | ---------- |
+| **FR-01** | Semantic | Parse PDF/DOCX/HTML/text resumes with 95%+ accuracy            | MUST     | [PARSE]    |
+| **FR-02** | Semantic | Match skills with >0.85 cosine similarity (30K+ term ontology) | MUST     | [SEMANTIC] |
+| **FR-03** | Semantic | Differentiate context (e.g., Java programming vs coffee)       | MUST     | [SEMANTIC] |
+| **FR-04** | Semantic | Handle abbreviations intelligently (ML → Machine Learning)     | MUST     | [SEMANTIC] |
+| **FR-05** | Bias     | Map transferable skills across industries                      | MUST     | [BIAS]     |
+| **FR-06** | Bias     | Contextualize employment gaps without auto-rejection           | MUST     | [BIAS]     |
+| **FR-07** | Bias     | Monitor selection rates with <5% demographic disparity         | MUST     | [BIAS]     |
+| **FR-08** | Bias     | Generate counterfactual scenarios for borderline cases         | SHOULD   | [BIAS]     |
+| **FR-09** | Explain  | Generate <120 word explanations for all decisions              | MUST     | [EXPLAIN]  |
+| **FR-10** | Explain  | Cite specific resume sections as evidence                      | MUST     | [EXPLAIN]  |
+| **FR-11** | Explain  | Capture recruiter feedback and overrides                       | MUST     | [EXPLAIN]  |
+| **FR-12** | Explain  | Show comparative rankings between candidates                   | SHOULD   | [EXPLAIN]  |
+| **FR-13** | HITL     | Route confidence <0.7 cases for human review                   | MUST     | [HITL]     |
+| **FR-14** | HITL     | Present structured review interface (<2 min/review)            | MUST     | [HITL]     |
+| **FR-15** | HITL     | Enable collaborative team discussions                          | SHOULD   | [HITL]     |
+
+### 4.1.3 Non-Functional Requirements
+
+| Category        | ID     | Requirement                | Target                  | Tag    |
+| --------------- | ------ | -------------------------- | ----------------------- | ------ |
+| **Performance** | NFR-01 | Resume processing latency  | <250ms avg, <500ms P95  | [PERF] |
+|                 | NFR-02 | Batch throughput           | 1000+ resumes/hour      | [PERF] |
+|                 | NFR-03 | System availability        | 99.5% uptime SLA        | [PERF] |
+| **Fairness**    | NFR-04 | Demographic parity gap     | <5% selection rate diff | [FAIR] |
+|                 | NFR-05 | Individual consistency     | ±5% score variance      | [FAIR] |
+|                 | NFR-06 | Transparency documentation | Public model cards      | [FAIR] |
+| **Security**    | NFR-07 | Data encryption            | TLS 1.3, AES-256        | [SEC]  |
+|                 | NFR-08 | Access control             | RBAC with MFA           | [SEC]  |
+|                 | NFR-09 | GDPR compliance            | Right to explanation    | [SEC]  |
+| **Operations**  | NFR-10 | Architecture               | Microservices with APIs | [OPS]  |
+|                 | NFR-11 | Observability              | Distributed tracing     | [OPS]  |
+|                 | NFR-12 | Test coverage              | >80% unit tests         | [OPS]  |
+
+### 4.1.4 Success Metrics & Verification
+
+| Metric                       | Current | Target | Measurement              | Verification                |
+| ---------------------------- | ------- | ------ | ------------------------ | --------------------------- |
+| **M1. False Rejection Rate** | 12-35%  | 6-18%  | Expert panel validation  | A/B test vs traditional ATS |
+| **M2. Recall@25**            | Unknown | >80%   | % qualified in top 25    | Retrospective hire analysis |
+| **M3. Human Review Rate**    | 100%    | 15-25% | % requiring intervention | Workload analytics          |
+| **M4. Keyword Miss Rate**    | 40-60%  | <15%   | Synonym test suite       | Domain expert evaluation    |
+| **M5. Non-Traditional Bias** | 67%     | <15%   | Selection rate ratios    | Statistical parity test     |
+| **M6. Decision Consistency** | 0.31    | >0.85  | Cohen's kappa            | Multi-reviewer study        |
+| **M7. Explainability**       | N/A     | >90%   | User satisfaction (1-5)  | Quarterly surveys           |
+
+### 4.1.5 Requirements Traceability Matrix
+
+| Design Flaw (Ch. 3)           | Solution Component | Functional Req | Non-Functional Req | Success Metric | Verification Method     |
+| ----------------------------- | ------------------ | -------------- | ------------------ | -------------- | ----------------------- |
+| Static Keywords (40-60% miss) | Meaning Matcher    | FR-01 to FR-04 | NFR-01, NFR-02     | M1, M4         | Synonym test suite      |
+| Homogeneity Bias (67% bias)   | Career Translator  | FR-05 to FR-08 | NFR-04, NFR-05     | M5             | Statistical parity test |
+| Black-Box Scoring             | Decision Explainer | FR-09 to FR-12 | NFR-06, NFR-09     | M6, M7         | User surveys, audits    |
+| Reviewer Fatigue              | HITL Integration   | FR-13 to FR-15 | NFR-03, NFR-14     | M3             | Workload analytics      |
+
+### 4.1.6 Acceptance Criteria
+
+System ready for production when:
+
+- All MUST requirements implemented and tested
+- NFR targets met on representative load
+- Third-party bias audit shows <5% disparity
+- > 80% satisfaction in 10+ company pilot
+- GDPR/EEOC compliance certified
+
+### 4.1.7 Change Management
+
+Requirements baselined at v1.0. Changes require: RFC submission → stakeholder review → updated RTM → version increment.
 
 ## 4.2 Use-case Overview
 
@@ -264,7 +341,7 @@ The multi-agent recruitment system operates through a distributed plan where six
 
 **Core Responsibilities**: The critic re-examines rejected candidates through alternative lenses to identify transferable skills—recognizing, for instance, that "community organizing" transfers to "project management" or "military logistics" maps to "supply chain management."
 
-**Plan Contribution**: Acts as quality control, ensuring qualified candidates aren’t incorrectly filtered out.
+**Plan Contribution**: Acts as quality control, ensuring qualified candidates aren't incorrectly filtered out.
 
 **Inputs/Outputs**: Screening results, original candidate data → second opinions, bias flags, hidden gems, confidence assessments.
 
@@ -628,21 +705,3 @@ flowchart TD
 - Approve/Reject: Standard review workflow
 - Edit/Annotate: Corrective feedback for learning
 - Multi-turn: Complex case discussions
-
-## 4.4 Evaluation Method
-
-### Primary Metrics
-
-- Recall@K: |(System_Shortlist ∩ Gold_Standard)| / |Gold_Standard|
-- False Negative Rate: Qualified candidates in reject pile
-- Human Review Rate: Percentage requiring human evaluation
-
-### Success Criteria
-
-- Recall Improvement: >20% increase vs baseline ATS
-- Audit Compliance: 100% traceable decisions
-- Workload Control: Human review rate ≤ small fraction (15-25%)
-
-### Validation Approach
-
-- Gold standard datasets from expert recruiters
