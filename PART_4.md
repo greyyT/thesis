@@ -694,14 +694,229 @@ flowchart TD
 
 ### 4.3.5 Human-in-the-Loop (HITL) Interaction
 
+The Human-in-the-Loop (HITL) system serves as a critical quality control mechanism, ensuring that complex or ambiguous cases receive appropriate human judgment while maintaining efficient automation for clear-cut decisions. The system uses an agent agreement score as the primary confidence metric to determine when human intervention is necessary.
+
+#### 4.3.5.1 Confidence Score Calculation
+
+The core confidence metric is based on the agreement between the Screening Agent and Critic Agent evaluations:
+
+**Primary Formula:**
+```
+agent_agreement_score = abs(screening_score - critic_score)
+confidence_score = 1 - agent_agreement_score
+```
+
+Where:
+- `agent_agreement_score` ranges from 0 (perfect agreement) to 1 (complete disagreement)
+- `confidence_score` ranges from 1 (high confidence) to 0 (low confidence)
+- Both `screening_score` and `critic_score` are normalized to [0,1] scale
+
+**Screening Score Components:**
+
+The Screening Agent evaluates candidates against explicit job requirements using traditional matching criteria:
+
+| Component | Weight Range | Description | Calculation Method |
+|-----------|-------------|-------------|-------------------|
+| **Hard Skill Match** | 30-45% | Direct semantic matching between resume skills and required skills | Cosine similarity of skill embeddings + exact keyword bonus |
+| **Experience Match** | 10-20% | Years of experience relative to requirements | Band-pass scoring: full credit within range, partial outside |
+| **Education/Certification** | 5-15% | Degree level, relevant certifications, accreditations | min(1, candidate_level / required_level) |
+| **Domain Experience** | 5-15% | Industry-specific background alignment | Binary or graduated score based on industry match |
+| **Must-Have Keywords** | 20-25% | Critical requirements that cannot be compromised | Hit ratio of mandatory keywords |
+| **Location/Authorization** | 5-10% | Work authorization status, location feasibility | Binary eligibility check |
+| **Quality Penalty** | -10% to 0 | Deductions for incomplete information, parsing errors | Negative adjustment based on data quality |
+
+**Critic Score Components:**
+
+The Critic Agent provides an independent assessment focusing on potential, transferable skills, and bias detection:
+
+| Component | Weight Range | Description | Calculation Method |
+|-----------|-------------|-------------|-------------------|
+| **Transferable Skills** | 20-30% | Skills that could transfer from other domains | Skill graph embeddings, adjacency scoring |
+| **Growth Trajectory** | 15-25% | Learning agility, upskilling patterns, career progression | Promotion velocity, continuous learning indicators |
+| **Non-Traditional Background** | 10-20% | Career changers, military, self-taught, bootcamp graduates | Boost score for alternative pathways |
+| **Bias Detection** | 10-30% | Identifies potential systematic discrimination | Statistical analysis of rejection patterns |
+| **Diversity & Inclusion** | 10-15% | Underrepresented backgrounds (without using protected attributes) | School diversity, geographic distribution |
+| **Resilience Indicators** | 5-10% | Overcoming adversity, explained gaps, recovery from setbacks | Context-aware gap analysis |
+
+#### 4.3.5.2 HITL Triggering Thresholds
+
+The system uses dynamic thresholds to route decisions appropriately:
+
+**Standard Operating Bands:**
+
+| Agreement Score Range | Confidence Level | HITL Action | Target Volume |
+|----------------------|-----------------|-------------|---------------|
+| 0.00 - 0.15 | High Agreement (85-100%) | Automated decision with logging | 70-75% of candidates |
+| 0.15 - 0.35 | Moderate Disagreement (65-85%) | Quick review (< 2 min per candidate) | 15-20% of candidates |
+| > 0.35 | Strong Disagreement (< 65%) | Deep review with documentation | 5-10% of candidates |
+
+**Special Case Triggers:**
+
+1. **Hidden Gem Detection:**
+   - Condition: `critic_score ≥ 0.70 AND screening_score ≤ 0.40`
+   - Action: Mandatory human review regardless of agreement score
+   - Rationale: Prevents loss of high-potential non-traditional candidates
+
+2. **False Positive Flag:**
+   - Condition: `screening_score ≥ 0.85 AND critic_score ≤ 0.50`
+   - Action: Optional review flag for verification
+   - Rationale: Catches over-qualified or potentially mismatched candidates
+
+3. **Bias Alert Override:**
+   - Condition: Bias detection component > 0.7 (high bias probability)
+   - Action: Escalate to senior reviewer with bias analysis report
+   - Rationale: Ensures fair consideration despite systematic patterns
+
+4. **Borderline Candidates:**
+   - Condition: Final score within ±5% of acceptance threshold
+   - Action: Human review for nuanced decision
+   - Rationale: Human judgment for edge cases
+
+#### 4.3.5.3 Score Component Details
+
+**Screening Agent Scoring Example:**
+
+```
+Candidate: Senior Software Engineer Application
+
+Hard Skill Match (40% weight):
+- Required: Python, AWS, Docker, Kubernetes
+- Found: Python (exact), AWS (exact), Containerization (semantic match to Docker)
+- Score: 0.75 × 0.40 = 0.30
+
+Experience Match (20% weight):
+- Required: 5-7 years
+- Found: 6 years
+- Score: 1.0 × 0.20 = 0.20
+
+Education (10% weight):
+- Required: Bachelor's in CS or equivalent
+- Found: Bachelor's in Computer Engineering
+- Score: 1.0 × 0.10 = 0.10
+
+Domain Experience (15% weight):
+- Required: FinTech experience
+- Found: E-commerce platforms
+- Score: 0.5 × 0.15 = 0.075
+
+Must-Have Keywords (15% weight):
+- Required: Python, Cloud, API Design
+- Found: 3/3
+- Score: 1.0 × 0.15 = 0.15
+
+Total Screening Score: 0.825
+```
+
+**Critic Agent Scoring Example:**
+
+```
+Same Candidate Re-evaluated:
+
+Transferable Skills (25% weight):
+- E-commerce scaling → FinTech scaling
+- Payment gateway experience → Financial systems
+- Score: 0.85 × 0.25 = 0.2125
+
+Growth Trajectory (20% weight):
+- 3 promotions in 6 years
+- Active GitHub, conference speaker
+- Score: 0.90 × 0.20 = 0.18
+
+Non-Traditional Background (15% weight):
+- Bootcamp graduate, no traditional CS degree bonus
+- Score: 0.70 × 0.15 = 0.105
+
+Bias Detection (20% weight):
+- No red flags in historical patterns
+- Score: 0.90 × 0.20 = 0.18 (inverted from bias probability)
+
+Diversity Factors (10% weight):
+- State university, underrepresented geography
+- Score: 0.60 × 0.10 = 0.06
+
+Resilience (10% weight):
+- Continued learning during 3-month gap
+- Score: 0.80 × 0.10 = 0.08
+
+Total Critic Score: 0.8175
+```
+
+**Agreement Calculation:**
+```
+agent_agreement_score = |0.825 - 0.8175| = 0.0075
+confidence_score = 1 - 0.0075 = 0.9925 (99.25%)
+Decision: High agreement → Automated acceptance
+```
+
+#### 4.3.5.4 HITL Decision Flow
+
+```mermaid
+flowchart TB
+    Start([Candidate Evaluation Complete]) --> DualScore[Calculate Agent Scores]
+    
+    DualScore --> ScreenScore[Screening Agent Score<br/>Traditional Fit: 0-1]
+    DualScore --> CriticScore[Critic Agent Score<br/>Potential & Fairness: 0-1]
+    
+    ScreenScore --> Agreement[Calculate Agreement Score<br/>|screening - critic|]
+    CriticScore --> Agreement
+    
+    Agreement --> Confidence[Calculate Confidence<br/>1 - agreement_score]
+    
+    Confidence --> Decision{Evaluate Confidence<br/>& Special Cases}
+    
+    %% High Confidence Path
+    Decision -->|Confidence > 0.85<br/>Agreement < 0.15| AutoProcess[Automated Decision<br/>70-75% of cases]
+    
+    %% Moderate Confidence Path
+    Decision -->|0.65 < Confidence < 0.85<br/>0.15 < Agreement < 0.35| QuickReview[Quick HITL Review<br/>15-20% of cases<br/><2 min per candidate]
+    
+    %% Low Confidence Path
+    Decision -->|Confidence < 0.65<br/>Agreement > 0.35| DeepReview[Deep HITL Review<br/>5-10% of cases<br/>Full documentation]
+    
+    %% Special Cases
+    Decision -->|Hidden Gem<br/>Critic≥0.7 AND Screen≤0.4| ForceReview[Mandatory Review<br/>High-potential detection]
+    Decision -->|False Positive<br/>Screen≥0.85 AND Critic≤0.5| FlagReview[Optional Flag<br/>Verification needed]
+    Decision -->|Bias Alert<br/>Bias component > 0.7| EscalateReview[Senior Review<br/>Bias mitigation]
+    
+    %% Outcomes
+    AutoProcess --> Log[Log Decision<br/>Update Models]
+    QuickReview --> HumanDecision[Human Verdict +<br/>Brief Rationale]
+    DeepReview --> DetailedReview[Detailed Analysis +<br/>Learning Feedback]
+    ForceReview --> DetailedReview
+    FlagReview --> QuickReview
+    EscalateReview --> SeniorReview[Senior HR +<br/>Bias Report]
+    
+    HumanDecision --> Log
+    DetailedReview --> Log
+    SeniorReview --> Log
+    
+    Log --> End([Decision Complete])
+    
+    %% Styling
+    classDef automated fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    classDef quick fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef deep fill:#ffebee,stroke:#c62828,stroke-width:2px
+    classDef special fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef process fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    
+    class AutoProcess automated
+    class QuickReview,HumanDecision quick
+    class DeepReview,DetailedReview,SeniorReview deep
+    class ForceReview,FlagReview,EscalateReview special
+    class DualScore,ScreenScore,CriticScore,Agreement,Confidence,Decision,Log process
+```
+
 #### Triage Criteria for Human Review:
 
-- `|Screening_Score - Critic_Score|` > `disagreement_threshold`
-- Confidence_Score < uncertainty_threshold
-- Borderline candidates near acceptance boundary
+- `agent_agreement_score` > `disagreement_threshold` (0.15 for quick review, 0.35 for deep review)
+- `confidence_score` < `uncertainty_threshold` (0.85 for quick review, 0.65 for deep review)
+- Special case triggers as defined in section 4.3.5.2
+- Borderline candidates near acceptance boundary (±5% of threshold)
 
 #### HITL Patterns:
 
-- Approve/Reject: Standard review workflow
-- Edit/Annotate: Corrective feedback for learning
-- Multi-turn: Complex case discussions
+- **Approve/Reject**: Standard review workflow with reasoning capture
+- **Edit/Annotate**: Corrective feedback for component score adjustments
+- **Multi-turn Discussion**: Complex cases requiring clarification or additional context
+- **Batch Review**: Efficiency mode for moderate disagreement cases
+- **Escalation**: Senior reviewer involvement for high-stakes or bias-flagged decisions
