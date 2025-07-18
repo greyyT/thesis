@@ -907,7 +907,7 @@ flowchart TB
     DualScore --> ScreenScore[Screening Agent Score<br/>Traditional Fit: 0-1]
     DualScore --> CriticScore[Critic Agent Score<br/>Potential & Fairness: 0-1]
 
-    ScreenScore --> Agreement[Calculate Agreement Score<br/>|screening - critic|]
+    ScreenScore --> Agreement[Calculate Agreement Score<br/>screening - critic]
     CriticScore --> Agreement
 
     Agreement --> Confidence[Calculate Confidence<br/>1 - agreement_score]
