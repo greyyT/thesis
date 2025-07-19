@@ -11,4 +11,5 @@ dependencies = [
     "openrouter>=1.0",
     "pandas>=2.3.1",
     "python-dotenv>=1.1.1",
+    "seaborn>=0.13.2",
 ]
