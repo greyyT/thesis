@@ -5,16 +5,17 @@ This guide provides step-by-step instructions for setting up and running the AI-
 ## Prerequisites
 
 ### System Requirements
+
 - **Python**: 3.12 or higher
 - **Operating System**: macOS, Linux, or Windows with WSL2
 - **Memory**: At least 8GB RAM recommended
 - **Storage**: 2GB free space for dependencies and data
 
 ### Required Accounts & API Keys
+
 1. **OpenAI API Key**: Required for LLM and embeddings
    - Sign up at: https://openai.com/api/
    - Minimum $5 credit recommended for testing
-   
 2. **Neon PostgreSQL Database** (Optional - for production setup):
    - Sign up at: https://neon.tech/
    - Free tier sufficient for demo
@@ -22,6 +23,7 @@ This guide provides step-by-step instructions for setting up and running the AI-
 ## Quick Start (5 minutes)
 
 ### 1. Clone and Setup Environment
+
 ```bash
 # Clone the repository
 git clone <repository-url>
@@ -31,14 +33,11 @@ cd thesis
 python --version  # Should be 3.12+
 
 # Install dependencies using uv
-pip install uv
-uv pip sync
-
-# Alternative: use pip if uv not available
-pip install -r requirements.txt
+uv sync --frozen
 ```
 
 ### 2. Environment Configuration
+
 ```bash
 # Copy environment template
 cp .env.example .env
@@ -48,6 +47,7 @@ nano .env  # or use your preferred editor
 ```
 
 **Required .env Configuration:**
+
 ```bash
 # LLM Configuration
 OPENAI_API_KEY=your_openai_api_key_here
@@ -70,6 +70,7 @@ MILVUS_COLLECTION_NAME=recruitment_embeddings
 ```
 
 ### 3. Start Services
+
 ```bash
 # Start Redis (required for state management)
 docker compose up -d redis
@@ -80,6 +81,7 @@ docker exec recruitment_redis redis-cli ping
 ```
 
 ### 4. Run the Application
+
 ```bash
 # Start the Chainlit application
 uv run chainlit run src/main.py
@@ -89,6 +91,7 @@ python -m chainlit run src/main.py
 ```
 
 ### 5. Access the Demo
+
 1. Open your browser to: http://localhost:8000
 2. You should see the AI Recruitment Assistant welcome screen
 3. System will automatically initialize on first load
@@ -210,6 +213,7 @@ EOF
 ### Common Issues
 
 #### 1. "Module not found" errors
+
 ```bash
 # Ensure you're in the correct directory
 pwd  # Should end with /thesis
@@ -222,6 +226,7 @@ python -c "import sys; print(sys.path)"
 ```
 
 #### 2. OpenAI API errors
+
 ```bash
 # Verify API key is set
 echo $OPENAI_API_KEY
@@ -236,6 +241,7 @@ print('API connection successful')
 ```
 
 #### 3. Redis connection failed
+
 ```bash
 # Check if Redis container is running
 docker ps | grep redis
@@ -248,6 +254,7 @@ docker compose logs redis
 ```
 
 #### 4. Port already in use (8000)
+
 ```bash
 # Find process using port 8000
 lsof -i :8000
@@ -260,6 +267,7 @@ uv run chainlit run src/main.py --port 8001
 ```
 
 #### 5. Vector database initialization fails
+
 ```bash
 # Remove existing vector database and restart
 rm -f milvus_lite.db
@@ -297,18 +305,21 @@ EMBEDDING_DIMENSION=768  # Smaller, faster embeddings
 ## Demo Presentation Tips
 
 ### Before the Demo
+
 1. **Test everything**: Run through all scenarios once
 2. **Prepare browser**: Open http://localhost:8000 in a clean tab
 3. **Have backups**: Keep test scenarios document open
 4. **Check timing**: Each scenario takes 2-5 minutes to process
 
 ### During the Demo
+
 1. **Start with built-in demo**: Type `demo` for quick demonstration
 2. **Explain loading states**: Highlight the step-by-step progress
 3. **Discuss results**: Walk through confidence scores and bias detection
 4. **Show different scenarios**: Perfect match, hidden gem, clear rejection
 
 ### After the Demo
+
 1. **Stop services**: `docker compose down`
 2. **Clean up**: Remove demo databases if needed
 3. **Export logs**: Save interesting evaluation results
@@ -328,6 +339,7 @@ EMBEDDING_DIMENSION=768  # Smaller, faster embeddings
 ```
 
 Key components:
+
 - **Frontend**: Chainlit provides chat interface
 - **Backend**: Unified recruitment agent orchestrates all logic
 - **LLM**: OpenAI GPT-4 for reasoning and text processing
@@ -346,6 +358,7 @@ If you encounter issues during demo setup:
 5. **Resources**: Ensure sufficient memory and disk space
 
 For additional help, refer to:
+
 - Test scenarios: `/demo/test_scenarios.md`
 - Technical documentation: `/docs/POC.md`
 - Configuration details: `/src/config.py`
