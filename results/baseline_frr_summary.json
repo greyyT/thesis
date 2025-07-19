@@ -1,0 +1,32 @@
+{
+  "frr": 0.3078947368421053,
+  "statistics": {
+    "frr": 0.3078947368421053,
+    "total_candidates": 971,
+    "qualified_candidates": 380,
+    "unqualified_candidates": 591,
+    "false_rejections": 117,
+    "false_acceptances": 0,
+    "correct_decisions": 854,
+    "accuracy": 0.8795056642636457
+  },
+  "baseline_target": 0.12,
+  "baseline_validated": false,
+  "evaluation_details": {
+    "total_processed": 971,
+    "avg_overall_score": 0.35477677163625576,
+    "qualification_rate": 0.3913491246138002,
+    "top_rejection_reasons": {
+      "Insufficient skill match (0.0%)": 106,
+      "Insufficient skill match (2.9%)": 51,
+      "Insufficient skill match (5.7%)": 48,
+      "Insufficient skill match (5.6%)": 30,
+      "Insufficient skill match (11.4%)": 29,
+      "Insufficient skill match (17.1%)": 27,
+      "Insufficient skill match (15.2%)": 25,
+      "Insufficient skill match (19.4%)": 24,
+      "Insufficient skill match (14.3%)": 22,
+      "Insufficient skill match (5.9%)": 20
+    }
+  }
+}

@@ -198,8 +198,6 @@
 
 ## Part 5 - Experiment and Evaluation
 
-- [ ] @lelouvincx to prepare dataset
-- [ ] @lelouvincx process dataset
-- [ ] @lelouvincx implementation
-- [ ] @lelouvincx evaluate
-- [ ] @lelouvincx result
+- [x] @lelouvincx to prepare dataset
+- [x] @lelouvincx process dataset
+- [x] @lelouvincx implementation

@@ -1,0 +1,39 @@
+{
+  "frr_comparison": {
+    "baseline_frr": 0.3078947368421053,
+    "multiagent_frr": 0.07401315789473684,
+    "absolute_improvement": 0.23388157894736844,
+    "relative_improvement": 0.7596153846153847,
+    "statistical_significance": true,
+    "effect_size": 0.6253908100276296,
+    "confidence_interval": [
+      0.18301588961245624,
+      0.28474726828228064
+    ],
+    "sample_size": 885
+  },
+  "baseline_statistics": {
+    "total_candidates": 971,
+    "qualified_candidates": 380,
+    "unqualified_candidates": 591,
+    "false_rejections": 117,
+    "false_acceptances": 0,
+    "correct_decisions": 854
+  },
+  "multiagent_statistics": {
+    "total_candidates": 885,
+    "qualified_candidates": 608,
+    "unqualified_candidates": 277,
+    "false_rejections": 45,
+    "false_acceptances": 0,
+    "correct_decisions": 840
+  },
+  "target_validation": {
+    "baseline_matches_literature": false,
+    "achieves_target_frr": true,
+    "significant_improvement": true,
+    "large_effect_size": true,
+    "practical_significance": true,
+    "meets_all_criteria": false
+  }
+}

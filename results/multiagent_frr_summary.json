@@ -1,0 +1,21 @@
+{
+  "frr": 0.07401315789473684,
+  "statistics": {
+    "frr": 0.07401315789473684,
+    "total_candidates": 885,
+    "qualified_candidates": 608,
+    "unqualified_candidates": 277,
+    "false_rejections": 45,
+    "false_acceptances": 0,
+    "correct_decisions": 840,
+    "accuracy": 0.9491525423728814
+  },
+  "target_frr": 0.06,
+  "target_achieved": true,
+  "evaluation_details": {
+    "total_processed": 885,
+    "hidden_gems_detected": 27,
+    "avg_screening_score": 0.5694085739821345,
+    "avg_confidence_score": 0.924280689766904
+  }
+}
