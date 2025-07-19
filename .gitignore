@@ -1,2 +1,6 @@
 .env
 .vscode/
+src/chainlit/.chainlit/
+__pycache__
+.chainlit/translations
+src/.chainlit/translations
