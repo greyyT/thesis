@@ -48,7 +48,7 @@ This dataset aligns with our research objectives for the following reasons:
 - Publications/achievements: 15%
 
 **Category Distribution**:
-![](./media/category-distribution.png)
+![](../media/category-distribution.png)
 
 **Data Quality**:
 - Format: Plain text (UTF-8)
