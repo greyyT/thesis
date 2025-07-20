@@ -1,0 +1,21 @@
+{
+  "name": "ai-recruitment-demo",
+  "version": "1.0.0",
+  "description": "AI-Powered Multi-Agent Recruitment System Demo Presentation",
+  "private": true,
+  "scripts": {
+    "dev": "slidev --open",
+    "build": "slidev build",
+    "export": "slidev export",
+    "preview": "slidev --preview"
+  },
+  "dependencies": {
+    "@slidev/cli": "^0.48.0",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "prettier-plugin-slidev": "^1.0.5"
+  }
+}

@@ -10,7 +10,7 @@
 
 ### 1.2 - problem space
 
-- [ ] Content for this part @greyy-nguyen
+- [x] Content for this part @greyy-nguyen
 
   - Current ATS fail because of rigid keyword matching → Multi-agent system uses contextual understanding
   - Single-point decisions create bias → Multiple specialized agents provide checks and balances
@@ -18,11 +18,11 @@
 
 - [x] Problem space @lelouvincx
 
-- [ ] @lelouvincx to find suitable dataset for evaluating success metrics: Time-to-hire reduction percentage, Quality-of-hire scores, Diversity metrics improvement, False negative reduction rate
+- [x] @lelouvincx to find suitable dataset for evaluating success metrics: Time-to-hire reduction percentage, Quality-of-hire scores, Diversity metrics improvement, False negative reduction rate
 
   - [x] Approach: Since no time, Find datasets first, find out the evaluation method of those datasets, then design the problem statement based on the evaluation method
 
-- [ ] @lelouvincx to reference OECD AI Principles explicitly when discussing your human-in-the-loop system design, particularly Principles 2 (human-centered values) and 5 (accountability), https://www.oecd.org/en/topics/sub-issues/ai-principles.html
+- [x] @lelouvincx to reference OECD AI Principles explicitly when discussing your human-in-the-loop system design, particularly Principles 2 (human-centered values) and 5 (accountability), https://www.oecd.org/en/topics/sub-issues/ai-principles.html
 
 ### 1.3 - problem statement
 
@@ -201,3 +201,5 @@
 - [x] @lelouvincx to prepare dataset
 - [x] @lelouvincx process dataset
 - [x] @lelouvincx implementation
+
+### Part 6 - Demo & Presentation
