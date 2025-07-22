@@ -21,28 +21,43 @@ This document outlines the content structure for a comprehensive demo presentati
 
 ## Content Structure
 
-### Slide 1: Title & Introduction (1 minute)
+### Slide 1: Title & Introduction (30 seconds)
 
-**Source**: General overview + Real case study
+**Source**: General overview
 
 - **Title**: AI-Powered Multi-Agent Recruitment System
 - **Subtitle**: Reducing False Rejections by 76% with Semantic AI
-- **Hook**: The story of Moon and Ca - how a single space cost $420,000
+- **Hook**: "What if your best candidate was rejected before anyone saw their resume?"
 
 **Speaker Script**:
-"Good [morning/afternoon], everyone. Let me start with a story that happened just last semester at a company, desperate for a senior C# backend engineer.
+"Good [morning/afternoon], everyone. What if I told you that your next star engineer, your game-changing hire, was already rejected by your ATS before any human ever saw their resume? 
 
-Two résumés hit their ATS within the same minute. Moon had 6 years of solid .NET work. Ca had 8 years building low-latency trading engines and was a Microsoft MVP. But Ca made one tiny mistake—he typed 'C #' with a space instead of 'C#'.
+This isn't a hypothetical. It's happening right now, in companies just like yours. Let me show you exactly how it happens..."
 
-The algorithm took 0.8 seconds to tag Moon 'green—interview' and dump Ca into 'auto-reject.' No human ever saw Ca's patents, his references, or that he'd cut cloud costs by 40% at his previous company. Ca joined their competitor.
+### Slide 2: The Moon and Ca Story (1.5 minutes)
 
-Three months later, the company launched late, spent an extra $420,000 on emergency contractors, and lost a key customer after an outage—an outage Ca had solved twice before. All because their keyword-based ATS couldn't recognize 'C #' as 'C#'.
+**Source**: Real case study from seminar project
 
-Now here's the scary part: industry studies show this happens to 12-35% of all qualified candidates. That means one in every three stellar candidates you think 'never applied' may actually be sitting in your reject pile—or worse, building your competitor's product right now.
+- **Title**: How a Single Space Cost $420,000
+- **Visual**: Side-by-side comparison of Moon vs Ca
+- **Key Point**: This happens to 1 in 3 qualified candidates
 
-Today, I'll show you how our AI-Powered Multi-Agent System ensures you never lose another Ca. We've reduced false rejections by 76% because we don't just count keywords—we understand skills. Let me show you how."
+**Speaker Script**:
+"Last semester, we worked with a company desperate for a senior C# backend engineer. Two résumés hit their ATS within the same minute.
 
-### Slide 2: The Hidden Talent Crisis (2 minutes)
+[Point to screen] On the left, Moon—6 years of solid .NET work. On the right, Ca—8 years building low-latency trading engines, Microsoft MVP, had cut cloud costs by 40% at his previous company.
+
+But Ca made one tiny mistake. He typed 'C #' with a space instead of 'C#'.
+
+The algorithm took 0.8 seconds to tag Moon 'green—interview' and dump Ca into 'auto-reject.' No human ever saw Ca's patents or references. Ca joined their competitor.
+
+Three months later, the company launched late, spent an extra $420,000 on emergency contractors, and lost a key customer after an outage—an outage Ca had solved twice before. All because their keyword-based ATS couldn't recognize that 'C #' equals 'C#'.
+
+Here's the scary part: Harvard Business School research shows this happens to 12-35% of all qualified candidates. That means one in every three stellar candidates you think 'never applied' may actually be sitting in your reject pile—or worse, building your competitor's product right now.
+
+Today, I'll show you how our AI-Powered Multi-Agent System ensures you never lose another Ca."
+
+### Slide 3: The Hidden Talent Crisis (1.5 minutes)
 
 **Source**: Part 3.3 & Part 3.5.1.A
 
@@ -120,7 +135,7 @@ The root cause? Three fundamental design flaws: First, static keyword matching t
 
 These aren't bugs—they're architectural limitations that require a completely new approach."
 
-### Slide 3: Our Three Core Solutions (2 minutes)
+### Slide 4: Our Three Core Solutions (2 minutes)
 
 **Source**: Part 3.4.1
 
@@ -153,7 +168,7 @@ Third, The Decision Explainer. No more black boxes. Every decision comes with a 
 
 Combined, these three solutions reduce false rejections by 71-80%. Let me show you how they work together in our multi-agent system."
 
-### Slide 4: Multi-Agent System Architecture (1.5 minutes)
+### Slide 5: Multi-Agent System Architecture (1.5 minutes)
 
 **Source**: Part 4.3.2 (diagram only)
 
@@ -251,7 +266,7 @@ Finally, the Data Steward Agent ensures compliance and learning. Every decision 
 
 All of this is backed by our vector database for semantic search and Redis for real-time state management. The entire evaluation typically takes 3-5 minutes per candidate—compared to the 23 hours per hire in traditional processes."
 
-### Slide 5: Key Use Cases in Action (2 minutes)
+### Slide 6: Key Use Cases in Action (1.5 minutes)
 
 **Source**: Part 4.2.3
 
@@ -283,7 +298,7 @@ What makes this powerful is that these aren't separate systems—they work toget
 
 The result? You're not replacing human judgment—you're amplifying it. Your recruiters focus on the genuinely difficult decisions while the AI handles the routine work with unprecedented accuracy."
 
-### Slide 6: The Science Behind Confidence Scoring (1.5 minutes)
+### Slide 7: The Science Behind Confidence Scoring (1 minute)
 
 **Source**: Part 4.3.5.1 & 4.3.5.4
 
@@ -366,7 +381,7 @@ The 'hidden gem' detection is particularly powerful. If the Critic Agent scores 
 
 This isn't just theory—it's been validated on nearly 900 real candidates with statistical significance. The p-value is less than 0.05, and we achieved a Cohen's h of 0.625—that's a medium-to-large effect size in statistical terms. In plain English: this works, and we can prove it."
 
-### Slide 7: Dataset & Validation Methodology (1 minute)
+### Slide 8: Dataset & Validation Methodology (1 minute)
 
 **Source**: Part 5.1
 
@@ -392,7 +407,7 @@ The diversity was crucial. We had candidates with 0 to 10+ years of experience, 
 
 This rigorous testing is how we can confidently say we reduce false rejections by 76%. It's not a projection or estimate—it's measured performance on real-world data."
 
-### Slide 8: Proven Results & Impact (2 minutes)
+### Slide 9: Proven Results & Impact (1.5 minutes)
 
 **Source**: Part 5.5
 
@@ -426,7 +441,7 @@ Now think about this at scale. If you process 10,000 applications annually, trad
 
 And remember those costs I mentioned earlier? The $750,000 to $3.45 million in losses? We're not just finding more candidates—we're dramatically reducing time-to-hire from 23 hours to about 8 hours per position. The ROI is immediate and substantial."
 
-### Slide 9: ROI & Implementation (1 minute)
+### Slide 10: ROI & Implementation (1 minute)
 
 **Source**: Combined from multiple sections
 
@@ -454,7 +469,7 @@ Implementation is surprisingly smooth. Week 1 and 2, we set up a pilot with your
 
 The beauty is, this isn't a rip-and-replace. We integrate with your existing systems through APIs. Your team keeps using familiar interfaces while getting dramatically better results. And every interaction makes the system smarter and more aligned with your specific hiring needs."
 
-### Slide 10: Call to Action (30 seconds)
+### Slide 11: Call to Action (30 seconds)
 
 - **Three Next Steps**:
   1. Schedule technical deep-dive session
