@@ -320,7 +320,7 @@ For recruitment professionals, this means our system was tested on candidates ju
 
 Our experimental protocol included cross-validation with stratified sampling, ensuring results generalize across role types. The 76% reduction in false rejections (30.8% → 7.4%) was consistent across all folds, with confidence intervals of ±2.3%."
 
-### Slide 9: ROI & Implementation (1 minute)
+### Slide 8: Proven Results & Impact (1.5 minutes)
 
 **Source**: Part 5.5
 
@@ -354,68 +354,41 @@ Scalability analysis: At 10,000 annual applications, this reduces false rejectio
 
 These results held across all eight job categories and demographic groups, validating our bias mitigation approach."
 
-### Slide 10: Call to Action (30 seconds)
+### Slide 9: Business Impact & Next Steps (1.5 minutes)
 
-**Source**: Combined from multiple sections
+**Source**: Combined analysis focused on talent acquisition value
 
-- **Cost Savings**
-  - $150K+ per 100 hires
-  - ROI achieved in 3-6 months
-- **Efficiency Gains**
-  - 23 hours → 8 hours per hire
-  - 90% faster screening
-  - 75-85% automation rate
+- **Remember Ca from Slide 2?**
+  - Your company could have 100+ "Ca's" in your reject pile right now
+  - Each missed talent costs $420K+ in delays and lost opportunities
+  - 73% join your competitors
 
-- **Implementation Timeline**
-  - Week 1-2: Pilot setup
-  - Week 3-6: Integration & training
-  - Week 7-8: Full deployment
+- **Proven Business Value**
+  - **Find Your Hidden Talent**: 25% more qualified candidates discovered
+  - **Save Time & Money**: $150K+ per 100 hires, 90% faster screening
+  - **Build Better Teams**: Access diverse talent pools previously auto-rejected
+  - **Stay Competitive**: Stop losing top talent to keyword mismatches
 
-**Speaker Script**:
-"Let me discuss implementation feasibility and anticipated impact for recruitment teams.
-
-Our economic analysis, based on SHRM's cost-per-hire metrics, shows savings of $150,000+ per 100 hires. This derives from: 65% reduction in time-to-fill (23→8 hours), 40% reduction in early turnover due to better candidate-job fit, and access to previously overlooked talent pools. These aren't projections—they're based on our pilot implementations.
-
-For recruitment professionals, the efficiency gains are transformative. Our time-motion studies show 90% reduction in initial screening time. But more importantly, you spend time on high-value activities—engaging with pre-qualified candidates rather than keyword searching. The 75-85% automation rate means you review 20-30 candidates instead of 200, but they're the right candidates.
-
-Our implementation follows a staged approach designed for minimal disruption:
-- Weeks 1-2: Pilot deployment with your live requisitions
-- Weeks 3-6: API integration with existing ATS (Workday, Greenhouse, Lever, etc.)
-- Weeks 7-8: Full deployment with continuous optimization
-
-Technically, we use REST APIs and webhook architectures for seamless integration. Your team continues using familiar interfaces—we enhance rather than replace your workflow.
-
-For research validation, each deployment includes A/B testing capabilities and performance metrics tracking. This allows continuous improvement and contributes to our growing corpus of recruitment AI research.
-
-The system learns from your specific hiring patterns, improving performance over time while maintaining explainability and recruiter control."
-
-### Slide 11: Call to Action (30 seconds)
-
-- **Three Next Steps**:
-  1. Schedule technical deep-dive session
-  2. Start 2-week pilot program
-  3. Calculate ROI with your specific data
-- **Contact Information**
-- **"Ready to stop missing great talent?"**
+- **Quick Start Options**
+  - 2-week pilot with your actual job openings
+  - See your "hidden gems" in real candidates
+  - API integration with your existing ATS
+  - Full deployment in 8 weeks
 
 **Speaker Script**:
-"In conclusion, our research demonstrates a viable solution to the false rejection problem that has plagued recruitment technology for decades.
+"Let's return to Ca from our opening story. Right now, as we speak, you likely have dozens—maybe hundreds—of candidates just like Ca sitting in your ATS reject pile. Talented people who could transform your teams, but who were filtered out by a space, a synonym, or a non-traditional background.
 
-We've presented a novel multi-agent architecture that reduces false rejections by 76% through semantic understanding, bias mitigation, and human-AI collaboration. This work contributes to several research areas: explainable AI, fair machine learning, and human-computer interaction in high-stakes decision-making.
+For talent acquisition teams, this isn't just about technology—it's about competitive advantage. When you reject Ca, your competitor gains a Microsoft MVP who prevents $420K disasters. When you miss military veterans with transferable skills, you lose leaders who excel under pressure. The 73% of wrongly rejected candidates who join competitors? They're building products that compete with yours.
 
-For recruitment professionals, this represents a fundamental shift in how technology can support your work. Instead of fighting against rigid keyword filters, you'll have AI that understands context, surfaces hidden talent, and explains its reasoning. You maintain full control while gaining unprecedented efficiency.
+Our system changes this dynamic completely. You'll discover 25% more qualified candidates—not by lowering standards, but by actually understanding skills. You'll save $150,000 per 100 hires while reducing screening time by 90%. Most importantly, you'll build stronger, more diverse teams by accessing talent pools that keyword matching systematically excludes.
 
-Next steps for collaboration:
+Here's how we make this real: Start with a 2-week pilot using your actual job openings. We'll show you the 'Ca's' you're currently missing—real candidates with names and faces, not statistics. Our API integrates with Workday, Greenhouse, Lever, and other major platforms. No disruption, just better results.
 
-For researchers: We're preparing our full paper for publication and seek collaboration on extending this work to other domains. Our anonymized dataset will be made available for reproducible research.
+For talent acquisition leaders, this is your opportunity to transform recruitment from a cost center to a competitive advantage. For researchers, this demonstrates how AI can enhance rather than replace human judgment.
 
-For recruitment teams: We offer pilot programs to demonstrate the system with your actual requisitions. This includes full integration support and customization for your specific needs.
+The question isn't whether AI will change recruitment—it's whether you'll lead that change or follow it. Let's ensure you never lose another Ca.
 
-For both: We're particularly interested in feedback on the human-AI interaction design and ideas for improving explainability.
-
-This technology exists at the intersection of academic rigor and practical impact. By working together, we can ensure that qualified candidates get fair evaluation while recruiters get the tools they deserve.
-
-Thank you for your attention. I welcome your questions, critiques, and suggestions for future research directions."
+Thank you for your time. I'm here to answer any questions about implementation, research methodology, or how we can help you find your hidden talent."
 
 ---
 
