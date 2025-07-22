@@ -164,7 +164,39 @@ Third, we implemented Explainable AI principles through our Decision Explainer. 
 
 The integration of these three components through our multi-agent architecture is where the real innovation lies. Let me demonstrate how they work together."
 
-### Slide 5: Multi-Agent System Architecture (1.5 minutes)
+### Slide 5: Key Use Cases in Action (1.5 minutes)
+
+**Source**: Part 4.2.3
+
+- **Standard Automated Screening (70-80% of cases)**
+  - Process flow: Resume → Semantic Analysis → Auto-decision
+  - Time: 3-5 minutes per candidate
+  - Show confidence scores and audit trail
+
+- **HITL Edge Cases (15-20% of cases)**
+  - Triggers: Low confidence, agent disagreement, bias flags
+  - Interface: Structured review with <2 min per decision
+  - Example: Career changer flagged for human review
+
+- **Bias Detection & Mitigation**
+  - Real-time pattern analysis
+  - Automatic re-evaluation of affected candidates
+  - Compliance reporting
+
+**Speaker Script**:
+"Let me present three use cases from our empirical evaluation, demonstrating both research validity and practical application.
+
+First, automated screening represents 70-80% of cases in our test cohort. The system achieves 94.9% accuracy on clear matches and non-matches, with confidence scores above 0.85. For recruitment teams, this means your routine screening—which currently takes hours—is reduced to 3-5 minutes with higher accuracy than manual review. Every decision includes an audit trail for compliance.
+
+Second, our HITL protocol handles 15-20% of cases where either confidence < 0.70 or agent disagreement > 0.35. This is a key research contribution: instead of binary accept/reject, we implement a confidence-based triage system. Recruiters receive structured decision support—for example, 'Screening: 0.65 match on required skills. Critic: 0.78 match including transferable competencies from finance domain.' Our user studies show recruiters make better decisions with this dual-perspective input.
+
+Third, our bias detection runs continuously using statistical parity and equalized odds metrics. When demographic patterns exceed threshold values, the system triggers re-evaluation. In testing, we identified cases where military veterans were systematically underscored and corrected this through our transfer learning module.
+
+The innovation here is the integration—these aren't independent features but a cohesive system. Bias detection can promote cases to HITL review. Recruiter corrections update both the matching models and bias baselines. This creates a learning system that improves with use while maintaining human oversight.
+
+For researchers, this demonstrates practical AI-human collaboration. For recruiters, it means technology that enhances rather than replaces your expertise."
+
+### Slide 6: Multi-Agent System Architecture (1.5 minutes)
 
 **Source**: Part 4.3.2 (diagram only)
 
@@ -260,41 +292,140 @@ The HITL Agent is crucial for maintaining recruiter autonomy. It uses confidence
 
 The Data Steward ensures GDPR compliance and implements our continual learning pipeline. Every recruiter correction becomes training data, improving system performance over time. Using Redis for state management and Milvus for vector operations, we achieve sub-5-minute processing per candidate while maintaining full auditability."
 
-### Slide 6: Key Use Cases in Action (1.5 minutes)
+### Slide 7: Dataset & Validation Methodology (1 minute)
 
-**Source**: Part 4.2.3
+**Source**: Part 5.1
 
-- **Standard Automated Screening (70-80% of cases)**
-  - Process flow: Resume → Semantic Analysis → Auto-decision
-  - Time: 3-5 minutes per candidate
-  - Show confidence scores and audit trail
+- **Dataset Characteristics**
+  - 1,182 expert-labeled resumes
+  - 8 technology roles (balanced ~148 each)
+  - Real-world formats and variations
+  - Visual: Distribution chart
 
-- **HITL Edge Cases (15-20% of cases)**
-  - Triggers: Low confidence, agent disagreement, bias flags
-  - Interface: Structured review with <2 min per decision
-  - Example: Career changer flagged for human review
-
-- **Bias Detection & Mitigation**
-  - Real-time pattern analysis
-  - Automatic re-evaluation of affected candidates
-  - Compliance reporting
+- **Why This Matters**
+  - Statistically significant sample size
+  - Diverse candidate backgrounds
+  - Expert HR annotations for ground truth
 
 **Speaker Script**:
-"Let me present three use cases from our empirical evaluation, demonstrating both research validity and practical application.
+"Our experimental design and dataset construction followed rigorous academic standards while maintaining ecological validity for real-world recruitment.
 
-First, automated screening represents 70-80% of cases in our test cohort. The system achieves 94.9% accuracy on clear matches and non-matches, with confidence scores above 0.85. For recruitment teams, this means your routine screening—which currently takes hours—is reduced to 3-5 minutes with higher accuracy than manual review. Every decision includes an audit trail for compliance.
+We curated 1,182 resumes across 8 technology roles, with ~148 per category to ensure statistical power. These were sourced from actual applications, not synthetic data, preserving the natural variation in formats, terminology, and career trajectories that challenge production systems.
 
-Second, our HITL protocol handles 15-20% of cases where either confidence < 0.70 or agent disagreement > 0.35. This is a key research contribution: instead of binary accept/reject, we implement a confidence-based triage system. Recruiters receive structured decision support—for example, 'Screening: 0.65 match on required skills. Critic: 0.78 match including transferable competencies from finance domain.' Our user studies show recruiters make better decisions with this dual-perspective input.
+Ground truth labeling employed three experienced recruiters per resume, with Fleiss' kappa of 0.78 indicating substantial agreement. Disagreements were resolved through discussion, creating a gold-standard dataset for evaluating false rejection rates.
 
-Third, our bias detection runs continuously using statistical parity and equalized odds metrics. When demographic patterns exceed threshold values, the system triggers re-evaluation. In testing, we identified cases where military veterans were systematically underscored and corrected this through our transfer learning module.
+The dataset's composition reflects real workforce diversity: experience levels from 0-10+ years following a power-law distribution, educational backgrounds including 5% alternative credentials (bootcamps, self-taught), and 23% with non-linear career paths. This heterogeneity was crucial for testing our bias detection and transfer learning components.
 
-The innovation here is the integration—these aren't independent features but a cohesive system. Bias detection can promote cases to HITL review. Recruiter corrections update both the matching models and bias baselines. This creates a learning system that improves with use while maintaining human oversight.
+For recruitment professionals, this means our system was tested on candidates just like yours—including the edge cases traditional systems struggle with. We didn't optimize for clean, standard resumes but for the messy reality of actual hiring.
 
-For researchers, this demonstrates practical AI-human collaboration. For recruiters, it means technology that enhances rather than replaces your expertise."
+Our experimental protocol included cross-validation with stratified sampling, ensuring results generalize across role types. The 76% reduction in false rejections (30.8% → 7.4%) was consistent across all folds, with confidence intervals of ±2.3%."
 
-### Slide 7: The Science Behind Confidence Scoring (1 minute)
+### Slide 9: ROI & Implementation (1 minute)
+
+**Source**: Part 5.5
+
+- **Primary Results**
+  - Baseline ATS: 30.8% FRR
+  - Multi-Agent System: 7.4% FRR
+  - **76% relative improvement**
+  - Statistical significance: p < 0.05, Cohen's h = 0.625
+
+- **Business Translation**
+  - 72 fewer false rejections per batch
+  - 60% more qualified candidates identified
+  - 27 "hidden gems" discovered
+- **For 10,000 Annual Applications**
+  - Before: 3,080 wrongful rejections
+  - After: 740 wrongful rejections
+  - Impact: 2,340 more qualified candidates reviewed
+
+**Speaker Script**:
+"Our experimental results demonstrate both statistical significance and practical impact. Let me present the key findings.
+
+In our controlled comparison using identical candidate pools, the baseline keyword-matching system showed a false rejection rate of 30.8% (95% CI: 28.2-33.4%). Our multi-agent system achieved 7.4% (95% CI: 5.8-9.0%). This 76% relative improvement is statistically significant with χ² = 43.86, p < 0.001.
+
+To contextualize these numbers: From 971 candidates, the baseline correctly identified 380 qualified individuals. Our system identified 608 qualified candidates from 885—a 60% improvement in recall while maintaining comparable precision. The difference is particularly pronounced for non-traditional candidates, where we achieved 82% recall versus the baseline's 31%.
+
+Our analysis revealed 27 'hidden gems'—candidates with exceptional qualifications but non-standard backgrounds. Qualitative analysis showed these included career changers with strong domain expertise and self-taught developers with significant open-source contributions.
+
+Effect size analysis yields Cohen's h = 0.625, indicating a large practical effect. For recruitment teams, this translates to finding 6 additional qualified candidates for every 10 positions, dramatically expanding your talent pool.
+
+Scalability analysis: At 10,000 annual applications, this reduces false rejections from ~3,080 to ~740 candidates. Combined with processing time reduction from 23 to 8 hours per hire, the system delivers both quality and efficiency improvements.
+
+These results held across all eight job categories and demographic groups, validating our bias mitigation approach."
+
+### Slide 10: Call to Action (30 seconds)
+
+**Source**: Combined from multiple sections
+
+- **Cost Savings**
+  - $150K+ per 100 hires
+  - ROI achieved in 3-6 months
+- **Efficiency Gains**
+  - 23 hours → 8 hours per hire
+  - 90% faster screening
+  - 75-85% automation rate
+
+- **Implementation Timeline**
+  - Week 1-2: Pilot setup
+  - Week 3-6: Integration & training
+  - Week 7-8: Full deployment
+
+**Speaker Script**:
+"Let me discuss implementation feasibility and anticipated impact for recruitment teams.
+
+Our economic analysis, based on SHRM's cost-per-hire metrics, shows savings of $150,000+ per 100 hires. This derives from: 65% reduction in time-to-fill (23→8 hours), 40% reduction in early turnover due to better candidate-job fit, and access to previously overlooked talent pools. These aren't projections—they're based on our pilot implementations.
+
+For recruitment professionals, the efficiency gains are transformative. Our time-motion studies show 90% reduction in initial screening time. But more importantly, you spend time on high-value activities—engaging with pre-qualified candidates rather than keyword searching. The 75-85% automation rate means you review 20-30 candidates instead of 200, but they're the right candidates.
+
+Our implementation follows a staged approach designed for minimal disruption:
+- Weeks 1-2: Pilot deployment with your live requisitions
+- Weeks 3-6: API integration with existing ATS (Workday, Greenhouse, Lever, etc.)
+- Weeks 7-8: Full deployment with continuous optimization
+
+Technically, we use REST APIs and webhook architectures for seamless integration. Your team continues using familiar interfaces—we enhance rather than replace your workflow.
+
+For research validation, each deployment includes A/B testing capabilities and performance metrics tracking. This allows continuous improvement and contributes to our growing corpus of recruitment AI research.
+
+The system learns from your specific hiring patterns, improving performance over time while maintaining explainability and recruiter control."
+
+### Slide 11: Call to Action (30 seconds)
+
+- **Three Next Steps**:
+  1. Schedule technical deep-dive session
+  2. Start 2-week pilot program
+  3. Calculate ROI with your specific data
+- **Contact Information**
+- **"Ready to stop missing great talent?"**
+
+**Speaker Script**:
+"In conclusion, our research demonstrates a viable solution to the false rejection problem that has plagued recruitment technology for decades.
+
+We've presented a novel multi-agent architecture that reduces false rejections by 76% through semantic understanding, bias mitigation, and human-AI collaboration. This work contributes to several research areas: explainable AI, fair machine learning, and human-computer interaction in high-stakes decision-making.
+
+For recruitment professionals, this represents a fundamental shift in how technology can support your work. Instead of fighting against rigid keyword filters, you'll have AI that understands context, surfaces hidden talent, and explains its reasoning. You maintain full control while gaining unprecedented efficiency.
+
+Next steps for collaboration:
+
+For researchers: We're preparing our full paper for publication and seek collaboration on extending this work to other domains. Our anonymized dataset will be made available for reproducible research.
+
+For recruitment teams: We offer pilot programs to demonstrate the system with your actual requisitions. This includes full integration support and customization for your specific needs.
+
+For both: We're particularly interested in feedback on the human-AI interaction design and ideas for improving explainability.
+
+This technology exists at the intersection of academic rigor and practical impact. By working together, we can ensure that qualified candidates get fair evaluation while recruiters get the tools they deserve.
+
+Thank you for your attention. I welcome your questions, critiques, and suggestions for future research directions."
+
+---
+
+## Extra Slides for Q&A
+
+### Extra Slide A: The Science Behind HITL Confidence Scoring
 
 **Source**: Part 4.3.5.1 & 4.3.5.4
+
+**Note**: This slide is for Q&A if someone asks about the Human-in-the-Loop process details.
 
 - **Agent Agreement Formula**
   - `confidence = 1 - |screening_score - critic_score|`
@@ -304,7 +435,7 @@ For researchers, this demonstrates practical AI-human collaboration. For recruit
   - Our system succeeds: 0.92 cosine similarity
   - Visual: Side-by-side comparison
 
-**HITL Decision Flow Diagram (Part 4.3.5.4)**:
+**HITL Decision Flow Diagram**:
 
 ```mermaid
 flowchart TB
@@ -376,131 +507,6 @@ A key finding is our 'hidden gem' detection—when S_critic ≥ 0.70 but S_scree
 For recruitment professionals, this means the system knows when it needs your expertise. You're not reviewing random borderline cases—you're seeing candidates where human judgment genuinely adds value.
 
 Statistical validation: χ² = 43.86 (p < 0.001), Cohen's h = 0.625, indicating a substantial effect size. This isn't marginal improvement—it's a fundamental advance in recruitment technology."
-
-### Slide 8: Dataset & Validation Methodology (1 minute)
-
-**Source**: Part 5.1
-
-- **Dataset Characteristics**
-  - 1,182 expert-labeled resumes
-  - 8 technology roles (balanced ~148 each)
-  - Real-world formats and variations
-  - Visual: Distribution chart
-
-- **Why This Matters**
-  - Statistically significant sample size
-  - Diverse candidate backgrounds
-  - Expert HR annotations for ground truth
-
-**Speaker Script**:
-"Our experimental design and dataset construction followed rigorous academic standards while maintaining ecological validity for real-world recruitment.
-
-We curated 1,182 resumes across 8 technology roles, with ~148 per category to ensure statistical power. These were sourced from actual applications, not synthetic data, preserving the natural variation in formats, terminology, and career trajectories that challenge production systems.
-
-Ground truth labeling employed three experienced recruiters per resume, with Fleiss' kappa of 0.78 indicating substantial agreement. Disagreements were resolved through discussion, creating a gold-standard dataset for evaluating false rejection rates.
-
-The dataset's composition reflects real workforce diversity: experience levels from 0-10+ years following a power-law distribution, educational backgrounds including 5% alternative credentials (bootcamps, self-taught), and 23% with non-linear career paths. This heterogeneity was crucial for testing our bias detection and transfer learning components.
-
-For recruitment professionals, this means our system was tested on candidates just like yours—including the edge cases traditional systems struggle with. We didn't optimize for clean, standard resumes but for the messy reality of actual hiring.
-
-Our experimental protocol included cross-validation with stratified sampling, ensuring results generalize across role types. The 76% reduction in false rejections (30.8% → 7.4%) was consistent across all folds, with confidence intervals of ±2.3%."
-
-### Slide 9: Proven Results & Impact (1.5 minutes)
-
-**Source**: Part 5.5
-
-- **Primary Results**
-  - Baseline ATS: 30.8% FRR
-  - Multi-Agent System: 7.4% FRR
-  - **76% relative improvement**
-  - Statistical significance: p < 0.05, Cohen's h = 0.625
-
-- **Business Translation**
-  - 72 fewer false rejections per batch
-  - 60% more qualified candidates identified
-  - 27 "hidden gems" discovered
-- **For 10,000 Annual Applications**
-  - Before: 3,080 wrongful rejections
-  - After: 740 wrongful rejections
-  - Impact: 2,340 more qualified candidates reviewed
-
-**Speaker Script**:
-"Our experimental results demonstrate both statistical significance and practical impact. Let me present the key findings.
-
-In our controlled comparison using identical candidate pools, the baseline keyword-matching system showed a false rejection rate of 30.8% (95% CI: 28.2-33.4%). Our multi-agent system achieved 7.4% (95% CI: 5.8-9.0%). This 76% relative improvement is statistically significant with χ² = 43.86, p < 0.001.
-
-To contextualize these numbers: From 971 candidates, the baseline correctly identified 380 qualified individuals. Our system identified 608 qualified candidates from 885—a 60% improvement in recall while maintaining comparable precision. The difference is particularly pronounced for non-traditional candidates, where we achieved 82% recall versus the baseline's 31%.
-
-Our analysis revealed 27 'hidden gems'—candidates with exceptional qualifications but non-standard backgrounds. Qualitative analysis showed these included career changers with strong domain expertise and self-taught developers with significant open-source contributions.
-
-Effect size analysis yields Cohen's h = 0.625, indicating a large practical effect. For recruitment teams, this translates to finding 6 additional qualified candidates for every 10 positions, dramatically expanding your talent pool.
-
-Scalability analysis: At 10,000 annual applications, this reduces false rejections from ~3,080 to ~740 candidates. Combined with processing time reduction from 23 to 8 hours per hire, the system delivers both quality and efficiency improvements.
-
-These results held across all eight job categories and demographic groups, validating our bias mitigation approach."
-
-### Slide 10: ROI & Implementation (1 minute)
-
-**Source**: Combined from multiple sections
-
-- **Cost Savings**
-  - $150K+ per 100 hires
-  - ROI achieved in 3-6 months
-- **Efficiency Gains**
-  - 23 hours → 8 hours per hire
-  - 90% faster screening
-  - 75-85% automation rate
-
-- **Implementation Timeline**
-  - Week 1-2: Pilot setup
-  - Week 3-6: Integration & training
-  - Week 7-8: Full deployment
-
-**Speaker Script**:
-"Let me discuss implementation feasibility and anticipated impact for recruitment teams.
-
-Our economic analysis, based on SHRM's cost-per-hire metrics, shows savings of $150,000+ per 100 hires. This derives from: 65% reduction in time-to-fill (23→8 hours), 40% reduction in early turnover due to better candidate-job fit, and access to previously overlooked talent pools. These aren't projections—they're based on our pilot implementations.
-
-For recruitment professionals, the efficiency gains are transformative. Our time-motion studies show 90% reduction in initial screening time. But more importantly, you spend time on high-value activities—engaging with pre-qualified candidates rather than keyword searching. The 75-85% automation rate means you review 20-30 candidates instead of 200, but they're the right candidates.
-
-Our implementation follows a staged approach designed for minimal disruption:
-- Weeks 1-2: Pilot deployment with your live requisitions
-- Weeks 3-6: API integration with existing ATS (Workday, Greenhouse, Lever, etc.)
-- Weeks 7-8: Full deployment with continuous optimization
-
-Technically, we use REST APIs and webhook architectures for seamless integration. Your team continues using familiar interfaces—we enhance rather than replace your workflow.
-
-For research validation, each deployment includes A/B testing capabilities and performance metrics tracking. This allows continuous improvement and contributes to our growing corpus of recruitment AI research.
-
-The system learns from your specific hiring patterns, improving performance over time while maintaining explainability and recruiter control."
-
-### Slide 11: Call to Action (30 seconds)
-
-- **Three Next Steps**:
-  1. Schedule technical deep-dive session
-  2. Start 2-week pilot program
-  3. Calculate ROI with your specific data
-- **Contact Information**
-- **"Ready to stop missing great talent?"**
-
-**Speaker Script**:
-"In conclusion, our research demonstrates a viable solution to the false rejection problem that has plagued recruitment technology for decades.
-
-We've presented a novel multi-agent architecture that reduces false rejections by 76% through semantic understanding, bias mitigation, and human-AI collaboration. This work contributes to several research areas: explainable AI, fair machine learning, and human-computer interaction in high-stakes decision-making.
-
-For recruitment professionals, this represents a fundamental shift in how technology can support your work. Instead of fighting against rigid keyword filters, you'll have AI that understands context, surfaces hidden talent, and explains its reasoning. You maintain full control while gaining unprecedented efficiency.
-
-Next steps for collaboration:
-
-For researchers: We're preparing our full paper for publication and seek collaboration on extending this work to other domains. Our anonymized dataset will be made available for reproducible research.
-
-For recruitment teams: We offer pilot programs to demonstrate the system with your actual requisitions. This includes full integration support and customization for your specific needs.
-
-For both: We're particularly interested in feedback on the human-AI interaction design and ideas for improving explainability.
-
-This technology exists at the intersection of academic rigor and practical impact. By working together, we can ensure that qualified candidates get fair evaluation while recruiters get the tools they deserve.
-
-Thank you for your attention. I welcome your questions, critiques, and suggestions for future research directions."
 
 ---
 
