@@ -324,16 +324,23 @@ Our experimental protocol included cross-validation with stratified sampling, en
 
 **Source**: Part 5.5
 
-- **Primary Results**
-  - Baseline ATS: 30.8% FRR
-  - Multi-Agent System: 7.4% FRR
-  - **76% relative improvement**
+- **Performance Comparison Table**
+
+| **System** | **Candidates** | **Qualified** | **False Rejections** | **FRR** | **Accuracy** |
+|------------|---------------|---------------|---------------------|---------|--------------|
+| **Baseline** | 971 | 380 | 117 | **30.8%** | 88.0% |
+| **Multi-Agent** | 885 | 608 | 45 | **7.4%** | 94.9% |
+
+- **Key Metrics**
+  - **76% relative improvement** in FRR
   - Statistical significance: p < 0.05, Cohen's h = 0.625
+  - 95% CI [18.3%, 28.5%] for absolute improvement
 
 - **Business Translation**
   - 72 fewer false rejections per batch
   - 60% more qualified candidates identified
-  - 27 "hidden gems" discovered
+  - 27 "hidden gems" discovered through bias detection
+  
 - **For 10,000 Annual Applications**
   - Before: 3,080 wrongful rejections
   - After: 740 wrongful rejections
@@ -480,6 +487,55 @@ A key finding is our 'hidden gem' detection—when S_critic ≥ 0.70 but S_scree
 For recruitment professionals, this means the system knows when it needs your expertise. You're not reviewing random borderline cases—you're seeing candidates where human judgment genuinely adds value.
 
 Statistical validation: χ² = 43.86 (p < 0.001), Cohen's h = 0.625, indicating a substantial effect size. This isn't marginal improvement—it's a fundamental advance in recruitment technology."
+
+### Extra Slide B: Live System Demo - UI Walkthrough
+
+**Source**: System implementation
+
+**Note**: This slide contains a demo video for Q&A if someone asks to see the actual system interface.
+
+**Demo Video Content** (2-3 minutes):
+
+**Tab 1: Conversational AI Interface**
+- Natural language job posting: "I need a senior Python developer with ML experience"
+- System extracts requirements and confirms understanding
+- Real-time candidate matching with explanations
+- Interactive refinement: "Focus more on computer vision experience"
+- Shows how recruiters interact naturally without complex queries
+
+**Tab 2: HR Observability & Decision Tracing**
+- **Candidate Pipeline View**
+  - Real-time flow: 250 applications → 18 for human review
+  - Color-coded by confidence levels (green/yellow/red)
+  - Click any candidate to see full evaluation trace
+  
+- **Individual Candidate Tracing**
+  - Dual-agent scores side by side
+  - Semantic skill matches highlighted
+  - Bias flags with explanations
+  - Decision rationale in plain English
+  - Audit trail for compliance
+
+- **Key Features Demonstrated**:
+  - How Ca would be flagged as "hidden gem" despite keyword mismatch
+  - Transferable skills visualization (finance → data science)
+  - Override capability with reason tracking
+  - Export reports for hiring committees
+
+**Speaker Script**:
+"Let me show you how the system actually works in practice. This isn't a mockup—this is our live system processing real candidates.
+
+[Tab 1 - Chat Interface] First, our conversational interface. Notice how Sarah, our recruiter, simply describes what she needs in natural language. No complex boolean queries or keyword lists. The system understands context—when she says 'ML experience,' it knows to look for machine learning, deep learning, neural networks, and related skills.
+
+[Tab 2 - Observability] Now here's where it gets powerful for HR teams. This is your mission control for talent acquisition. See this candidate here? That's someone just like Ca from our story. Traditional ATS scored them 45% because they wrote 'Python programming' instead of 'Python developer.' But watch—our Critic Agent identified strong signals: GitHub contributions, relevant projects, transferable skills from finance.
+
+[Click on candidate] Here's the full trace. The Screening Agent gave 0.45 based on keyword matching. The Critic Agent gave 0.78 based on actual capabilities. That disagreement triggers human review. You see exactly why each score was given, what skills were identified, and any bias concerns.
+
+[Show override] And here's the key—when you make a decision, you can override with one click. Your reasoning is captured, and the system learns. Next time, it will better recognize similar patterns.
+
+This transparency is what transforms recruitment from a black box to a glass box. You know exactly why every decision was made, you can audit any outcome, and most importantly, you never miss another Ca.
+
+The system is available for pilot programs starting immediately. We can have you up and running with your actual job openings within two weeks."
 
 ---
 
