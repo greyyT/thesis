@@ -616,7 +616,7 @@ For researchers, this demonstrates practical AI-human collaboration. For recruit
 
 <div class="grid grid-cols-2 gap-2 mb-2">
   <div v-click>
-    <div class="bg-blue-900 bg-opacity-20 p-2 rounded border-l-2 border-blue-400">
+    <div class="bg-blue-900 bg-opacity-20 p-2 rounded border-l-2 border-blue-400 pb-[30px]">
       <h3 class="text-sm font-bold text-blue-400 mb-1">Study Design</h3>
       <ul class="space-y-0 text-xs">
         <li class="flex items-start">
@@ -1030,4 +1030,3 @@ A key finding is our 'hidden gem' detection—when S_critic ≥ 0.70 but S_scree
 
 Statistical validation: χ² = 43.86 (p < 0.001), Cohen's h = 0.625, indicating a substantial effect size. This isn't marginal improvement—it's a fundamental advance in recruitment technology.
 -->
-
