@@ -108,90 +108,121 @@ Our research question became: How can we design an AI system that understands se
 
 ---
 
-# The Hidden Talent Crisis
+# The Ca Story: A System Flow Analysis
 
-<div class="grid grid-cols-2 gap-6">
-  <div v-click>
-    <div class="bg-red-900 bg-opacity-30 p-4 rounded-lg h-full flex flex-col justify-between">
-      <div>
-        <div class="text-3xl font-bold text-red-400">12-35% FRR</div>
-        <div class="text-sm text-gray-300 mt-1">False Rejection Rate across industry</div>
-      </div>
-      <div class="text-xs text-gray-500 mt-2">Fuller et al. (2021), n=2,847 Fortune 500 applications</div>
-    </div>
-  </div>
-  
-  <div v-click>
-    <div class="bg-orange-900 bg-opacity-30 p-4 rounded-lg h-full flex flex-col justify-between">
-      <div>
-        <div class="text-3xl font-bold text-orange-400">88%</div>
-        <div class="text-sm text-gray-300 mt-1">Executives acknowledge the problem</div>
-      </div>
-      <div class="text-xs text-gray-500 mt-2">Harvard Business School mixed methods study</div>
-    </div>
-  </div>
-  
-  <div v-click>
-    <div class="bg-yellow-900 bg-opacity-30 p-4 rounded-lg h-full flex flex-col justify-between">
-      <div>
-        <div class="text-3xl font-bold text-yellow-400">$750K-$3.45M</div>
-        <div class="text-sm text-gray-300 mt-1">Annual cost per 100 hires</div>
-      </div>
-      <div class="text-xs text-gray-500 mt-2">Cost breakdown analysis, Chapter 3.2.2</div>
-    </div>
-  </div>
-  
-  <div v-click>
-    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg h-full flex flex-col justify-between">
-      <div>
-        <div class="text-3xl font-bold text-purple-400">73%</div>
-        <div class="text-sm text-gray-300 mt-1">Rejected candidates hired by competitors</div>
-      </div>
-      <div class="text-xs text-gray-500 mt-2">Competitive disadvantage analysis</div>
-    </div>
-  </div>
+<div class="w-full overflow-x-auto" style="height: 450px;">
+<div style="min-width: 1200px;">
+
+```mermaid {theme: 'dark'}
+flowchart LR
+    subgraph Applications["Two C# Backend Engineer Applications"]
+        Moon["👤 Moon<br/>6 years .NET<br/>Typed: 'C#'"]
+        Ca["👤 Ca<br/>8 years low-latency<br/>Microsoft MVP<br/>40% cost reduction<br/>Typed: 'C #'"]
+    end
+
+    subgraph ATS["ATS Processing"]
+        Parser["Keyword Parser"]
+        Matcher["Exact Match:<br/>'C#' in requirements"]
+        Decision{Match Found?}
+    end
+
+    subgraph Outcomes["Outcomes"]
+        Accept["✓ ACCEPTED<br/>Interview scheduled<br/>Hired in 2 weeks"]
+        Reject["✗ REJECTED<br/>in 0.8 seconds<br/>Never seen by human"]
+    end
+
+    subgraph Consequences["Company Consequences"]
+        Hire["Moon performs adequately<br/>Meets basic requirements"]
+        Loss["• Service outages<br/>• Lost customer trust<br/>• Ca joins competitor"]
+    end
+
+    Moon --> Parser
+    Ca --> Parser
+    Parser --> Matcher
+    Matcher --> Decision
+
+    Decision -->|"'C#' found"| Accept
+    Decision -->|"'C #' ≠ 'C#'"| Reject
+
+    Accept --> Hire
+    Reject --> Loss
+
+    %% Dark theme styling
+    classDef candidate fill:#1e3a5f,stroke:#4a90e2,stroke-width:2px,color:#ffffff
+    classDef system fill:#3d2914,stroke:#ff8c00,stroke-width:2px,color:#ffffff
+    classDef success fill:#1a3d1a,stroke:#4caf50,stroke-width:3px,color:#ffffff
+    classDef failure fill:#4a1414,stroke:#ff5252,stroke-width:3px,color:#ffffff
+    classDef impact fill:#3d1a4d,stroke:#ba68c8,stroke-width:2px,color:#ffffff
+
+    class Moon,Ca candidate
+    class Parser,Matcher,Decision system
+    class Accept,Hire success
+    class Reject,Loss failure
+```
+
+</div>
 </div>
 
-<div v-click class="mt-6 grid grid-cols-3 gap-4 text-xs">
-  <div class="bg-gray-800 p-3 rounded-lg border-l-4 border-blue-400">
-    <div class="font-bold text-blue-400 mb-1">OECD Evidence</div>
-    <div class="text-gray-300">50% auto-reject 6+ month gaps</div>
-    <div class="text-gray-500 mt-1">Employment Outlook 2023</div>
-  </div>
-  
-  <div class="bg-gray-800 p-3 rounded-lg border-l-4 border-green-400">
-    <div class="font-bold text-green-400 mb-1">IEEE Technical Validation</div>
-    <div class="text-gray-300">Biased training data confirmed</div>
-    <div class="text-gray-500 mt-1">Computer science methodology</div>
-  </div>
-  
-  <div class="bg-gray-800 p-3 rounded-lg border-l-4 border-orange-400">
-    <div class="font-bold text-orange-400 mb-1">Scale Evidence</div>
-    <div class="text-gray-300">75% pre-screening elimination</div>
-    <div class="text-gray-500 mt-1">Nanajkar et al. (2023)</div>
-  </div>
+<div class="absolute bottom-6 left-6 text-sm text-gray-400">
+  <div>• Traditional ATS: Lexical matching only</div>
+  <div>• No semantic understanding</div>
+  <div>• No human oversight for edge cases</div>
+</div>
+
+<div class="absolute bottom-6 right-6 text-sm text-gray-400">
+  <div class="text-right">• Ca's expertise could have prevented outages</div>
+  <div class="text-right">• Now building products for competitors</div>
+  <div class="text-right">• System working as designed, not as intended</div>
 </div>
 
 <!--
 Speaker Script:
-Let me present our systematic analysis of the false rejection phenomenon based on rigorous empirical research. Our methodology employed a mixed-methods approach, synthesizing evidence from multiple authoritative sources to establish the scale and impact of ATS failures.
+Let me visualize exactly how this happened. [Point to diagram] Here we see the parallel processing of Moon and Ca's applications through the same ATS system.
 
-The core finding comes from Fuller et al.'s Harvard Business School study—the most comprehensive analysis to date, examining 2,847 Fortune 500 applications through executive surveys, hiring data analysis, and case studies. This research confirms false rejection rates between 12-35% across different ATS implementations, representing a significant gap between recruiter intentions and system outcomes.
+Both candidates enter the keyword parser. Moon typed "C#" correctly—no space. Ca, equally qualified—actually MORE qualified with 8 years experience and Microsoft MVP status—typed "C #" with a space.
 
-88% of executives acknowledge that their screening technology is filtering out qualified candidates due to exact-word matching failures. This finding is technically validated by IEEE research, which provides computer science methodology confirming that biased training data leads to systematic rejection of diverse candidates. The OECD Employment Outlook (2023) adds another dimension: 50% of companies auto-reject candidates with 6+ month employment gaps regardless of qualifications.
+The system's exact match algorithm looks for "C#" in the requirements. Moon's resume matches. Ca's doesn't. That's it. The decision is made in 0.8 seconds.
 
-The economic impact—$750K to $3.45M per 100 hires—comes from our detailed cost breakdown analysis covering extended time-to-hire (15-23 additional days), competitive disadvantage, and recruiter inefficiency. And 73% of those wrongly rejected candidates? They're getting hired by your competitors, as documented in our competitive disadvantage analysis.
+Moon gets accepted, interviewed, and hired within 2 weeks. He performs adequately—meets the basic requirements.
 
-With 99.7% of recruiters using ATS (IAXOV 2025), this isn't a niche problem—it's a systematic crisis affecting virtually all job seekers. From a research perspective, we've identified three fundamental architectural flaws that create these predictable failure patterns. Let me show you the systemic design flaws we discovered...
+But look at what happened with Ca. [Point to consequences] Never seen by a human recruiter. The company later spent $420,000 on contractors to handle the workload Ca could have managed. They experienced service outages that Ca's low-latency expertise could have prevented. And where is Ca now? Building innovative solutions for their competitor.
+
+This isn't a bug—it's the system working exactly as designed. But is this what we intended? The ATS did its job: lexical matching. But lexical matching isn't talent identification.
+
+The tragedy here is that everyone loses except the competitor. The company loses expertise and money. Ca loses an opportunity. And the recruiter never even knows what happened.
+
+This is why we need semantic understanding, not just keyword matching. Let me show you how our system would handle this differently...
 -->
 
 ---
 
-# Three Systemic Design Flaws
+# The Hidden Talent Crisis: Three Systemic Failures
 
-<span class="text-gray-400 text-sm">Why current ATS systems fail qualified candidates</span>
-
-<div class="mt-4" />
+<div class="grid grid-cols-4 gap-3 mb-4">
+  <div v-click class="bg-red-900 bg-opacity-30 p-3 rounded-lg text-center">
+    <div class="text-2xl font-bold text-red-400">12-35%</div>
+    <div class="text-xs text-gray-300">False Rejection Rate</div>
+    <div class="text-xs text-gray-500">Harvard BSc 2021</div>
+  </div>
+  
+  <div v-click class="bg-orange-900 bg-opacity-30 p-3 rounded-lg text-center">
+    <div class="text-2xl font-bold text-orange-400">88%</div>
+    <div class="text-xs text-gray-300">Executives aware</div>
+    <div class="text-xs text-gray-500">Mixed methods</div>
+  </div>
+  
+  <div v-click class="bg-yellow-900 bg-opacity-30 p-3 rounded-lg text-center">
+    <div class="text-2xl font-bold text-yellow-400">$750K-3.45M</div>
+    <div class="text-xs text-gray-300">Per 100 hires</div>
+    <div class="text-xs text-gray-500">Cost analysis</div>
+  </div>
+  
+  <div v-click class="bg-purple-900 bg-opacity-30 p-3 rounded-lg text-center">
+    <div class="text-2xl font-bold text-purple-400">73%</div>
+    <div class="text-xs text-gray-300">Join competitors</div>
+    <div class="text-xs text-gray-500">Talent loss</div>
+  </div>
+</div>
 
 <div class="flex flex-col gap-3">
 
@@ -201,16 +232,15 @@ With 99.7% of recruiters using ATS (IAXOV 2025), this isn't a niche problem—it
   <div class="flex items-center bg-red-800/30 px-3 py-1 text-red-300">
     <div class="i-carbon:search text-sm mr-1" />
     <div class="text-xs">
-      <em>Static Keywords</em>
+      <em>Flaw #1: Static Keywords</em>
     </div>
   </div>
   <div class="bg-red-800/10 px-3 py-2">
     <div class="text-sm">
-      Lexical matching rejects qualified candidates - Microsoft MVP with 8 years experience <span class="text-red-400">auto-rejected in 0.8s</span> for typing <span class="text-red-400">"C #"</span> instead of <span class="text-red-400">"C#"</span>
+      Microsoft MVP rejected in 0.8s for typing <span class="text-red-400">"C #"</span> instead of <span class="text-red-400">"C#"</span>
     </div>
     <div class="text-xs flex gap-2 mt-1 text-gray-400">
       <div>40-60% miss rate</div>
-      <div>"PL/SQL" ≠ "SQL"</div>
       <div>"ML" ≠ "Machine Learning"</div>
       <div>73% eliminated</div>
     </div>
@@ -221,17 +251,16 @@ With 99.7% of recruiters using ATS (IAXOV 2025), this isn't a niche problem—it
   <div class="flex items-center bg-orange-800/30 px-3 py-1 text-orange-300">
     <div class="i-carbon:group text-sm mr-1" />
     <div class="text-xs">
-      <em>Homogeneity Bias</em>
+      <em>Flaw #2: Homogeneity Bias</em>
     </div>
   </div>
   <div class="bg-orange-800/10 px-3 py-2">
     <div class="text-sm">
-      Navy logistics officer <span class="text-orange-400">auto-rejected</span> for supply chain role - product manager rejected for writing <span class="text-orange-400">"overseas experience"</span> vs <span class="text-orange-400">"EMEA region"</span>
+      Navy officer rejected for supply chain role - can't translate military skills
     </div>
     <div class="text-xs flex gap-2 mt-1 text-gray-400">
       <div>67% bias penalty</div>
-      <div>50% reject 6+ month gaps</div>
-      <div>Military skills ignored</div>
+      <div>50% reject gaps</div>
       <div>OECD 2023</div>
     </div>
   </div>
@@ -241,17 +270,16 @@ With 99.7% of recruiters using ATS (IAXOV 2025), this isn't a niche problem—it
   <div class="flex items-center bg-yellow-800/30 px-3 py-1 text-yellow-300">
     <div class="i-carbon:locked text-sm mr-1" />
     <div class="text-xs">
-      <em>Black-Box Scoring</em>
+      <em>Flaw #3: Black-Box Scoring</em>
     </div>
   </div>
   <div class="bg-yellow-800/10 px-3 py-2">
     <div class="text-sm">
-      Same candidate reviewed by 3 recruiters: <span class="text-yellow-400">"reject"</span>, <span class="text-yellow-400">"maybe"</span>, <span class="text-yellow-400">"strong hire"</span> - quality drops 40% after 100 reviews
+      Same candidate: "reject", "maybe", "strong hire" - no consistency
     </div>
     <div class="text-xs flex gap-2 mt-1 text-gray-400">
-      <div>88% acknowledge failures</div>
-      <div>No learning mechanism</div>
-      <div>Reviewer fatigue</div>
+      <div>88% know it fails</div>
+      <div>40% quality drop</div>
       <div>$2.3M impact</div>
     </div>
   </div>
@@ -263,15 +291,17 @@ With 99.7% of recruiters using ATS (IAXOV 2025), this isn't a niche problem—it
 
 <!--
 Speaker Script:
-Our research identified three fundamental architectural flaws that create these massive false rejection rates, backed by real case studies from our empirical analysis.
+Let me present our systematic analysis of the false rejection phenomenon. Our research, building on Fuller et al.'s Harvard Business School study of 2,847 Fortune 500 applications, confirms false rejection rates between 12-35% across the industry.
 
-First, Static Keywords. [Click] Remember Ca from our opening? A Microsoft MVP with 8 years of experience, auto-rejected in 0.8 seconds for typing "C #" with a space instead of "C#". This isn't an edge case—our Fortune 500 tech company study found 73% of software engineering candidates eliminated at initial keyword screening. Manual review revealed only 12% were actually unqualified. The system couldn't recognize that "PL/SQL" is an advanced form of SQL, costing them $2.3M annually in extended vacancies.
+[Click through statistics] 88% of executives acknowledge the problem. The economic impact ranges from $750K to $3.45M per 100 hires. And 73% of wrongly rejected candidates? They're hired by your competitors.
 
-Second, Homogeneity Bias. [Click] We documented a Navy logistics officer auto-rejected for supply chain roles—the system couldn't translate military experience to civilian equivalents. Another case: a product manager rejected for writing "overseas experience" instead of "EMEA region." The OECD confirms 50% of companies auto-reject any 6+ month employment gap, regardless of reason—education, caregiving, or entrepreneurship. This 67% bias penalty systematically excludes the diversity organizations claim to seek.
+[Click] First flaw: Static Keywords. Remember Ca? A Microsoft MVP rejected in 0.8 seconds for typing "C #" with a space. Our analysis shows 40-60% miss rates because systems can't recognize that "ML" means "Machine Learning." 73% of candidates are eliminated by keyword matching alone.
 
-Third, Black-Box Scoring. [Click] We tracked the same candidate reviewed by three different recruiters in the same company: "reject," "maybe," and "strong hire"—all within the same week. No learning mechanism, no consistency. Quality drops 40% after reviewing 100 resumes due to fatigue, yet 88% of companies acknowledge these failures but can't identify why or improve. The $2.3M annual impact compounds when you can't learn from mistakes.
+[Click] Second flaw: Homogeneity Bias. We documented a Navy logistics officer rejected for supply chain roles—the system couldn't translate military skills. The OECD confirms 50% of companies auto-reject any 6+ month gap. This 67% bias penalty excludes the diversity organizations claim to seek.
 
-These aren't bugs—they're fundamental design flaws. And they compound each other. Let me show you exactly how this plays out in a typical screening workflow...
+[Click] Third flaw: Black-Box Scoring. Same candidate, three recruiters: "reject," "maybe," "strong hire." No learning, no consistency. Quality drops 40% after 100 reviews, yet 88% of companies know it fails but can't fix it. Annual impact: $2.3M.
+
+These aren't bugs—they're fundamental design flaws that compound each other. Let me show you exactly how this plays out in a typical workflow...
 -->
 
 ---
@@ -343,7 +373,7 @@ These findings led us to propose a fundamentally different architecture based on
 
 ---
 
-# Our Three Core Solutions
+# Methodologies
 
 <div class="grid grid-cols-3 gap-6">
   <div v-click class="bg-blue-900 bg-opacity-30 p-6 rounded-lg">
@@ -351,7 +381,6 @@ These findings led us to propose a fundamentally different architecture based on
     <div class="text-sm space-y-2">
       <div class="text-red-400">Problem: "Python" ≠ "Python Developer"</div>
       <div class="text-green-400">Solution: 30,000+ skill ontology</div>
-      <div class="text-yellow-400">Impact: 40-60% → <15% miss rate</div>
       <div class="mt-3 bg-gray-800 p-2 rounded text-xs">
         <div>"ML" = "Machine Learning"</div>
         <div>= "Machine Learning Engineer"</div>
@@ -365,7 +394,6 @@ These findings led us to propose a fundamentally different architecture based on
     <div class="text-sm space-y-2">
       <div class="text-red-400">Problem: Veterans auto-rejected</div>
       <div class="text-green-400">Solution: Cross-domain mapping</div>
-      <div class="text-yellow-400">Impact: 340% veteran acceptance ↑</div>
       <div class="mt-3 bg-gray-800 p-2 rounded text-xs">
         <div>"Navy logistics officer"</div>
         <div>↓</div>
@@ -380,7 +408,6 @@ These findings led us to propose a fundamentally different architecture based on
     <div class="text-sm space-y-2">
       <div class="text-red-400">Problem: Black-box decisions</div>
       <div class="text-green-400">Solution: Full transparency</div>
-      <div class="text-yellow-400">Impact: 3× consistency</div>
       <div class="mt-3 bg-gray-800 p-2 rounded text-xs">
         <div>"✓ Recommended because:"</div>
         <div>"• 5 years Python (req: 3+)"</div>
@@ -630,21 +657,6 @@ The Data Steward ensures GDPR compliance and implements our continual learning p
   </div>
 </div>
 
-<div v-click class="mt-4 grid grid-cols-3 gap-4 text-center">
-  <div class="bg-green-900 bg-opacity-30 p-3 rounded-lg">
-    <div class="text-2xl font-bold text-yellow-400">94.9%</div>
-    <div class="text-xs text-gray-400">Accuracy</div>
-  </div>
-  <div class="bg-blue-900 bg-opacity-30 p-3 rounded-lg">
-    <div class="text-2xl font-bold text-blue-400"><5 min</div>
-    <div class="text-xs text-gray-400">Per candidate</div>
-  </div>
-  <div class="bg-purple-900 bg-opacity-30 p-3 rounded-lg">
-    <div class="text-2xl font-bold text-purple-400">75%</div>
-    <div class="text-xs text-gray-400">Workload reduction</div>
-  </div>
-</div>
-
 <!--
 Speaker Script:
 Let me break down the specific capabilities of each agent and the technologies that power them.
@@ -749,10 +761,6 @@ For researchers, this demonstrates practical AI-human collaboration. For recruit
         <li class="flex items-start">
           <span class="text-green-300">•</span>
           <span class="ml-2"><span class="font-bold text-blue-300">Sample:</span> 1,856 real applications</span>
-        </li>
-        <li class="flex items-start">
-          <span class="text-green-300">•</span>
-          <span class="ml-2"><span class="font-bold text-blue-300">Validation:</span> 3 senior recruiter panel</span>
         </li>
         <li class="flex items-start">
           <span class="text-green-300">•</span>
@@ -1082,4 +1090,102 @@ Let me walk through a real example. [Point to calculation] For a Senior Software
 A key finding is our 'hidden gem' detection—when S_critic ≥ 0.70 but S_screening ≤ 0.40. This indicates strong transferable skills not captured by traditional matching. In our dataset of 885 candidates, we identified 27 such cases, all confirmed as qualified by expert recruiters.
 
 Statistical validation: χ² = 43.86 (p < 0.001), Cohen's h = 0.625, indicating a substantial effect size. This isn't marginal improvement—it's a fundamental advance in recruitment technology.
+-->
+
+---
+
+# Extra Slide C: False Rejection Rate (FRR) - The Key Metric
+
+<div class="flex justify-center items-center h-full">
+<div class="w-full max-w-5xl">
+
+<div class="bg-gray-800 p-8 rounded-lg mb-6">
+  <h2 class="text-3xl font-bold text-red-400 mb-6 text-center">Measuring What Matters: The FRR Formula</h2>
+  
+  <div class="bg-gray-900 p-6 rounded-lg mb-6">
+    <div class="text-4xl font-mono text-center">
+      <span class="text-yellow-400">FRR</span> = 
+      <span class="text-xl align-middle">
+        <span class="inline-block">
+          <div class="text-green-400">Qualified Candidates Rejected by ATS</div>
+          <hr class="border-t-2 border-gray-600 my-2"/>
+          <div class="text-blue-400">Total Qualified Candidates</div>
+        </span>
+      </span>
+    </div>
+  </div>
+  
+  <div class="grid grid-cols-2 gap-6 mb-6">
+    <div class="bg-gray-700 p-4 rounded">
+      <h3 class="text-lg font-bold text-orange-400 mb-2">Industry Baseline</h3>
+      <div class="space-y-2 text-sm">
+        <div>• Total candidates: 971</div>
+        <div>• Qualified: 380</div>
+        <div>• False rejections: <span class="text-red-400 font-bold">117</span></div>
+        <div class="mt-2 p-2 bg-gray-800 rounded font-mono">
+          FRR = 117 ÷ 380 = <span class="text-2xl text-red-400 font-bold">30.8%</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="bg-gray-700 p-4 rounded">
+      <h3 class="text-lg font-bold text-green-400 mb-2">Our Multi-Agent System</h3>
+      <div class="space-y-2 text-sm">
+        <div>• Total candidates: 885</div>
+        <div>• Qualified: 608</div>
+        <div>• False rejections: <span class="text-green-400 font-bold">45</span></div>
+        <div class="mt-2 p-2 bg-gray-800 rounded font-mono">
+          FRR = 45 ÷ 608 = <span class="text-2xl text-green-400 font-bold">7.4%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="text-center">
+    <div class="inline-block bg-green-900 bg-opacity-30 p-4 rounded-lg">
+      <div class="text-3xl font-bold text-yellow-400">76% Reduction</div>
+      <div class="text-lg text-gray-300">in False Rejections</div>
+      <div class="text-sm text-gray-400 mt-2">72 fewer qualified candidates lost per batch</div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-gray-800 p-6 rounded-lg">
+  <h3 class="text-xl font-bold text-purple-400 mb-3">What This Means for Your Business</h3>
+  <div class="grid grid-cols-3 gap-4 text-center">
+    <div class="bg-gray-700 p-3 rounded">
+      <div class="text-2xl font-bold text-blue-400">+228</div>
+      <div class="text-xs text-gray-400">More qualified candidates<br/>identified per batch</div>
+    </div>
+    <div class="bg-gray-700 p-3 rounded">
+      <div class="text-2xl font-bold text-green-400">$150K+</div>
+      <div class="text-xs text-gray-400">Saved per 100 hires<br/>in recruitment costs</div>
+    </div>
+    <div class="bg-gray-700 p-3 rounded">
+      <div class="text-2xl font-bold text-yellow-400">25%</div>
+      <div class="text-xs text-gray-400">Larger talent pool<br/>for every position</div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="absolute bottom-6 text-xs text-gray-500 text-center w-full">
+  Source: Thesis Section 5.4 - Evaluation Methodology
+</div>
+
+<!--
+Speaker Script:
+Let me break down the key metric that drives our entire research—the False Rejection Rate or FRR.
+
+[Point to formula] FRR is calculated by dividing the number of qualified candidates rejected by the ATS by the total number of qualified candidates in the pool. This isn't about total rejections—it specifically measures how many good candidates your system incorrectly filters out.
+
+[Point to baseline] In our controlled experiment with 971 candidates, traditional keyword-based systems rejected 117 out of 380 qualified candidates. That's a 30.8% false rejection rate—nearly one in three qualified people never seen by a recruiter.
+
+[Point to multi-agent results] Our multi-agent system dramatically reduced this. From 885 candidates, we identified 608 as qualified but only falsely rejected 45. That's just 7.4%—a 76% improvement.
+
+[Point to business impact] What does this mean for your organization? For every batch of candidates, you're finding 228 more qualified people. That translates to $150K+ in savings per 100 hires and a 25% larger talent pool for every position you're trying to fill.
+
+This isn't just a marginal improvement—it's a fundamental shift in how we identify talent. The FRR metric proves that semantic understanding beats keyword matching every time.
 -->
