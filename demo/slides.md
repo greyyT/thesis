@@ -30,8 +30,6 @@ routerMode: hash
 
 ---
 
-## layout: two-cols
-
 # AI-Powered Multi-Agent Recruitment System
 
 <h3 class="text-3xl font-bold mb-4">
@@ -59,61 +57,7 @@ Our multi-agent system represents a novel approach to semantic skill matching, a
 
 ---
 
-# The $45 Million Problem You Don't Know You Have
-
-<div class="flex flex-col items-center justify-center h-full">
-  <div v-click class="text-center mb-8">
-    <div class="text-6xl font-bold text-red-400 mb-4">$45,000,000</div>
-    <div class="text-2xl text-gray-400">Annual cost to Fortune 500 companies</div>
-    <div class="text-lg text-gray-500">From rejecting qualified candidates</div>
-  </div>
-  
-  <div v-click class="grid grid-cols-3 gap-8 text-center">
-    <div class="bg-red-900 bg-opacity-30 p-6 rounded-lg">
-      <div class="text-4xl font-bold text-red-400">30%</div>
-      <div class="text-sm text-gray-400">Of qualified candidates</div>
-      <div class="text-lg font-bold">Auto-rejected</div>
-    </div>
-    
-    <div class="bg-orange-900 bg-opacity-30 p-6 rounded-lg">
-      <div class="text-4xl font-bold text-orange-400">0.8s</div>
-      <div class="text-sm text-gray-400">Average time to</div>
-      <div class="text-lg font-bold">Reject talent</div>
-    </div>
-    
-    <div class="bg-yellow-900 bg-opacity-30 p-6 rounded-lg">
-      <div class="text-4xl font-bold text-yellow-400">73%</div>
-      <div class="text-sm text-gray-400">Join your</div>
-      <div class="text-lg font-bold">Competitors</div>
-    </div>
-  </div>
-  
-  <div v-click class="mt-8 text-center">
-    <div class="text-xl text-gray-400">
-      Your ATS is silently sabotaging your hiring goals
-    </div>
-    <div class="text-lg text-red-400 font-bold mt-2">
-      Let me show you how this happened to Microsoft MVP Ca...
-    </div>
-  </div>
-</div>
-
-<!--
-Speaker Script:
-Before I dive into the technical details, let me present a number that should concern every talent acquisition leader in this room: $45 million. That's the annual cost to Fortune 500 companies from false rejections—qualified candidates your ATS eliminated before any human saw their resume.
-
-[Click] Our research, building on Harvard Business School's comprehensive study, confirms that 30% of qualified candidates are automatically rejected. Think about that—nearly one in three people who could excel in your roles never make it past the first algorithmic filter.
-
-[Click] The average rejection time? 0.8 seconds. Less time than it takes me to say this sentence. And here's what should really worry you: 73% of those wrongly rejected candidates get hired by your competitors. They're not unemployable—they're building products that compete with yours, serving customers that could have been yours, innovating for companies that aren't yours.
-
-[Click] Your ATS—the tool meant to help you find talent—is actively working against you. It's not broken; it's doing exactly what it was designed to do: match keywords. But matching keywords isn't the same as identifying talent.
-
-Let me show you exactly how this plays out with a real example that cost one company $420,000...
--->
-
----
-
-# How a Single Space Cost $420,000
+# How a Single Space Cost A Talented Candidate
 
 <div class="grid grid-cols-2 gap-8">
   <div v-click>
@@ -140,13 +84,12 @@ Let me show you exactly how this plays out with a real example that cost one com
     </div>
   </div>
 </div>
-
 <div v-click class="mt-8 text-center">
   <div class="text-3xl font-bold text-orange-400 mb-4">
     Result: $420,000 in contractors + lost customer
   </div>
   <div class="text-xl text-gray-400">
-    This happens to <span class="text-2xl font-bold text-red-400">1 in 3</span> qualified candidates
+    This happens to <span class="text-2xl font-bold text-red-400">1 in 4</span> qualified candidates
   </div>
 </div>
 
@@ -505,9 +448,9 @@ graph TB
     HITLReview -.- MAS
     AuditCompliance -.- MAS
 
-    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef usecase fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef agent fill:#fff3e0,stroke:#e65100,stroke-width:1px
+    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef usecase fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef agent fill:#fff3e0,stroke:#e65100,stroke-width:1px,color:#000
 
     class Recruiter,HRManager,Candidate,SysAdmin actor
     class PostJob,SourceCandidates,ScreenCandidates,DetectBias,HITLReview,GenerateShortlist,AuditCompliance,MonitorBias usecase
@@ -1038,7 +981,6 @@ Thank you for your time. I'm here to answer any questions about implementation, 
         <span class="text-yellow-400">A</span> = |<span class="text-green-400">S<sub>screening</sub></span> - <span class="text-purple-400">S<sub>critic</sub></span>|
       </div>
     </div>
-    
     <div class="bg-gray-900 p-4 rounded-lg">
       <div class="text-lg mb-2 text-gray-300">Step 2: Calculate Confidence</div>
       <div class="text-2xl font-mono">
@@ -1066,10 +1008,6 @@ Thank you for your time. I'm here to answer any questions about implementation, 
 </div>
 </div>
 
-<div class="absolute bottom-6 text-xs text-gray-500">
-  Source: Thesis Section 4.3.5.1 - For Q&A Deep Dive
-</div>
-
 <!--
 Speaker Script:
 The theoretical foundation of our confidence scoring draws from ensemble learning and uncertainty quantification in AI systems.
@@ -1092,11 +1030,11 @@ For recruitment professionals, this means the system knows when it needs your ex
   <h3 class="text-2xl font-bold text-green-400 mb-4">Semantic Matching Examples</h3>
   <div class="space-y-4">
     <div class="bg-red-900 bg-opacity-20 p-4 rounded">
-      <span class="text-lg">Traditional ATS:</span> 
+      <span class="text-lg">Traditional ATS: </span> 
       <span class="text-red-400 text-lg">"ML Engineer" ≠ "Machine Learning"</span>
     </div>
     <div class="bg-green-900 bg-opacity-20 p-4 rounded">
-      <span class="text-lg">Our System:</span> 
+      <span class="text-lg">Our System: </span> 
       <span class="text-green-400 text-lg">0.92 cosine similarity ✓</span>
     </div>
   </div>
@@ -1133,10 +1071,6 @@ For recruitment professionals, this means the system knows when it needs your ex
 </div>
 
 </div>
-</div>
-
-<div class="absolute bottom-6 text-xs text-gray-500">
-  Source: Thesis Section 4.3.5.4 - For Q&A Deep Dive
 </div>
 
 <!--

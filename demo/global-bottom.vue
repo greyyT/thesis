@@ -1,12 +1,23 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useNav } from '@slidev/client'
+import { computed } from "vue";
+import { useNav } from "@slidev/client";
 
-const { currentSlideRoute } = useNav()
+const { currentSlideRoute, total } = useNav();
 
-const formatter = computed(() => (currentSlideRoute.value.meta?.slide as any)?.frontmatter || {})
-const enableGlow = computed(() => formatter.value.glow !== false)
-const glowOpacity = computed(() => formatter.value.glowOpacity || 0.3)
+const formatter = computed(
+  () => (currentSlideRoute.value.meta?.slide as any)?.frontmatter || {}
+);
+const enableGlow = computed(() => formatter.value.glow !== false);
+const glowOpacity = computed(() => formatter.value.glowOpacity || 0.3);
+
+// Page numbering
+const currentSlideNo = computed(
+  () => currentSlideRoute.value.meta?.slide?.no || 1
+);
+const showPageNumber = computed(() => {
+  // Don't show page number on the first slide (title slide)
+  return currentSlideNo.value > 1;
+});
 </script>
 
 <template>
@@ -20,6 +31,11 @@ const glowOpacity = computed(() => formatter.value.glowOpacity || 0.3)
       <div class="glow glow-2" />
       <div class="glow glow-3" />
     </div>
+  </div>
+
+  <!-- Page number -->
+  <div v-if="showPageNumber" class="page-number">
+    {{ currentSlideNo }} / {{ total }}
   </div>
 </template>
 
@@ -68,7 +84,8 @@ const glowOpacity = computed(() => formatter.value.glowOpacity || 0.3)
 }
 
 @keyframes float-1 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
   }
   33% {
@@ -80,7 +97,8 @@ const glowOpacity = computed(() => formatter.value.glowOpacity || 0.3)
 }
 
 @keyframes float-2 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
   }
   33% {
@@ -92,11 +110,28 @@ const glowOpacity = computed(() => formatter.value.glowOpacity || 0.3)
 }
 
 @keyframes float-3 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(-50%, -50%) scale(1);
   }
   50% {
     transform: translate(-50%, -50%) scale(1.2);
   }
+}
+
+/* Page number styling */
+.page-number {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  font-size: 14px;
+  color: #9ca3af;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 4px 8px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
 }
 </style>
