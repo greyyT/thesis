@@ -133,6 +133,13 @@ Moon had 6 years of .NET experience. Ca had 8 years in low-latency systems, was 
 [Point to flow] Both enter the keyword parser. The system's exact match algorithm looks for "C#" in requirements. Moon's resume matches. Ca's doesn't. Decision made in 0.8 seconds—no human ever sees Ca's qualifications.
 
 [Point to outcomes] Moon gets hired, performs adequately. But Ca? Auto-rejected. The company later spent $420,000 on contractors and experienced service outages that Ca's expertise could have prevented. Where is Ca now? Building solutions for their competitor.
+During our seminar project, we documented a case that perfectly illustrates the research problem. [Point to diagram] Here we see two candidates—Moon and Ca—applying for the same C# backend engineer position.
+
+Moon had 6 years of .NET experience. Ca had 8 years in low-latency systems, was a Microsoft MVP, with 40% cost reduction achievements. The only difference? Ca typed 'C #' with a space.
+
+[Point to flow] Both enter the keyword parser. The system's exact match algorithm looks for "C#" in requirements. Moon's resume matches. Ca's doesn't. Decision made in 0.8 seconds—no human ever sees Ca's qualifications.
+
+[Point to outcomes] Moon gets hired, performs adequately. But Ca? Auto-rejected. The company later spent $420,000 on contractors and experienced service outages that Ca's expertise could have prevented. Where is Ca now? Building solutions for their competitor.
 
 This isn't a bug—it's the system working as designed. But lexical matching isn't talent identification. This happens to 1 in 4 qualified candidates according to Harvard research.
 
@@ -756,6 +763,99 @@ These results held across all eight job categories and demographic groups, valid
 
 ---
 
+# Extra Slide C: False Rejection Rate (FRR) - The Key Metric
+
+<div class="flex justify-center items-center h-full">
+<div class="w-full max-w-5xl">
+
+<div class="bg-gray-800 p-8 rounded-lg mb-6">
+  <h2 class="text-3xl font-bold text-red-400 mb-6 text-center">Measuring What Matters: The FRR Formula</h2>
+  
+  <div class="bg-gray-900 p-6 rounded-lg mb-6">
+    <div class="text-4xl font-mono text-center">
+      <span class="text-yellow-400">FRR</span> = 
+      <span class="text-xl align-middle">
+        <span class="inline-block">
+          <div class="text-green-400">Qualified Candidates Rejected by ATS</div>
+          <hr class="border-t-2 border-gray-600 my-2"/>
+          <div class="text-blue-400">Total Qualified Candidates</div>
+        </span>
+      </span>
+    </div>
+  </div>
+  
+  <div class="grid grid-cols-2 gap-6 mb-6">
+    <div class="bg-gray-700 p-4 rounded">
+      <h3 class="text-lg font-bold text-orange-400 mb-2">Industry Baseline</h3>
+      <div class="space-y-2 text-sm">
+        <div>• Total candidates: 971</div>
+        <div>• Qualified: 380</div>
+        <div>• False rejections: <span class="text-red-400 font-bold">117</span></div>
+        <div class="mt-2 p-2 bg-gray-800 rounded font-mono">
+          FRR = 117 ÷ 380 = <span class="text-red-400 font-bold">30.8%</span>
+        </div>
+      </div>
+    </div>
+    <div class="bg-gray-700 p-4 rounded">
+      <h3 class="text-lg font-bold text-green-400 mb-2">Our Multi-Agent System</h3>
+      <div class="space-y-2 text-sm">
+        <div>• Total candidates: 885</div>
+        <div>• Qualified: 608</div>
+        <div>• False rejections: <span class="text-green-400 font-bold">45</span></div>
+        <div class="mt-2 p-2 bg-gray-800 rounded font-mono">
+          FRR = 45 ÷ 608 = <span class="text-green-400 font-bold">7.4%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="text-center">
+    <div class="inline-block bg-green-900 bg-opacity-30 p-4 rounded-lg">
+      <div class="text-3xl font-bold text-yellow-400">76% Reduction</div>
+      <div class="text-lg text-gray-300">in False Rejections</div>
+      <div class="text-sm text-gray-400 mt-2">72 fewer qualified candidates lost per batch</div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-gray-800 p-6 rounded-lg">
+  <h3 class="text-xl font-bold text-purple-400 mb-3">What This Means for Your Business</h3>
+  <div class="grid grid-cols-3 gap-4 text-center">
+    <div class="bg-gray-700 p-3 rounded">
+      <div class="text-2xl font-bold text-blue-400">+228</div>
+      <div class="text-xs text-gray-400">More qualified candidates<br/>identified per batch</div>
+    </div>
+    <div class="bg-gray-700 p-3 rounded">
+      <div class="text-2xl font-bold text-green-400">$150K+</div>
+      <div class="text-xs text-gray-400">Saved per 100 hires<br/>in recruitment costs</div>
+    </div>
+    <div class="bg-gray-700 p-3 rounded">
+      <div class="text-2xl font-bold text-yellow-400">25%</div>
+      <div class="text-xs text-gray-400">Larger talent pool<br/>for every position</div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<!--
+Speaker Script:
+Let me break down the key metric that drives our entire research—the False Rejection Rate or FRR.
+
+[Point to formula] FRR is calculated by dividing the number of qualified candidates rejected by the ATS by the total number of qualified candidates in the pool. This isn't about total rejections—it specifically measures how many good candidates your system incorrectly filters out.
+
+[Point to baseline] In our controlled experiment with 971 candidates, traditional keyword-based systems rejected 117 out of 380 qualified candidates. That's a 30.8% false rejection rate—nearly one in three qualified people never seen by a recruiter.
+
+[Point to multi-agent results] Our multi-agent system dramatically reduced this. From 885 candidates, we identified 608 as qualified but only falsely rejected 45. That's just 7.4%—a 76% improvement.
+
+[Point to business impact] What does this mean for your organization? For every batch of candidates, you're finding 228 more qualified people. That translates to $150K+ in savings per 100 hires and a 25% larger talent pool for every position you're trying to fill.
+
+This isn't just a marginal improvement—it's a fundamental shift in how we identify talent. The FRR metric proves that semantic understanding beats keyword matching every time.
+-->
+
+---
+
 # Business Impact & Next Steps
 
 <div class="mb-3">
@@ -931,95 +1031,3 @@ A key finding is our 'hidden gem' detection—when S_critic ≥ 0.70 but S_scree
 Statistical validation: χ² = 43.86 (p < 0.001), Cohen's h = 0.625, indicating a substantial effect size. This isn't marginal improvement—it's a fundamental advance in recruitment technology.
 -->
 
----
-
-# Extra Slide C: False Rejection Rate (FRR) - The Key Metric
-
-<div class="flex justify-center items-center h-full">
-<div class="w-full max-w-5xl">
-
-<div class="bg-gray-800 p-8 rounded-lg mb-6">
-  <h2 class="text-3xl font-bold text-red-400 mb-6 text-center">Measuring What Matters: The FRR Formula</h2>
-  
-  <div class="bg-gray-900 p-6 rounded-lg mb-6">
-    <div class="text-4xl font-mono text-center">
-      <span class="text-yellow-400">FRR</span> = 
-      <span class="text-xl align-middle">
-        <span class="inline-block">
-          <div class="text-green-400">Qualified Candidates Rejected by ATS</div>
-          <hr class="border-t-2 border-gray-600 my-2"/>
-          <div class="text-blue-400">Total Qualified Candidates</div>
-        </span>
-      </span>
-    </div>
-  </div>
-  
-  <div class="grid grid-cols-2 gap-6 mb-6">
-    <div class="bg-gray-700 p-4 rounded">
-      <h3 class="text-lg font-bold text-orange-400 mb-2">Industry Baseline</h3>
-      <div class="space-y-2 text-sm">
-        <div>• Total candidates: 971</div>
-        <div>• Qualified: 380</div>
-        <div>• False rejections: <span class="text-red-400 font-bold">117</span></div>
-        <div class="mt-2 p-2 bg-gray-800 rounded font-mono">
-          FRR = 117 ÷ 380 = <span class="text-red-400 font-bold">30.8%</span>
-        </div>
-      </div>
-    </div>
-    <div class="bg-gray-700 p-4 rounded">
-      <h3 class="text-lg font-bold text-green-400 mb-2">Our Multi-Agent System</h3>
-      <div class="space-y-2 text-sm">
-        <div>• Total candidates: 885</div>
-        <div>• Qualified: 608</div>
-        <div>• False rejections: <span class="text-green-400 font-bold">45</span></div>
-        <div class="mt-2 p-2 bg-gray-800 rounded font-mono">
-          FRR = 45 ÷ 608 = <span class="text-green-400 font-bold">7.4%</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="text-center">
-    <div class="inline-block bg-green-900 bg-opacity-30 p-4 rounded-lg">
-      <div class="text-3xl font-bold text-yellow-400">76% Reduction</div>
-      <div class="text-lg text-gray-300">in False Rejections</div>
-      <div class="text-sm text-gray-400 mt-2">72 fewer qualified candidates lost per batch</div>
-    </div>
-  </div>
-</div>
-
-<div class="bg-gray-800 p-6 rounded-lg">
-  <h3 class="text-xl font-bold text-purple-400 mb-3">What This Means for Your Business</h3>
-  <div class="grid grid-cols-3 gap-4 text-center">
-    <div class="bg-gray-700 p-3 rounded">
-      <div class="text-2xl font-bold text-blue-400">+228</div>
-      <div class="text-xs text-gray-400">More qualified candidates<br/>identified per batch</div>
-    </div>
-    <div class="bg-gray-700 p-3 rounded">
-      <div class="text-2xl font-bold text-green-400">$150K+</div>
-      <div class="text-xs text-gray-400">Saved per 100 hires<br/>in recruitment costs</div>
-    </div>
-    <div class="bg-gray-700 p-3 rounded">
-      <div class="text-2xl font-bold text-yellow-400">25%</div>
-      <div class="text-xs text-gray-400">Larger talent pool<br/>for every position</div>
-    </div>
-  </div>
-</div>
-
-</div>
-</div>
-
-<!--
-Speaker Script:
-Let me break down the key metric that drives our entire research—the False Rejection Rate or FRR.
-
-[Point to formula] FRR is calculated by dividing the number of qualified candidates rejected by the ATS by the total number of qualified candidates in the pool. This isn't about total rejections—it specifically measures how many good candidates your system incorrectly filters out.
-
-[Point to baseline] In our controlled experiment with 971 candidates, traditional keyword-based systems rejected 117 out of 380 qualified candidates. That's a 30.8% false rejection rate—nearly one in three qualified people never seen by a recruiter.
-
-[Point to multi-agent results] Our multi-agent system dramatically reduced this. From 885 candidates, we identified 608 as qualified but only falsely rejected 45. That's just 7.4%—a 76% improvement.
-
-[Point to business impact] What does this mean for your organization? For every batch of candidates, you're finding 228 more qualified people. That translates to $150K+ in savings per 100 hires and a 25% larger talent pool for every position you're trying to fill.
-
-This isn't just a marginal improvement—it's a fundamental shift in how we identify talent. The FRR metric proves that semantic understanding beats keyword matching every time.
--->
