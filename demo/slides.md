@@ -141,57 +141,6 @@ The tragedy is everyone loses except the competitor. This is why we need semanti
 
 ---
 
-# How a Single Space Cost A Talented Candidate
-
-<div class="grid grid-cols-2 gap-8">
-  <div v-click>
-    <h3 class="text-2xl font-bold mb-4 text-green-500">✓ Moon - Accepted</h3>
-    <div class="bg-gray-800 p-4 rounded-lg">
-      <ul class="space-y-2">
-        <li>• 6 years .NET experience</li>
-        <li>• Typed: <code class="text-green-400">"C#"</code></li>
-        <li>• Status: <span class="text-green-400 font-bold">Interview scheduled</span></li>
-      </ul>
-    </div>
-  </div>
-  
-  <div v-click>
-    <h3 class="text-2xl font-bold mb-4 text-red-500">✗ Ca - Rejected</h3>
-    <div class="bg-gray-800 p-4 rounded-lg">
-      <ul class="space-y-2">
-        <li>• 8 years low-latency systems</li>
-        <li>• Microsoft MVP</li>
-        <li>• Cut cloud costs by 40%</li>
-        <li>• Typed: <code class="text-red-400">"C #"</code> (with space)</li>
-        <li>• Status: <span class="text-red-400 font-bold">Auto-rejected in 0.8s</span></li>
-      </ul>
-    </div>
-  </div>
-</div>
-<div v-click class="mt-8 text-center">
-  <div class="text-3xl font-bold text-orange-400 mb-4">
-    Result: $420,000 in contractors + lost customer
-  </div>
-  <div class="text-xl text-gray-400">
-    This happens to <span class="text-2xl font-bold text-red-400">1 in 4</span> qualified candidates
-  </div>
-</div>
-
-<!--
-Speaker Script:
-During our seminar project last semester, we documented a case that perfectly illustrates the research problem. Two candidates applied for a C# backend engineer position through the same ATS.
-
-[Point to screen] Moon had 6 years of .NET experience. Ca had 8 years in low-latency systems, was a Microsoft MVP, with demonstrable impact metrics. However, Ca typed 'C #' with a space—a syntactic variation the keyword-based system couldn't recognize.
-
-The deterministic algorithm rejected Ca in 0.8 seconds. No recruiter reviewed his qualifications. This isn't just anecdotal—our analysis shows the company subsequently spent $420,000 on contractors and experienced service outages that Ca's expertise could have prevented.
-
-This aligns with Fuller et al.'s (2021) findings at Harvard Business School, showing 12-35% false rejection rates across the industry. For recruitment teams here, this means you're potentially missing one in three qualified candidates due to algorithmic limitations, not human judgment.
-
-Our research question became: How can we design an AI system that understands semantic equivalence and transferable skills while maintaining recruiter autonomy? Let me show you our solution.
--->
-
----
-
 # Problems
 
 <div class="grid grid-cols-2 gap-4 mb-5">
