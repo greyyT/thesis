@@ -249,7 +249,6 @@ These aren't bugs—they're fundamental design flaws that compound each other. L
       <div class="mt-3 bg-gray-800 p-2 rounded text-xs">
         <div>"ML" = "Machine Learning"</div>
         <div>= "Machine Learning Engineer"</div>
-        <div class="text-green-400">✓ 0.94 similarity</div>
       </div>
     </div>
   </div>
@@ -263,7 +262,6 @@ These aren't bugs—they're fundamental design flaws that compound each other. L
         <div>"Navy logistics officer"</div>
         <div>↓</div>
         <div>"Supply chain manager"</div>
-        <div class="text-green-400">✓ Skills transferred</div>
       </div>
     </div>
   </div>
@@ -277,7 +275,6 @@ These aren't bugs—they're fundamental design flaws that compound each other. L
         <div>"✓ Recommended because:"</div>
         <div>"• 5 years Python (req: 3+)"</div>
         <div>"• ML expertise matches"</div>
-        <div class="text-green-400">Confidence: 87%</div>
       </div>
     </div>
   </div>
