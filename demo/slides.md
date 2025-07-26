@@ -59,6 +59,90 @@ Our multi-agent system represents a novel approach to semantic skill matching, a
 
 # How a Single Space Cost A Talented Candidate
 
+<div class="w-full overflow-x-auto h-[450px]">
+<div class="min-w-[1200px]">
+
+```mermaid {theme: 'dark'}
+flowchart LR
+    subgraph Applications["Two C# Backend Engineer Applications"]
+        Moon["👤 Moon<br/>6 years .NET<br/>Typed: 'C#'"]
+        Ca["👤 Ca<br/>8 years low-latency<br/>Microsoft MVP<br/>40% cost reduction<br/>Typed: 'C #'"]
+    end
+
+    subgraph ATS["ATS Processing"]
+        Parser["Keyword Parser"]
+        Matcher["Exact Match:<br/>'C#' in requirements"]
+        Decision{Match Found?}
+    end
+
+    subgraph Outcomes["Outcomes"]
+        Accept["✓ ACCEPTED<br/>Interview scheduled<br/>Hired in 2 weeks"]
+        Reject["✗ REJECTED<br/>in 0.8 seconds<br/>Never seen by human"]
+    end
+
+    subgraph Consequences["Company Consequences"]
+        Hire["Moon performs adequately<br/>Meets basic requirements"]
+        Loss["• $420,000 in contractors<br/>• Service outages<br/>• Lost customer trust<br/>• Ca joins competitor"]
+    end
+
+    Moon --> Parser
+    Ca --> Parser
+    Parser --> Matcher
+    Matcher --> Decision
+
+    Decision -->|"'C#' found"| Accept
+    Decision -->|"'C #' ≠ 'C#'"| Reject
+
+    Accept --> Hire
+    Reject --> Loss
+
+    %% Dark theme styling
+    classDef candidate fill:#1e3a5f,stroke:#4a90e2,stroke-width:2px,color:#ffffff
+    classDef system fill:#3d2914,stroke:#ff8c00,stroke-width:2px,color:#ffffff
+    classDef success fill:#1a3d1a,stroke:#4caf50,stroke-width:3px,color:#ffffff
+    classDef failure fill:#4a1414,stroke:#ff5252,stroke-width:3px,color:#ffffff
+    classDef impact fill:#3d1a4d,stroke:#ba68c8,stroke-width:2px,color:#ffffff
+
+    class Moon,Ca candidate
+    class Parser,Matcher,Decision system
+    class Accept,Hire success
+    class Reject,Loss failure
+```
+
+</div>
+</div>
+
+<div class="absolute bottom-6 left-6 text-sm text-gray-400">
+  <div>• Traditional ATS: Lexical matching only</div>
+  <div>• No semantic understanding</div>
+  <div>• No human oversight for edge cases</div>
+</div>
+
+<div class="absolute bottom-6 right-6 text-sm text-gray-400">
+  <div class="text-right">• Ca's expertise could have prevented outages</div>
+  <div class="text-right">• Now building products for competitors</div>
+  <div class="text-right">• System working as designed, not as intended</div>
+</div>
+
+<!--
+Speaker Script:
+During our seminar project, we documented a case that perfectly illustrates the research problem. [Point to diagram] Here we see two candidates—Moon and Ca—applying for the same C# backend engineer position.
+
+Moon had 6 years of .NET experience. Ca had 8 years in low-latency systems, was a Microsoft MVP, with 40% cost reduction achievements. The only difference? Ca typed 'C #' with a space.
+
+[Point to flow] Both enter the keyword parser. The system's exact match algorithm looks for "C#" in requirements. Moon's resume matches. Ca's doesn't. Decision made in 0.8 seconds—no human ever sees Ca's qualifications.
+
+[Point to outcomes] Moon gets hired, performs adequately. But Ca? Auto-rejected. The company later spent $420,000 on contractors and experienced service outages that Ca's expertise could have prevented. Where is Ca now? Building solutions for their competitor.
+
+This isn't a bug—it's the system working as designed. But lexical matching isn't talent identification. This happens to 1 in 4 qualified candidates according to Harvard research.
+
+The tragedy is everyone loses except the competitor. This is why we need semantic understanding, not just keyword matching. Let me show you how our system would handle this differently...
+-->
+
+---
+
+# How a Single Space Cost A Talented Candidate
+
 <div class="grid grid-cols-2 gap-8">
   <div v-click>
     <h3 class="text-2xl font-bold mb-4 text-green-500">✓ Moon - Accepted</h3>
@@ -108,119 +192,18 @@ Our research question became: How can we design an AI system that understands se
 
 ---
 
-# The Ca Story: A System Flow Analysis
+# Problems
 
-<div class="w-full overflow-x-auto" style="height: 450px;">
-<div style="min-width: 1200px;">
-
-```mermaid {theme: 'dark'}
-flowchart LR
-    subgraph Applications["Two C# Backend Engineer Applications"]
-        Moon["👤 Moon<br/>6 years .NET<br/>Typed: 'C#'"]
-        Ca["👤 Ca<br/>8 years low-latency<br/>Microsoft MVP<br/>40% cost reduction<br/>Typed: 'C #'"]
-    end
-
-    subgraph ATS["ATS Processing"]
-        Parser["Keyword Parser"]
-        Matcher["Exact Match:<br/>'C#' in requirements"]
-        Decision{Match Found?}
-    end
-
-    subgraph Outcomes["Outcomes"]
-        Accept["✓ ACCEPTED<br/>Interview scheduled<br/>Hired in 2 weeks"]
-        Reject["✗ REJECTED<br/>in 0.8 seconds<br/>Never seen by human"]
-    end
-
-    subgraph Consequences["Company Consequences"]
-        Hire["Moon performs adequately<br/>Meets basic requirements"]
-        Loss["• Service outages<br/>• Lost customer trust<br/>• Ca joins competitor"]
-    end
-
-    Moon --> Parser
-    Ca --> Parser
-    Parser --> Matcher
-    Matcher --> Decision
-
-    Decision -->|"'C#' found"| Accept
-    Decision -->|"'C #' ≠ 'C#'"| Reject
-
-    Accept --> Hire
-    Reject --> Loss
-
-    %% Dark theme styling
-    classDef candidate fill:#1e3a5f,stroke:#4a90e2,stroke-width:2px,color:#ffffff
-    classDef system fill:#3d2914,stroke:#ff8c00,stroke-width:2px,color:#ffffff
-    classDef success fill:#1a3d1a,stroke:#4caf50,stroke-width:3px,color:#ffffff
-    classDef failure fill:#4a1414,stroke:#ff5252,stroke-width:3px,color:#ffffff
-    classDef impact fill:#3d1a4d,stroke:#ba68c8,stroke-width:2px,color:#ffffff
-
-    class Moon,Ca candidate
-    class Parser,Matcher,Decision system
-    class Accept,Hire success
-    class Reject,Loss failure
-```
-
-</div>
-</div>
-
-<div class="absolute bottom-6 left-6 text-sm text-gray-400">
-  <div>• Traditional ATS: Lexical matching only</div>
-  <div>• No semantic understanding</div>
-  <div>• No human oversight for edge cases</div>
-</div>
-
-<div class="absolute bottom-6 right-6 text-sm text-gray-400">
-  <div class="text-right">• Ca's expertise could have prevented outages</div>
-  <div class="text-right">• Now building products for competitors</div>
-  <div class="text-right">• System working as designed, not as intended</div>
-</div>
-
-<!--
-Speaker Script:
-Let me visualize exactly how this happened. [Point to diagram] Here we see the parallel processing of Moon and Ca's applications through the same ATS system.
-
-Both candidates enter the keyword parser. Moon typed "C#" correctly—no space. Ca, equally qualified—actually MORE qualified with 8 years experience and Microsoft MVP status—typed "C #" with a space.
-
-The system's exact match algorithm looks for "C#" in the requirements. Moon's resume matches. Ca's doesn't. That's it. The decision is made in 0.8 seconds.
-
-Moon gets accepted, interviewed, and hired within 2 weeks. He performs adequately—meets the basic requirements.
-
-But look at what happened with Ca. [Point to consequences] Never seen by a human recruiter. The company later spent $420,000 on contractors to handle the workload Ca could have managed. They experienced service outages that Ca's low-latency expertise could have prevented. And where is Ca now? Building innovative solutions for their competitor.
-
-This isn't a bug—it's the system working exactly as designed. But is this what we intended? The ATS did its job: lexical matching. But lexical matching isn't talent identification.
-
-The tragedy here is that everyone loses except the competitor. The company loses expertise and money. Ca loses an opportunity. And the recruiter never even knows what happened.
-
-This is why we need semantic understanding, not just keyword matching. Let me show you how our system would handle this differently...
--->
-
----
-
-# The Hidden Talent Crisis: Three Systemic Failures
-
-<div class="grid grid-cols-4 gap-3 mb-4">
-  <div v-click class="bg-red-900 bg-opacity-30 p-3 rounded-lg text-center">
-    <div class="text-2xl font-bold text-red-400">12-35%</div>
-    <div class="text-xs text-gray-300">False Rejection Rate</div>
-    <div class="text-xs text-gray-500">Harvard BSc 2021</div>
+<div class="grid grid-cols-2 gap-4 mb-5">
+  <div class="bg-red-900 bg-opacity-30 p-3 rounded-lg text-center">
+    <div class="text-xl font-bold text-red-400">12-35% FRR</div>
+    <div class="text-xs text-gray-300 mt-1">False Rejection Rate</div>
+    <div class="text-xs text-gray-500">Fuller et al. (2021)</div>
   </div>
-  
-  <div v-click class="bg-orange-900 bg-opacity-30 p-3 rounded-lg text-center">
-    <div class="text-2xl font-bold text-orange-400">88%</div>
-    <div class="text-xs text-gray-300">Executives aware</div>
-    <div class="text-xs text-gray-500">Mixed methods</div>
-  </div>
-  
-  <div v-click class="bg-yellow-900 bg-opacity-30 p-3 rounded-lg text-center">
-    <div class="text-2xl font-bold text-yellow-400">$750K-3.45M</div>
-    <div class="text-xs text-gray-300">Per 100 hires</div>
-    <div class="text-xs text-gray-500">Cost analysis</div>
-  </div>
-  
-  <div v-click class="bg-purple-900 bg-opacity-30 p-3 rounded-lg text-center">
-    <div class="text-2xl font-bold text-purple-400">73%</div>
-    <div class="text-xs text-gray-300">Join competitors</div>
-    <div class="text-xs text-gray-500">Talent loss</div>
+  <div class="bg-orange-900 bg-opacity-30 p-3 rounded-lg text-center">
+    <div class="text-xl font-bold text-orange-400">88%</div>
+    <div class="text-xs text-gray-300 mt-1">Executives acknowledge</div>
+    <div class="text-xs text-gray-500">Harvard Business School</div>
   </div>
 </div>
 
@@ -239,7 +222,7 @@ This is why we need semantic understanding, not just keyword matching. Let me sh
     <div class="text-sm">
       Microsoft MVP rejected in 0.8s for typing <span class="text-red-400">"C #"</span> instead of <span class="text-red-400">"C#"</span>
     </div>
-    <div class="text-xs flex gap-2 mt-1 text-gray-400">
+    <div class="text-xs flex gap-3 text-gray-400">
       <div>40-60% miss rate</div>
       <div>"ML" ≠ "Machine Learning"</div>
       <div>73% eliminated</div>
@@ -258,7 +241,7 @@ This is why we need semantic understanding, not just keyword matching. Let me sh
     <div class="text-sm">
       Navy officer rejected for supply chain role - can't translate military skills
     </div>
-    <div class="text-xs flex gap-2 mt-1 text-gray-400">
+    <div class="text-xs flex gap-3 text-gray-400">
       <div>67% bias penalty</div>
       <div>50% reject gaps</div>
       <div>OECD 2023</div>
@@ -306,74 +289,7 @@ These aren't bugs—they're fundamental design flaws that compound each other. L
 
 ---
 
-# Where Qualified Candidates Get Lost
-
-<div class="diagram-container w-full overflow-auto" style="max-height: 450px;">
-<div style="min-width: 1800px; min-height: 600px;">
-
-```mermaid
-flowchart LR
-    %% Probability tracking
-    Start([Job Posted<br/>250 Applications]) --> Submit[Resume Submitted<br/>100% Pool]
-
-    Submit --> Parse{Tokenisation<br/>PDF → Text<br/>E₁: Error}
-    Parse -->|Success<br/>82.7%| Extract[Keyword Extract<br/>207 candidates]
-    Parse -->|Fail<br/>17.3%| RejectParse[AUTO-REJECT<br/>Parse Error E₁<br/>43 excluded]
-
-    Extract --> Screen{Boolean Filter<br/>E₂: False Negatives}
-
-    Screen -->|Pass<br/>57%| Rank[Ranking<br/>118 candidates]
-    Screen -->|Fail<br/>43%| RejectScreen[AUTO-REJECT<br/>Boolean E₂<br/>89 excluded<br/>40-60% qualified]
-
-    Rank --> Threshold{Top 15%<br/>E₃: Bias}
-    Threshold -->|Above| Human[Human Review<br/>18 candidates]
-    Threshold -->|Below| RejectThreshold[AUTO-REJECT<br/>Cutoff E₃<br/>100 excluded]
-
-    Human --> Final{Final Decision<br/>Fatigue Factor}
-    Final -->|Hire<br/>22%| Accept[ACCEPTED<br/>4 hires]
-    Final -->|Reject<br/>78%| RejectFinal[REJECTED<br/>14 excluded]
-
-    %% Highlight critical failure points with Harvard study findings
-    RejectScreen -.->|Contains| QualifiedPool[Harvard Finding:<br/>30-53 qualified<br/>wrongly excluded]
-
-    %% Design flaw annotations with Section references
-    Extract -.->|Flaw #1| StaticKeywords[Keyword Errors:<br/>'Developer' ≠ 'Engineer'<br/>'ML' ≠ 'Machine Learning']
-
-    Screen -.->|Flaw #2| HomogeneityBias[Bias Issues:<br/>6+ month gaps rejected<br/>Military → Civilian bias]
-
-    Human -.->|Flaw #3| BlackBox[Fatigue:<br/>Quality drops 40%<br/>after 100 reviews]
-
-    %% Color-blind friendly styling (WCAG 2.1 AA compliant)
-    classDef rejectNode fill:#ffe6e6,stroke:#D55E00,stroke-width:2px,color:#000
-    classDef acceptNode fill:#e6f3e6,stroke:#0072B2,stroke-width:2px,color:#000
-    classDef processNode fill:#e6f0ff,stroke:#0072B2,stroke-width:2px,color:#000
-    classDef decisionNode fill:#fff5e6,stroke:#D55E00,stroke-width:2px,color:#000
-    classDef flawNode fill:#f0f0f0,stroke:#999999,stroke-width:1px,stroke-dasharray: 3 3,color:#000
-    classDef statsNode fill:#f5e6ff,stroke:#6a1b9a,stroke-width:2px,color:#000
-
-    class RejectParse,RejectScreen,RejectThreshold,RejectFinal rejectNode
-    class Accept acceptNode
-    class Submit,Extract,Rank processNode
-    class Parse,Screen,Threshold,Final decisionNode
-    class StaticKeywords,HomogeneityBias,BlackBox flawNode
-    class QualifiedPool statsNode
-```
-
-</div>
-</div>
-
-<!--
-Speaker Script:
-[Point to diagram] This workflow diagram, based on our analysis of 250 real applications, illustrates three critical failure points. Notice how tokenization errors (E₁), Boolean false negatives (E₂), and ranking cutoffs (E₃) compound to reduce the candidate pool from 250 to just 18—a 93% reduction. Our statistical analysis indicates 30-53 qualified candidates are eliminated through these systematic errors.
-
-For recruitment professionals, this creates an impossible situation: you're held accountable for hiring quality, yet the tools meant to help you are actively working against you.
-
-These findings led us to propose a fundamentally different architecture based on multi-agent systems and semantic understanding.
--->
-
----
-
-# Methodologies
+# Solutions
 
 <div class="grid grid-cols-3 gap-6">
   <div v-click class="bg-blue-900 bg-opacity-30 p-6 rounded-lg">
@@ -433,7 +349,7 @@ The integration of these three components through our multi-agent architecture i
 
 ---
 
-# The Complete System: How It All Works Together
+# Big Picture
 
 <div class="flex justify-center items-center" style="height: 420px;">
 <div>
@@ -599,7 +515,7 @@ The Data Steward ensures GDPR compliance and implements our continual learning p
 
 # Agent Capabilities & Technology Stack
 
-<div class="grid grid-cols-2 gap-4">
+<div class="grid grid-cols-1 gap-4">
   <div v-click>
     <div class="bg-blue-900 bg-opacity-20 p-4 rounded-lg border-l-4 border-blue-400">
       <h3 class="text-lg font-bold text-blue-400 mb-3">Specialized Agent Roles</h3>
@@ -679,16 +595,12 @@ This isn't just a collection of technologies—it's an integrated system where e
 <div class="grid grid-cols-2 gap-6">
   <div v-click>
     <h3 class="text-xl font-bold text-blue-400 mb-3">Standard Automated Screening</h3>
-    <div class="bg-gray-800 p-4 rounded-lg">
+    <div class="bg-gray-800 p-4 rounded-lg pb-[74px]">
       <div class="text-sm space-y-2">
         <div>• <span class="text-green-400">70-80%</span> of cases</div>
         <div>• <span class="text-yellow-400">3-5 minutes</span> per candidate</div>
         <div>• Confidence > 85% = auto-decision</div>
         <div>• Full audit trail maintained</div>
-      </div>
-      <div class="mt-3 text-center">
-        <div class="text-2xl font-bold text-green-400">94.9%</div>
-        <div class="text-xs text-gray-400">Accuracy on clear matches</div>
       </div>
     </div>
   </div>
@@ -749,18 +661,18 @@ For researchers, this demonstrates practical AI-human collaboration. For recruit
 
 # Experimental Setup & Dataset
 
-<div class="grid grid-cols-2 gap-4">
+<div class="grid grid-cols-2 gap-2 mb-2">
   <div v-click>
-    <div class="bg-blue-900 bg-opacity-20 p-4 rounded-lg border-l-4 border-blue-400">
-      <h3 class="text-lg font-bold text-blue-400 mb-3">Study Design</h3>
-      <ul class="space-y-2 text-xs">
+    <div class="bg-blue-900 bg-opacity-20 p-2 rounded border-l-2 border-blue-400">
+      <h3 class="text-sm font-bold text-blue-400 mb-1">Study Design</h3>
+      <ul class="space-y-0 text-xs">
         <li class="flex items-start">
           <span class="text-green-300">•</span>
-          <span class="ml-2"><span class="font-bold text-blue-300">Comparison:</span> Baseline ATS vs Multi-Agent</span>
+          <span class="ml-1"><span class="font-semibold text-blue-300">Comparison:</span> Baseline vs Multi-Agent</span>
         </li>
         <li class="flex items-start">
           <span class="text-green-300">•</span>
-          <span class="ml-2"><span class="font-bold text-blue-300">Sample:</span> 1,856 real applications</span>
+          <span class="ml-1"><span class="font-semibold text-blue-300">Sample:</span> 1,856 applications</span>
         </li>
         <li class="flex items-start">
           <span class="text-green-300">•</span>
@@ -771,51 +683,32 @@ For researchers, this demonstrates practical AI-human collaboration. For recruit
   </div>
 
   <div v-click>
-    <div class="bg-orange-900 bg-opacity-20 p-4 rounded-lg border-l-4 border-orange-400">
-      <h3 class="text-lg font-bold text-orange-400 mb-3">Dataset Details</h3>
-      <ul class="space-y-2 text-xs">
+    <div class="bg-orange-900 bg-opacity-20 p-2 rounded border-l-2 border-orange-400">
+      <h3 class="text-sm font-bold text-orange-400 mb-1">Dataset Details</h3>
+      <ul class="space-y-0 text-xs">
         <li class="flex items-start">
           <span class="text-yellow-300">•</span>
-          <span class="ml-2"><span class="font-bold text-orange-300">Source:</span> Fortune 500 applications</span>
+          <span class="ml-1"><span class="font-semibold text-orange-300">Source:</span> Fortune 500</span>
         </li>
         <li class="flex items-start">
           <span class="text-yellow-300">•</span>
-          <span class="ml-2"><span class="font-bold text-orange-300">Roles:</span> 8 technical categories</span>
+          <span class="ml-1"><span class="font-semibold text-orange-300">Roles:</span> 8 tech categories</span>
         </li>
         <li class="flex items-start">
           <span class="text-yellow-300">•</span>
-          <span class="ml-2"><span class="font-bold text-orange-300">Diversity:</span> 43% non-traditional paths</span>
+          <span class="ml-1"><span class="font-semibold text-orange-300">Diversity:</span> 43% non-traditional</span>
         </li>
         <li class="flex items-start">
           <span class="text-yellow-300">•</span>
-          <span class="ml-2"><span class="font-bold text-orange-300">Method:</span> Harvard BSc methodology</span>
+          <span class="ml-1"><span class="font-semibold text-orange-300">Method:</span> Harvard methodology</span>
         </li>
       </ul>
     </div>
   </div>
 </div>
 
-<div v-click class="mt-4 grid grid-cols-4 gap-3 text-center">
-  <div class="bg-purple-900 bg-opacity-20 p-3 rounded-lg">
-    <div class="text-lg font-bold text-blue-300">FRR</div>
-    <div class="text-xs text-gray-400">False Rejection</div>
-    <div class="text-xs text-gray-500">Primary</div>
-  </div>
-  <div class="bg-purple-900 bg-opacity-20 p-3 rounded-lg">
-    <div class="text-lg font-bold text-green-300">Recall@25</div>
-    <div class="text-xs text-gray-400">Top accuracy</div>
-    <div class="text-xs text-gray-500">Quality</div>
-  </div>
-  <div class="bg-purple-900 bg-opacity-20 p-3 rounded-lg">
-    <div class="text-lg font-bold text-yellow-300">Bias Gap</div>
-    <div class="text-xs text-gray-400">Dem. parity</div>
-    <div class="text-xs text-gray-500"><5%</div>
-  </div>
-  <div class="bg-purple-900 bg-opacity-20 p-3 rounded-lg">
-    <div class="text-lg font-bold text-purple-300">Time</div>
-    <div class="text-xs text-gray-400">Processing</div>
-    <div class="text-xs text-gray-500"><24hr</div>
-  </div>
+<div v-click class="mt-1">
+  <img src="https://raw.githubusercontent.com/greyyT/thesis/main/media/category-distribution.png" class="w-[60%] mx-auto" />
 </div>
 
 <!--
@@ -1123,11 +1016,10 @@ Statistical validation: χ² = 43.86 (p < 0.001), Cohen's h = 0.625, indicating 
         <div>• Qualified: 380</div>
         <div>• False rejections: <span class="text-red-400 font-bold">117</span></div>
         <div class="mt-2 p-2 bg-gray-800 rounded font-mono">
-          FRR = 117 ÷ 380 = <span class="text-2xl text-red-400 font-bold">30.8%</span>
+          FRR = 117 ÷ 380 = <span class="text-red-400 font-bold">30.8%</span>
         </div>
       </div>
     </div>
-    
     <div class="bg-gray-700 p-4 rounded">
       <h3 class="text-lg font-bold text-green-400 mb-2">Our Multi-Agent System</h3>
       <div class="space-y-2 text-sm">
@@ -1135,7 +1027,7 @@ Statistical validation: χ² = 43.86 (p < 0.001), Cohen's h = 0.625, indicating 
         <div>• Qualified: 608</div>
         <div>• False rejections: <span class="text-green-400 font-bold">45</span></div>
         <div class="mt-2 p-2 bg-gray-800 rounded font-mono">
-          FRR = 45 ÷ 608 = <span class="text-2xl text-green-400 font-bold">7.4%</span>
+          FRR = 45 ÷ 608 = <span class="text-green-400 font-bold">7.4%</span>
         </div>
       </div>
     </div>
@@ -1169,10 +1061,6 @@ Statistical validation: χ² = 43.86 (p < 0.001), Cohen's h = 0.625, indicating 
 </div>
 
 </div>
-</div>
-
-<div class="absolute bottom-6 text-xs text-gray-500 text-center w-full">
-  Source: Thesis Section 5.4 - Evaluation Methodology
 </div>
 
 <!--
