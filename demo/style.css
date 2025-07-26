@@ -283,3 +283,84 @@ iframe {
 .footnote-ref:hover {
   color: #8b5cf6;
 }
+
+/* Custom scrollbar styling for better visibility */
+.overflow-auto::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.overflow-auto::-webkit-scrollbar-track {
+  background: #1a202c;
+  border-radius: 6px;
+}
+
+.overflow-auto::-webkit-scrollbar-thumb {
+  background: #4a5568;
+  border-radius: 6px;
+  border: 2px solid #1a202c;
+}
+
+.overflow-auto::-webkit-scrollbar-thumb:hover {
+  background: #718096;
+}
+
+.overflow-auto::-webkit-scrollbar-corner {
+  background: #1a202c;
+}
+
+/* Firefox scrollbar styling */
+.overflow-auto {
+  scrollbar-width: thin;
+  scrollbar-color: #4a5568 #1a202c;
+}
+
+/* Ensure mermaid diagrams are visible and properly sized */
+.mermaid {
+  display: block;
+  margin: 0 auto;
+  min-width: 100%;
+  height: auto;
+}
+
+/* Better scrollable container styling */
+.diagram-container {
+  position: relative;
+  border: 1px solid #2d3748;
+  border-radius: 8px;
+  background: #0f1419;
+  padding: 1rem;
+}
+
+/* Scroll indicators */
+.diagram-container::after {
+  content: '↕ Scroll to explore ↔';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-size: 0.75rem;
+  color: #718096;
+  background: rgba(26, 32, 44, 0.9);
+  padding: 4px 8px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* Table styling for better visibility in presentations */
+.slidev-layout table {
+  width: 100%;
+}
+
+.slidev-layout th {
+  font-weight: bold;
+  background-color: #2d3748;
+  padding: 0.5rem;
+}
+
+.slidev-layout td {
+  padding: 0.5rem;
+}
+
+.slidev-layout tr {
+  border-top: 1px solid #4a5568;
+}

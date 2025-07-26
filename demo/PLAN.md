@@ -214,9 +214,9 @@ For researchers, this demonstrates practical AI-human collaboration. For recruit
 ```mermaid
 graph TD
     %% Human Actors & Interfaces
-    A[Recruiter] -- "1 - Initiates Job Posting & Defines Criteria" --> AgentCoreSystem
-    C[HR Manager / Reviewer] -- "10 - Provides Judgment" --> D{HITL UI}
-    D -- "Captures Feedback" --> AgentCoreSystem
+    A[Recruiter] -->|"1 - Job Requirements"| AgentCoreSystem
+    C[HR Manager / Reviewer] -->|"10 - Human Decision"| D{HITL UI}
+    D -->|"Feedback & Corrections"| AgentCoreSystem
 
     %% AgentCore System with all agents
     subgraph AgentCoreSystem["AgentCore Multi-Agent System"]
@@ -229,39 +229,39 @@ graph TD
         P[Data-Steward Subagent]
 
         %% Internal Agent Communications
-        B -- "2 - Dispatches Task" --> F
-        B -- "5 - Dispatches Task" --> G
-        B -- "7 - Routes Low-Confidence/Rejected" --> H
-        B -- "9 - Triage Ambiguous Cases" --> E
+        B -->|"2 - Candidate Search Task"| F
+        B -->|"5 - Evaluation Task"| G
+        B -->|"7 - Second Opinion Request"| H
+        B -->|"9 - Human Review Request"| E
 
-        G -- "6 - Submits Scored Assessments" --> B
-        H -- "8 - Submits Second Opinion / Bias Flags" --> B
-        E -- "11 - Returns Human-Validated Decisions" --> B
+        G -->|"6 - Screening Scores"| B
+        H -->|"8 - Bias Assessment"| B
+        E -->|"11 - Human Validated Decision"| B
 
         %% Logging connections
-        B -- "Logs Orchestration" --> P
-        G -- "Logs Evaluations" --> P
-        H -- "Logs Validations" --> P
-        E -- "Logs Human Interactions" --> P
+        B -->|"Orchestration Logs"| P
+        G -->|"Evaluation Logs"| P
+        H -->|"Bias Detection Logs"| P
+        E -->|"Human Decision Logs"| P
     end
 
-    AgentCoreSystem -- "12 - Presents Ranked Shortlist & Audit Trail" --> A
+    AgentCoreSystem -->|"12 - Final Recommendations"| A
 
     %% Data & Knowledge Layer
-    K[(Candidate Pool Database)] -- "Raw/Structured Data" --> AgentCoreSystem
-    L[(Vector Database)] -- "Semantic Embeddings for Matching" --> AgentCoreSystem
-    M{{Prompt Libraries}} -- "Defines Agent Personas & Tasks" --> AgentCoreSystem
-    N{{Guardrails}} -- "Enforces Constraints & Safety" --> AgentCoreSystem
-    O[(Persistent Memory)] -- "Stores Models, Metrics, Audit Logs" <--> AgentCoreSystem
-    J[(Ephemeral Memory)] -- "Stores In-Flight Workflow State" <--> AgentCoreSystem
+    K[(Candidate Pool Database)] -->|"Resume Data"| AgentCoreSystem
+    L[(Vector Database)] -->|"Semantic Embeddings"| AgentCoreSystem
+    M{{Prompt Libraries}} -->|"Agent Instructions"| AgentCoreSystem
+    N{{Guardrails}} -->|"Safety Constraints"| AgentCoreSystem
+    O[(Persistent Memory)] <-->|"Learning & Metrics"| AgentCoreSystem
+    J[(Ephemeral Memory)] <-->|"Session State"| AgentCoreSystem
 
     %% External Systems
     I(Tools / APIs <br> Job Boards, Prof. Networks)
 
     %% External connections
-    AgentCoreSystem -- "3 - Fetches Candidates" --> I
-    AgentCoreSystem -- "4 - Populates Pool" --> K
-    AgentCoreSystem -- "Drives Continuous Improvement" --> O
+    AgentCoreSystem -->|"3 - Candidate Queries"| I
+    AgentCoreSystem -->|"4 - Store Candidates"| K
+    AgentCoreSystem -->|"Model Updates"| O
 
     %% Styling
     classDef human fill:#e3f2fd,stroke:#333
@@ -578,9 +578,6 @@ The system is available for pilot programs starting immediately. We can have you
 3. System architecture diagram (from thesis)
 4. HITL decision flow diagram (from thesis)
 5. Dataset distribution visualization
-6. Results comparison table
-7. ROI calculator screenshot
-8. Implementation timeline graphic
 
 ## Potential Questions to Prepare For
 
