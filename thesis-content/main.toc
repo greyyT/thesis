@@ -1,0 +1,129 @@
+\contentsline {section}{\hbox to\@tempdima {\hfil }LỜI CẢM ƠN}{i}{section*.4}%
+\contentsline {section}{\hbox to\@tempdima {\hfil }LỜI MỞ ĐẦU}{ii}{section*.5}%
+\contentsline {section}{\hbox to\@tempdima {\hfil }DANH SÁCH CÁC TỪ VIẾT TẮT}{iii}{section*.6}%
+\contentsline {section}{\hbox to\@tempdima {\hfil }DANH SÁCH THUẬT NGỮ}{iv}{section*.7}%
+\contentsline {section}{\hbox to\@tempdima {\hfil }DANH MỤC ẢNH}{vi}{section*.8}%
+\contentsline {section}{\hbox to\@tempdima {\hfil }DANH MỤC BẢNG}{vii}{section*.9}%
+\contentsline {section}{\hbox to\@tempdima {\hfil }CHƯƠNG 1: GIỚI THIỆU}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Lý do chọn đề tài}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Phạm vi bài toán}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Trình bày bài toán}{6}{subsection.1.3}%
+\contentsline {section}{\hbox to\@tempdima {\hfil }CHƯƠNG 2: CƠ SỞ LÝ THUYẾT VÀ CÔNG NGHỆ}{8}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Nền tảng công nghệ}{8}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Mô hình Ngôn ngữ Lớn (Large Language Models – LLM)}{8}{subsubsection.2.1.1}%
+\contentsline {paragraph}{Tokenization}{9}{paragraph*.13}%
+\contentsline {paragraph}{Bộ dữ liệu của LLM (LLM's Dataset)}{10}{paragraph*.15}%
+\contentsline {paragraph}{Kiến trúc Transformer (Transformer Architecture)}{11}{paragraph*.17}%
+\contentsline {subsubsection}{\numberline {2.1.2}Tác nhân AI (AI Agent)}{12}{subsubsection.2.1.2}%
+\contentsline {paragraph}{Kiến trúc tổng quan}{13}{paragraph*.19}%
+\contentsline {paragraph}{LLM – Bộ não của tác nhân}{13}{paragraph*.21}%
+\contentsline {paragraph}{Công cụ (Tools) và hành động}{14}{paragraph*.22}%
+\contentsline {paragraph}{Chu trình hoạt động của tác nhân}{14}{paragraph*.23}%
+\contentsline {subsubsection}{\numberline {2.1.3}Hệ Đa tác nhân (Multi-Agent Systems – MAS)}{16}{subsubsection.2.1.3}%
+\contentsline {paragraph}{Các thành phần chính của hệ thống đa tác nhân}{16}{paragraph*.25}%
+\contentsline {paragraph}{Đặc điểm của hệ thống đa tác nhân}{19}{paragraph*.27}%
+\contentsline {paragraph}{Các kiến trúc phổ biến của hệ thống đa tác nhân}{20}{paragraph*.29}%
+\contentsline {subsubsection}{\numberline {2.1.4}Sự can thiệp của con người (Human Intervention)}{21}{subsubsection.2.1.4}%
+\contentsline {paragraph}{Phản hồi của con người}{22}{paragraph*.32}%
+\contentsline {paragraph}{Con người trong vòng lặp}{23}{paragraph*.33}%
+\contentsline {subsection}{\numberline {2.2}Quản trị nhân lực}{24}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Hệ thống ATS truyền thống và những hạn chế}{24}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Vai trò của Thu hút nhân tài (Talent Acquisition)}{25}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Khung lý thuyết cho việc đánh giá}{25}{subsubsection.2.2.3}%
+\contentsline {paragraph}{Đo lường khả năng Thu hồi Nhân tài}{25}{paragraph*.35}%
+\contentsline {paragraph}{Định lượng Nỗ lực của Chuyên viên}{26}{paragraph*.36}%
+\contentsline {subsection}{\numberline {2.3}Các chỉ số thống kê}{26}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Giá trị p (p-value)}{26}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Kích thước hiệu ứng (Cohen's h)}{27}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}Hệ số Cohen's Kappa}{27}{subsubsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.4}Tổng kết chương}{27}{subsection.2.4}%
+\contentsline {section}{\hbox to\@tempdima {\hfil }CHƯƠNG 3: PHƯƠNG PHÁP NGHIÊN CỨU}{29}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Phân tích căn nguyên thất bại của hệ thống ATS}{29}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Nguyên lý hoạt động và hạn chế của các hệ thống ATS hiện hành}{30}{subsubsection.3.1.1}%
+\contentsline {paragraph}{Cơ sở lựa chọn và phân tích so sánh}{30}{paragraph*.37}%
+\contentsline {paragraph}{Phân tích so sánh hai nền tảng ATS điển hình}{30}{paragraph*.38}%
+\contentsline {paragraph}{Phân rã quy trình và các điểm gây thất thoát nhân tài}{31}{paragraph*.39}%
+\contentsline {subsubsection}{\numberline {3.1.2}Tác động có hệ thống của Tỷ lệ Loại nhầm: Từ Bằng chứng Thực nghiệm đến Thiệt hại Kinh tế}{34}{subsubsection.3.1.2}%
+\contentsline {paragraph}{Bằng chứng thực nghiệm về quy mô của vấn đề}{34}{paragraph*.41}%
+\contentsline {paragraph}{Lượng hóa tác động kinh tế}{36}{paragraph*.42}%
+\contentsline {subsubsection}{\numberline {3.1.3}Phân tích các Khiếm khuyết Kiến trúc Cốt lõi của Hệ thống ATS}{37}{subsubsection.3.1.3}%
+\contentsline {paragraph}{Ba khiếm khuyết thiết kế mang tính hệ thống}{37}{paragraph*.43}%
+\contentsline {paragraph}{Kiểm chứng qua các tình huống thực tế}{38}{paragraph*.44}%
+\contentsline {subsection}{\numberline {3.2}Cân nhắc lựa chọn phương án triển khai}{39}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Khắc phục hạn chế của từ khóa tĩnh bằng cơ chế đối sánh ngữ nghĩa}{40}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Giảm thiểu thiên kiến đồng nhất bằng cơ chế thông dịch kinh nghiệm}{41}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Minh bạch hóa quyết định và cơ chế học hỏi liên tục}{42}{subsubsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.4}Phân tích tác động tổng hợp}{43}{subsubsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.3}Khung Đánh Giá}{44}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Xác Định Chỉ Số Thành Công}{45}{subsubsection.3.3.1}%
+\contentsline {paragraph}{A. Các Chỉ Số Hiệu Suất Cốt Lõi}{45}{paragraph*.45}%
+\contentsline {paragraph}{B. Các Ràng Buộc về Tính Công Bằng}{46}{paragraph*.46}%
+\contentsline {paragraph}{C. Ngưỡng Vận Hành Thực Tế}{46}{paragraph*.47}%
+\contentsline {subsubsection}{\numberline {3.3.2}Đóng góp phương pháp luận và cơ sở thực nghiệm}{47}{subsubsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.4}Tổng kết chương}{47}{subsection.3.4}%
+\contentsline {section}{\hbox to\@tempdima {\hfil }CHƯƠNG 4: ĐẶC TẢ HỆ THỐNG}{49}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Yêu Cầu Hệ Thống}{49}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}Tóm tắt triển khai}{50}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}Yêu cầu chức năng}{51}{subsubsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.3}Yêu cầu phi chức năng}{52}{subsubsection.4.1.3}%
+\contentsline {subsubsection}{\numberline {4.1.4}Chỉ số đánh giá và kế hoạch xác minh}{53}{subsubsection.4.1.4}%
+\contentsline {subsubsection}{\numberline {4.1.5}Truy vết yêu cầu}{53}{subsubsection.4.1.5}%
+\contentsline {subsubsection}{\numberline {4.1.6}Tiêu chí nghiệm thu}{54}{subsubsection.4.1.6}%
+\contentsline {subsection}{\numberline {4.2}Tổng quan tình huống sử dụng}{54}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Các tác nhân hệ thống}{54}{subsubsection.4.2.1}%
+\contentsline {paragraph}{A. Tác nhân con người (Human Actors)}{55}{paragraph*.48}%
+\contentsline {paragraph}{B. Tác nhân Hệ thống (System Actors)}{55}{paragraph*.49}%
+\contentsline {subsubsection}{\numberline {4.2.2}Mô hình tình huống sử dụng}{56}{subsubsection.4.2.2}%
+\contentsline {paragraph}{Danh mục chức năng chính}{56}{paragraph*.50}%
+\contentsline {paragraph}{Quy trình vận hành tổng thể}{58}{paragraph*.51}%
+\contentsline {subsubsection}{\numberline {4.2.3}Các kịch bản vận hành chính}{59}{subsubsection.4.2.3}%
+\contentsline {paragraph}{Kịch Bản Chính}{59}{paragraph*.53}%
+\contentsline {paragraph}{Kịch Bản Hỗ Trợ}{60}{paragraph*.54}%
+\contentsline {paragraph}{Quy Trình Đánh Giá HITL}{61}{paragraph*.55}%
+\contentsline {subsection}{\numberline {4.3}Mô tả hệ thống đa tác nhân}{62}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}Sơ đồ Kiến trúc Hệ thống}{62}{subsubsection.4.3.1}%
+\contentsline {paragraph}{Hạ tầng nền tảng và kiến trúc bộ nhớ}{65}{paragraph*.58}%
+\contentsline {subsubsection}{\numberline {4.3.2}Đặc tả tác nhân phụ}{66}{subsubsection.4.3.2}%
+\contentsline {paragraph}{a. Tác nhân giám sát (Orchestrator)}{66}{paragraph*.59}%
+\contentsline {paragraph}{b. Tác nhân tìm kiếm ứng viên (Sourcing)}{67}{paragraph*.60}%
+\contentsline {paragraph}{c. Tác nhân sàng lọc (Screening)}{67}{paragraph*.61}%
+\contentsline {paragraph}{d. Tác nhân phản biện (Critic)}{67}{paragraph*.62}%
+\contentsline {paragraph}{e. Tác nhân con người trong vòng lặp (HITL)}{68}{paragraph*.63}%
+\contentsline {paragraph}{f. Tác nhân quản lý dữ liệu (Data-Steward)}{68}{paragraph*.64}%
+\contentsline {subsubsection}{\numberline {4.3.3}Mô Hình Giao Tiếp}{68}{subsubsection.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.4}Quản lý Trạng thái Quy trình Tuyển dụng}{69}{subsubsection.4.3.4}%
+\contentsline {subsubsection}{\numberline {4.3.5}Cơ chế tương tác có con người trong vòng lặp (Human-in-the-Loop - HITL)}{71}{subsubsection.4.3.5}%
+\contentsline {paragraph}{Nguyên tắc cốt lõi: Đánh giá dựa trên Độ đồng thuận}{71}{paragraph*.65}%
+\contentsline {paragraph}{Phân luồng can thiệp đa cấp và các điều kiện đặc biệt}{72}{paragraph*.66}%
+\contentsline {subsection}{\numberline {4.4}Tổng kết chương}{74}{subsection.4.4}%
+\contentsline {section}{\hbox to\@tempdima {\hfil }CHƯƠNG 5: TRIỂN KHAI VÀ ĐÁNH GIÁ}{76}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Chuẩn bị dữ liệu}{76}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Cơ sở lựa chọn}{77}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Đặc điểm bộ dữ liệu}{77}{subsubsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.3}Ý nghĩa đối với nghiên cứu}{78}{subsubsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.2}Tiền xử lý dữ liệu}{79}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Trích xuất thực thể từ sơ yếu lý lịch}{79}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}Quy trình tiền xử lý tổng thể}{80}{subsubsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.3}Đánh giá Chất lượng}{80}{subsubsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.3}Triển khai mô hình minh chứng (Proof-of-Concept)}{81}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Kiến trúc hệ thống}{81}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}Triển khai tác nhân}{82}{subsubsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.3}Giao diện và trải nghiệm người Dùng}{83}{subsubsection.5.3.3}%
+\contentsline {subsubsection}{\numberline {5.3.4}Kiểm thử và xác minh}{83}{subsubsection.5.3.4}%
+\contentsline {subsubsection}{\numberline {5.3.5}Kết quả triển khai}{84}{subsubsection.5.3.5}%
+\contentsline {subsubsection}{\numberline {5.3.6}Kết luận}{85}{subsubsection.5.3.6}%
+\contentsline {subsection}{\numberline {5.4}Đánh giá}{85}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}Câu hỏi nghiên cứu}{85}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}Thiết kế đánh giá}{86}{subsubsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.3}Định nghĩa chỉ số}{86}{subsubsection.5.4.3}%
+\contentsline {subsubsection}{\numberline {5.4.4}Tiêu chí đánh giá ứng viên}{86}{subsubsection.5.4.4}%
+\contentsline {subsubsection}{\numberline {5.4.5}Cấu hình thí nghiệm}{87}{subsubsection.5.4.5}%
+\contentsline {subsection}{\numberline {5.5}Kết quả}{87}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Phát hiện chính}{88}{subsubsection.5.5.1}%
+\contentsline {subsubsection}{\numberline {5.5.2}Hiệu suất so sánh}{88}{subsubsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.3}Xác nhận thống kê}{88}{subsubsection.5.5.3}%
+\contentsline {subsubsection}{\numberline {5.5.4}Tác động kinh doanh}{89}{subsubsection.5.5.4}%
+\contentsline {subsubsection}{\numberline {5.5.5}Thảo luận}{89}{subsubsection.5.5.5}%
+\contentsline {subsection}{\numberline {5.6}Tổng kết chương}{90}{subsection.5.6}%
+\contentsline {section}{\hbox to\@tempdima {\hfil }KẾT LUẬN}{92}{section*.70}%
+\contentsline {section}{\hbox to\@tempdima {\hfil }TÀI LIỆU THAM KHẢO}{95}{section*.71}%
