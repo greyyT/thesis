@@ -245,7 +245,7 @@ These aren't bugs—they're fundamental design flaws that compound each other. L
 
 ---
 
-# Solutions
+# Solution Analysis
 
 <div class="grid grid-cols-3 gap-6">
   <div v-click class="bg-blue-900 bg-opacity-30 p-6 rounded-lg">
@@ -616,7 +616,7 @@ For researchers, this demonstrates practical AI-human collaboration. For recruit
 
 <div class="grid grid-cols-2 gap-2 mb-2">
   <div v-click>
-    <div class="bg-blue-900 bg-opacity-20 p-2 rounded border-l-2 border-blue-400 pb-[30px]">
+    <div class="bg-blue-900 bg-opacity-20 p-2 rounded border-l-2 border-blue-400">
       <h3 class="text-sm font-bold text-blue-400 mb-1">Study Design</h3>
       <ul class="space-y-0 text-xs">
         <li class="flex items-start">
@@ -641,15 +641,11 @@ For researchers, this demonstrates practical AI-human collaboration. For recruit
       <ul class="space-y-0 text-xs">
         <li class="flex items-start">
           <span class="text-yellow-300">•</span>
-          <span class="ml-1"><span class="font-semibold text-orange-300">Source:</span> Fortune 500</span>
+          <span class="ml-1"><span class="font-semibold text-orange-300">Source:</span> Fortune 500 (Kaggle)</span>
         </li>
         <li class="flex items-start">
           <span class="text-yellow-300">•</span>
-          <span class="ml-1"><span class="font-semibold text-orange-300">Roles:</span> 8 tech categories</span>
-        </li>
-        <li class="flex items-start">
-          <span class="text-yellow-300">•</span>
-          <span class="ml-1"><span class="font-semibold text-orange-300">Diversity:</span> 43% non-traditional</span>
+          <span class="ml-1"><span class="font-semibold text-orange-300">Roles:</span> 25 tech categories</span>
         </li>
         <li class="flex items-start">
           <span class="text-yellow-300">•</span>
@@ -699,7 +695,7 @@ This rigorous setup ensures our results aren't just statistically significant bu
     <tbody>
       <tr class="border-t border-gray-700">
         <td class="p-2 font-bold">Baseline</td>
-        <td class="p-2 text-center">971</td>
+        <td class="p-2 text-center">885</td>
         <td class="p-2 text-center">380</td>
         <td class="p-2 text-center">117</td>
         <td class="p-2 text-center text-red-400 font-bold">30.8%</td>
@@ -769,7 +765,7 @@ These results held across all eight job categories and demographic groups, valid
 <div class="w-full max-w-5xl">
 
 <div class="bg-gray-800 p-8 rounded-lg mb-6">
-  <h2 class="text-3xl font-bold text-red-400 mb-6 text-center">Measuring What Matters: The FRR Formula</h2>
+  <h2 class="text-3xl font-bold text-red-400 mb-6 text-center">Measuring The FRR Score</h2>
   
   <div class="bg-gray-900 p-6 rounded-lg mb-6">
     <div class="text-4xl font-mono text-center">
@@ -788,7 +784,7 @@ These results held across all eight job categories and demographic groups, valid
     <div class="bg-gray-700 p-4 rounded">
       <h3 class="text-lg font-bold text-orange-400 mb-2">Industry Baseline</h3>
       <div class="space-y-2 text-sm">
-        <div>• Total candidates: 971</div>
+        <div>• Total candidates: 885</div>
         <div>• Qualified: 380</div>
         <div>• False rejections: <span class="text-red-400 font-bold">117</span></div>
         <div class="mt-2 p-2 bg-gray-800 rounded font-mono">
@@ -811,9 +807,8 @@ These results held across all eight job categories and demographic groups, valid
   
   <div class="text-center">
     <div class="inline-block bg-green-900 bg-opacity-30 p-4 rounded-lg">
-      <div class="text-3xl font-bold text-yellow-400">76% Reduction</div>
-      <div class="text-lg text-gray-300">in False Rejections</div>
-      <div class="text-sm text-gray-400 mt-2">72 fewer qualified candidates lost per batch</div>
+      <div class="text-lg text-gray-300 mt-2">72 fewer qualified candidates lost per batch</div>
+      <div class="text-sm text-gray-400">in False Rejections</div>
     </div>
   </div>
 </div>
@@ -871,7 +866,6 @@ This isn't just a marginal improvement—it's a fundamental shift in how we iden
     <h4 class="text-lg font-bold text-green-400 mb-2">Proven Business Value</h4>
     <div class="bg-gray-800 p-3 rounded-lg space-y-1 text-sm">
       <div>✓ <span class="font-bold">25% more</span> qualified candidates found</div>
-      <div>✓ <span class="font-bold">$150K+</span> saved per 100 hires</div>
       <div>✓ <span class="font-bold">90% faster</span> screening process</div>
       <div>✓ Access to <span class="font-bold">diverse talent pools</span></div>
     </div>
@@ -880,7 +874,6 @@ This isn't just a marginal improvement—it's a fundamental shift in how we iden
   <div v-click>
     <h4 class="text-lg font-bold text-blue-400 mb-2">Quick Start Options</h4>
     <div class="bg-gray-800 p-3 rounded-lg space-y-1 text-sm">
-      <div>📅 <span class="font-bold">2-week pilot</span> with your job openings</div>
       <div>👁️ See your <span class="font-bold">"hidden gems"</span> in real candidates</div>
       <div>🔌 <span class="font-bold">API integration</span> with existing ATS</div>
       <div>🚀 <span class="font-bold">Full deployment</span> in 8 weeks</div>
@@ -910,6 +903,12 @@ The question isn't whether AI will change recruitment—it's whether you'll lead
 
 Thank you for your time. I'm here to answer any questions about implementation, research methodology, or how we can help you find your hidden talent.
 -->
+
+---
+
+# The End
+
+Thank you for your attention!
 
 ---
 
